@@ -622,15 +622,6 @@ register struct permonst *ptr;
 #else
 		return(control_teleport(ptr));
 #endif
-	    case TELEPAT:
-#ifdef DEBUG
-		if (telepathic(ptr)) {
-			debugpline("can get telepathy");
-			return(TRUE);
-		} else  return(FALSE);
-#else
-		return(telepathic(ptr));
-#endif
 	    default:
 		return(FALSE);
 	}
@@ -664,9 +655,6 @@ register struct permonst *ptr;
 			break;
 		case TELEPORT_CONTROL:
 			chance = 12;
-			break;
-		case TELEPAT:
-			chance = 1;
 			break;
 		default:
 			chance = 15;
@@ -757,19 +745,6 @@ register struct permonst *ptr;
 			    "centered in your personal space." :
 			    "in control of yourself.");
 			HTeleport_control |= FROMOUTSIDE;
-		}
-		break;
-	    case TELEPAT:
-#ifdef DEBUG
-		debugpline("Trying to give telepathy");
-#endif
-		if(!(HTelepat & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
-			    "in touch with the cosmos." :
-			    "a strange mental acuity.");
-			HTelepat |= FROMOUTSIDE;
-			/* If blind, make sure monsters show up. */
-			if (Blind) see_monsters();
 		}
 		break;
 	    default:
