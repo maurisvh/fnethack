@@ -98,7 +98,7 @@ moveloop()
     int moveamt = 0, wtcap = 0, change = 0;
     boolean didmove = FALSE, monscanmove = FALSE;
 
-    flags.moonphase = phase_of_the_moon();
+    /* flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {
 	You("are lucky!  Full moon tonight.");
 	change_luck(1);
@@ -109,7 +109,7 @@ moveloop()
     if (flags.friday13) {
 	pline("Watch out!  Bad things can happen on Friday the 13th.");
 	change_luck(-1);
-    }
+    } */
 
     initrack();
 
