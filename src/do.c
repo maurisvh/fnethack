@@ -959,8 +959,7 @@ boolean at_stairs, falling, portal;
 	boolean cant_go_back,
 		up = (depth(newlevel) < depth(&u.uz)),
 		newdungeon = (u.uz.dnum != newlevel->dnum),
-		was_in_W_tower = In_W_tower(u.ux, u.uy, &u.uz),
-		familiar = FALSE;
+		was_in_W_tower = In_W_tower(u.ux, u.uy, &u.uz);
 	boolean new = FALSE;	/* made a new level? */
 	struct monst *mtmp;
 	char whynot[BUFSZ];
@@ -1255,13 +1254,6 @@ boolean at_stairs, falling, portal;
 	if (Is_waterlevel(&u.uz))
 		movebubbles();
 
-	if (level_info[new_ledger].flags & FORGOTTEN) {
-	    forget_map(ALL_MAP);	/* forget the map */
-	    forget_traps();		/* forget all traps too */
-	    familiar = TRUE;
-	    level_info[new_ledger].flags &= ~FORGOTTEN;
-	}
-
 	/* Reset the screen. */
 	vision_reset();		/* reset the blockages */
 	docrt();		/* does a full vision recalc */
@@ -1288,34 +1280,6 @@ boolean at_stairs, falling, portal;
 #ifdef RECORD_ACHIEVE
             achieve.enter_gehennom = 1;
 #endif
-	}
-
-	if (familiar) {
-	    static const char * const fam_msgs[4] = {
-		"You have a sense of deja vu.",
-		"You feel like you've been here before.",
-		"This place %s familiar...",
-		0	/* no message */
-	    };
-	    static const char * const halu_fam_msgs[4] = {
-		"Whoa!  Everything %s different.",
-		"You are surrounded by twisty little passages, all alike.",
-		"Gee, this %s like uncle Conan's place...",
-		0	/* no message */
-	    };
-	    const char *mesg;
-	    char buf[BUFSZ];
-	    int which = rn2(4);
-
-	    if (Hallucination)
-		mesg = halu_fam_msgs[which];
-	    else
-		mesg = fam_msgs[which];
-	    if (mesg && index(mesg, '%')) {
-		Sprintf(buf, mesg, !Blind ? "looks" : "seems");
-		mesg = buf;
-	    }
-	    if (mesg) pline(mesg);
 	}
 
 #ifdef REINCARNATION
