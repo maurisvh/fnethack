@@ -253,7 +253,7 @@ chat_with_leader()
 	    expulsion(TRUE);
 	  } else if(is_pure(TRUE) == 0) {
 	    qt_pager(QT_BADALIGN);
-	    if(Qstat(not_ready) == MAX_QUEST_TRIES) {
+	    if(0) {
 	      qt_pager(QT_LASTLEADER);
 	      expulsion(TRUE);
 	    } else {
