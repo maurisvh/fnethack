@@ -344,7 +344,7 @@ typedef long glyph_t;
 #define STEED		/* Riding steeds */
 #define TOURIST		/* Tourist players with cameras and Hawaiian shirts */
 /* difficulty */
-#define ELBERETH	/* Engraving the E-word repels monsters */
+/* #define ELBERETH */	/* Engraving the E-word repels monsters */
 /* I/O */
 #define REDO		/* support for redoing last command - DGK */
 #if !defined(MAC)
