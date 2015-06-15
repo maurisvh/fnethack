@@ -351,7 +351,7 @@ struct version_info {
 #define MAXSTAIRS	1	/* max # of special stairways in a dungeon */
 #define ALIGNWEIGHT	4	/* generation weight of alignment */
 
-#define MAXULEV		30	/* max character experience level */
+#define MAXULEV		15	/* max character experience level */
 
 #define MAXMONNO	120	/* extinct monst after this number created */
 #define MHPMAX		500	/* maximum monster hp */
