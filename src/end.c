@@ -49,9 +49,7 @@ extern char msgs[][BUFSZ];
 extern int lastmsg;
 extern void NDECL(dump_spells);
 void FDECL(do_vanquished, (int, BOOLEAN_P, BOOLEAN_P));
-STATIC_DCL void FDECL(list_genocided, (int, BOOLEAN_P, BOOLEAN_P));
 #else
-STATIC_DCL void FDECL(list_genocided, (CHAR_P,BOOLEAN_P));
 #endif /* DUMP_LOG */
 STATIC_DCL boolean FDECL(should_query_disclose_option, (int,char *));
 
@@ -615,14 +613,6 @@ boolean taken;
 #else
 	if (!done_stopprint)
 	    list_vanquished(defquery, ask);
-#endif
-
-	ask = should_query_disclose_option('g', &defquery);
-	if (!done_stopprint)
-#ifdef DUMP_LOG
-	    list_genocided(defquery, ask,TRUE);
-#else
-	    list_genocided(defquery, ask);
 #endif
 
 	ask = should_query_disclose_option('c', &defquery);
@@ -1510,131 +1500,6 @@ boolean want_dump;
 #else
 	} /* the original end of if (c == 'y') */
 #endif
-    }
-}
-
-/* number of monster species which have been genocided */
-int
-num_genocides()
-{
-    int i, n = 0;
-
-    for (i = LOW_PM; i < NUMMONS; ++i)
-	if (mvitals[i].mvflags & G_GENOD) ++n;
-
-    return n;
-}
-
-#ifdef DUMP_LOG
-STATIC_OVL void
-list_genocided(defquery, ask, want_dump)
-int defquery;
-boolean ask;
-boolean want_dump;
-#else
-STATIC_OVL void
-list_genocided(defquery, ask)
-char defquery;
-boolean ask;
-#endif
-{
-    register int i;
-    int ngenocided=0;
-#ifdef SHOW_EXTINCT
-    int nextincted=0;
-#endif
-    char c;
-    winid klwin;
-    char buf[BUFSZ];
-
-    /* get totals first */
-#ifdef SHOW_EXTINCT
-    for (i = LOW_PM; i < NUMMONS; i++) {
-	if (mvitals[i].mvflags & G_GENOD)
-	    ngenocided++;
-	else if ( (mvitals[i].mvflags & G_GONE) && !(mons[i].geno & G_UNIQ) )
-	    nextincted++;
-    }
-    ngenocided = num_genocides();
-#endif
-
-    /* genocided species list */
-    if (ngenocided != 0
-#ifdef SHOW_EXTINCT
-      || nextincted != 0
-#endif
-    ) {
-#ifdef SHOW_EXTINCT
-	if (nextincted != 0)
-	  c = ask ?
-	  yn_function("Do you want a list of species genocided or extinct?",
-		      ynqchars, defquery) : defquery;
-       else
-#endif
-	c = ask ? yn_function("Do you want a list of species genocided?",
-			      ynqchars, defquery) : defquery;
-	if (c == 'q') done_stopprint++;
-	if (c == 'y') {
-	    klwin = create_nhwindow(NHW_MENU);
-#ifdef SHOW_EXTINCT
-	    Sprintf(buf, "Genocided or extinct species:");
-#else
-	    Sprintf(buf, "Genocided species:");
-#endif
-	    putstr(klwin, 0, buf);
-	    putstr(klwin, 0, "");
-#ifdef DUMP_LOG
-	    if (want_dump)  dump("", buf);
-#endif
-
-	    for (i = LOW_PM; i < NUMMONS; i++)
-#ifdef SHOW_EXTINCT
-	      if (mvitals[i].mvflags & G_GONE && !(mons[i].geno & G_UNIQ) ){
-#else
-		if (mvitals[i].mvflags & G_GENOD) {
-#endif
-		    if ((mons[i].geno & G_UNIQ) && i != PM_HIGH_PRIEST)
-			Sprintf(buf, "%s%s",
-				!type_is_pname(&mons[i]) ? "" : "the ",
-				mons[i].mname);
-		    else
-			Strcpy(buf, makeplural(mons[i].mname));
-#ifdef SHOW_EXTINCT
-		    if( !(mvitals[i].mvflags & G_GENOD) )
-			Strcat(buf, " (extinct)");
-#endif
-		    putstr(klwin, 0, buf);
-#ifdef DUMP_LOG
-		    if (want_dump)  dump("  ", buf);
-#endif
-		}
-
-	    putstr(klwin, 0, "");
-#ifdef SHOW_EXTINCT
-	    if (ngenocided>0) {
-#endif
-	      Sprintf(buf, "%d species genocided.", ngenocided);
-	      putstr(klwin, 0, buf);
-#ifdef DUMP_LOG
-	      if (want_dump)  dump("  ", buf);
-#endif
-#ifdef SHOW_EXTINCT
-	    }
-	    if (nextincted>0) {
-	      Sprintf(buf, "%d species extinct.", nextincted);
-	      putstr(klwin, 0, buf);
-#ifdef DUMP_LOG
-	      if (want_dump) dump(" ", buf);
-#endif
-            }
-#endif /* SHOW_EXTINCT */
-#ifdef DUMP_LOG
-	      if (want_dump)  dump("", "");
-#endif
-
-	    display_nhwindow(klwin, TRUE);
-	    destroy_nhwindow(klwin);
-	}
     }
 }
 

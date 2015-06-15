@@ -588,7 +588,6 @@ E void FDECL(dump, (char *, char *));
 E void FDECL(do_containerconts, (struct obj *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P));
 #endif
 E void FDECL(terminate, (int));
-E int NDECL(num_genocides);
 
 /* ### engrave.c ### */
 
@@ -1195,7 +1194,6 @@ E int FDECL(newcham, (struct monst *,struct permonst *,BOOLEAN_P,BOOLEAN_P));
 E int FDECL(can_be_hatched, (int));
 E int FDECL(egg_type_from_parent, (int,BOOLEAN_P));
 E boolean FDECL(dead_species, (int,BOOLEAN_P));
-E void NDECL(kill_genocided_monsters);
 E void FDECL(golemeffects, (struct monst *,int,int));
 E boolean FDECL(angry_guards, (BOOLEAN_P));
 E void NDECL(pacify_guards);
@@ -1704,7 +1702,6 @@ E int FDECL(seffects, (struct obj *));
 E void FDECL(set_lit, (int,int,genericptr_t));
 #endif
 E void FDECL(litroom, (BOOLEAN_P,struct obj *));
-E void FDECL(do_genocide, (int));
 E void FDECL(punish, (struct obj *));
 E void NDECL(unpunish);
 E boolean FDECL(cant_create, (int *, BOOLEAN_P));

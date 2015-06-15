@@ -1700,7 +1700,6 @@ show_conduct(final)
 int final;
 {
 	char buf[BUFSZ];
-	int ngenocided;
 
 	/* Create the conduct window */
 	en_win = create_nhwindow(NHW_MENU);
@@ -1739,15 +1738,6 @@ int final;
 	    you_have_X(buf);
 	}
 #endif
-
-	ngenocided = num_genocides();
-	if (ngenocided == 0) {
-	    you_have_never("genocided any monsters");
-	} else {
-	    Sprintf(buf, "genocided %d type%s of monster%s",
-		    ngenocided, plur(ngenocided), plur(ngenocided));
-	    you_have_X(buf);
-	}
 
 	if (!u.uconduct.polypiles)
 	    you_have_never("polymorphed an object");
@@ -1792,7 +1782,6 @@ dump_conduct(final)
 int final;
 {
 	char buf[BUFSZ];
-	int ngenocided;
 
 	dump("", "Voluntary challenges");
 
@@ -1838,15 +1827,6 @@ int final;
 	    dump("  You ", buf);
 	}
 #endif
-
-	ngenocided = num_genocides();
-	if (ngenocided == 0) {
-	    dump("", "  You never genocided any monsters");
-	} else {
-	    Sprintf(buf, "genocided %d type%s of monster%s",
-		    ngenocided, plur(ngenocided), plur(ngenocided));
-	    dump("  You ", buf);
-	}
 
 	if (!u.uconduct.polypiles)
 	    dump("", "  You never polymorphed an object");

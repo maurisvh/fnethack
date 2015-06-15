@@ -2673,46 +2673,6 @@ struct obj *obj_list;
 	    }
 }
 
-/* kill all members of genocided species */
-void
-kill_genocided_monsters()
-{
-	struct monst *mtmp, *mtmp2;
-	boolean kill_cham[CHAM_MAX_INDX+1];
-	int mndx;
-
-	kill_cham[CHAM_ORDINARY] = FALSE;	/* (this is mndx==0) */
-	for (mndx = 1; mndx <= CHAM_MAX_INDX; mndx++)
-	  kill_cham[mndx] = (mvitals[cham_to_pm[mndx]].mvflags & G_GENOD) != 0;
-	/*
-	 * Called during genocide, and again upon level change.  The latter
-	 * catches up with any migrating monsters as they finally arrive at
-	 * their intended destinations, so possessions get deposited there.
-	 *
-	 * Chameleon handling:
-	 *	1) if chameleons have been genocided, destroy them
-	 *	   regardless of current form;
-	 *	2) otherwise, force every chameleon which is imitating
-	 *	   any genocided species to take on a new form.
-	 */
-	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
-	    mtmp2 = mtmp->nmon;
-	    if (DEADMONSTER(mtmp)) continue;
-	    mndx = monsndx(mtmp->data);
-	    if ((mvitals[mndx].mvflags & G_GENOD) || kill_cham[mtmp->cham]) {
-		if (mtmp->cham && !kill_cham[mtmp->cham])
-		    (void) newcham(mtmp, (struct permonst *)0, FALSE, FALSE);
-		else
-		    mondead(mtmp);
-	    }
-	    if (mtmp->minvent) kill_eggs(mtmp->minvent);
-	}
-
-	kill_eggs(invent);
-	kill_eggs(fobj);
-	kill_eggs(level.buriedobjlist);
-}
-
 #endif /* OVL2 */
 #ifdef OVLB
 

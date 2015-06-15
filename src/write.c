@@ -53,9 +53,6 @@ register struct obj *otmp;
 	case SCR_TELEPORTATION:
 		return(20);
 /*		break; */
-	case SCR_GENOCIDE:
-		return(30);
-/*		break; */
 	case SCR_BLANK_PAPER:
 	default:
 		impossible("You can't write such a weird scroll!");

@@ -997,7 +997,6 @@ encode_xlogflags(void)
        if(!u.uconduct.polyselfs)       e |= 0x100L;
        if(!u.uconduct.wishes)          e |= 0x200L;
        if(!u.uconduct.wisharti)        e |= 0x400L;
-       if(!num_genocides())            e |= 0x800L;
        */
        return e;
 }
@@ -1020,7 +1019,6 @@ encodeconduct(void)
        if(!u.uconduct.polyselfs)       e |= 0x100L;
        if(!u.uconduct.wishes)          e |= 0x200L;
        if(!u.uconduct.wisharti)        e |= 0x400L;
-       if(!num_genocides())            e |= 0x800L;
 
        return e;
 }

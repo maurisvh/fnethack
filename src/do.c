@@ -1215,7 +1215,6 @@ boolean at_stairs, falling, portal;
 	if (Punished) placebc();
 	obj_delivery();		/* before killing geno'd monsters' eggs */
 	losedogs();
-	kill_genocided_monsters();  /* for those wiped out while in limbo */
 	/*
 	 * Expire all timers that have gone off while away.  Must be
 	 * after migrating monsters and objects are delivered
