@@ -2916,15 +2916,9 @@ boolean shk_buying;
 		if (obj->oeaten) tmp = 0L;
 		break;
 	case WAND_CLASS:
-		if (obj->spe == -1) tmp = 0L;
-		break;
 	case POTION_CLASS:
-		if (obj->otyp == POT_WATER && !obj->blessed && !obj->cursed)
-			tmp = 0L;
-		break;
 	case ARMOR_CLASS:
 	case WEAPON_CLASS:
-		if (obj->spe > 0) tmp += 10L * (long) obj->spe;
 		break;
 	case TOOL_CLASS:
 		if (Is_candle(obj) &&

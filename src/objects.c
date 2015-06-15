@@ -310,7 +310,7 @@ HELM("dented pot", (char *)0,
 		1, 0,  0,	2, 0, 10,   8, 9, 0, IRON, CLR_BLACK),
 /* With shuffled appearances... */
 HELM("helmet", "plumed helmet",
-		0, 0,  0,      10, 1, 30,  10, 9, 0, IRON, HI_METAL),
+		0, 0,  0,      10, 1, 50,  10, 9, 0, IRON, HI_METAL),
 HELM("helm of brilliance", "etched helmet",
 		0, 1,  0,	6, 1, 50,  50, 9, 0, IRON, CLR_GREEN),
 HELM("helm of opposite alignment", "crested helmet",
@@ -425,13 +425,13 @@ CLOAK("leather cloak", (char *)0,
 		1, 0,	0,	    8, 0, 15, 40,  9, 1, LEATHER, CLR_BROWN),
 /* With shuffled appearances... */
 CLOAK("cloak of protection", "tattered cape",
-		0, 1,	PROTECTION, 9, 0, 10, 50,  7, 3, CLOTH, HI_CLOTH),
+		0, 1,	PROTECTION, 9, 0, 10, 60,  7, 3, CLOTH, HI_CLOTH),
 CLOAK("cloak of invisibility", "opera cloak",
 		0, 1,	INVIS,	   10, 0, 10, 60,  9, 2, CLOTH, CLR_BRIGHT_MAGENTA),
 CLOAK("cloak of magic resistance", "ornamental cope",
 		0, 1,	ANTIMAGIC,  2, 0, 10, 60,  9, 3, CLOTH, CLR_WHITE),
 CLOAK("cloak of displacement", "piece of cloth",
-		0, 1,	DISPLACED, 10, 0, 10, 50,  9, 2, CLOTH, HI_CLOTH),
+		0, 1,	DISPLACED, 10, 0, 10, 60,  9, 2, CLOTH, HI_CLOTH),
 
 /* shields */
 SHIELD("small shield", (char *)0,
@@ -454,7 +454,7 @@ SHIELD("shield of reflection", "polished silver shield",
  * CLR_BROWN (== HI_LEATHER)
  */
 GLOVES("leather gloves", "old gloves",
-		0, 0,  0,	  16, 1, 10,  8,  9, 0, LEATHER, HI_LEATHER),
+		0, 0,  0,	  16, 1, 10, 50,  9, 0, LEATHER, HI_LEATHER),
 GLOVES("gauntlets of fumbling", "padded gloves",
 		0, 1,  FUMBLING,   8, 1, 10, 50,  9, 0, LEATHER, HI_LEATHER),
 GLOVES("gauntlets of power", "riding gloves",
@@ -477,13 +477,13 @@ BOOTS("water walking boots", "jungle boots",
 BOOTS("jumping boots", "hiking boots",
 		0, 1,  JUMPING,   12, 2, 20, 50,  9, 0, LEATHER, HI_LEATHER),
 BOOTS("elven boots", "mud boots",
-		0, 1,  STEALTH,   12, 2, 15,  8,  9, 0, LEATHER, HI_LEATHER),
+		0, 1,  STEALTH,   12, 2, 15, 50,  9, 0, LEATHER, HI_LEATHER),
 BOOTS("kicking boots", "buckled boots",
-		0, 1,  0,         12, 2, 15,  8,  9, 0, IRON, CLR_BROWN),
+		0, 1,  0,         12, 2, 15, 50,  9, 0, IRON, CLR_BROWN),
 BOOTS("fumble boots", "riding boots",
-		0, 1,  FUMBLING,  12, 2, 20, 30,  9, 0, LEATHER, HI_LEATHER),
+		0, 1,  FUMBLING,  12, 2, 20, 50,  9, 0, LEATHER, HI_LEATHER),
 BOOTS("levitation boots", "snow boots",
-		0, 1,  LEVITATION,12, 2, 15, 30,  9, 0, LEATHER, HI_LEATHER),
+		0, 1,  LEVITATION,12, 2, 15, 50,  9, 0, LEATHER, HI_LEATHER),
 #undef HELM
 #undef CLOAK
 #undef SHIELD
@@ -492,49 +492,49 @@ BOOTS("levitation boots", "snow boots",
 #undef ARMOR
 
 /* rings ... */
-#define RING(name,power,stone,cost,mgc,spec,mohs,metal,color) OBJECT( \
+#define RING(name,power,stone,mgc,spec,mohs,metal,color) OBJECT( \
 		OBJ(name,stone), \
 		BITS(0,0,spec,0,mgc,spec,0,0,0,HARDGEM(mohs),0,P_NONE,metal), \
-		power, RING_CLASS, 0, 0, 3, cost, 0, 0, 0, 0, 15, color )
-RING("adornment", ADORNED, "wooden",        100, 1, 1, 2, WOOD, HI_WOOD),
-RING("gain strength", 0, "granite",         150, 1, 1, 7, MINERAL, HI_MINERAL),
-RING("gain constitution", 0, "opal",        150, 1, 1, 7, MINERAL,  HI_MINERAL),
-RING("increase accuracy", 0, "clay",        150, 1, 1, 4, MINERAL, CLR_RED),
-RING("increase damage", 0, "coral",         150, 1, 1, 4, MINERAL, CLR_ORANGE),
-RING("protection", PROTECTION, "black onyx",100, 1, 1, 7, MINERAL, CLR_BLACK),
+		power, RING_CLASS, 0, 0, 3, 150, 0, 0, 0, 0, 15, color )
+RING("adornment", ADORNED, "wooden",        1, 1, 2, WOOD, HI_WOOD),
+RING("gain strength", 0, "granite",         1, 1, 7, MINERAL, HI_MINERAL),
+RING("gain constitution", 0, "opal",        1, 1, 7, MINERAL,  HI_MINERAL),
+RING("increase accuracy", 0, "clay",        1, 1, 4, MINERAL, CLR_RED),
+RING("increase damage", 0, "coral",         1, 1, 4, MINERAL, CLR_ORANGE),
+RING("protection", PROTECTION, "black onyx",1, 1, 7, MINERAL, CLR_BLACK),
 RING("regeneration", REGENERATION, "moonstone",
-					    200, 1, 0, 6, MINERAL, HI_MINERAL),
-RING("searching", SEARCHING, "tiger eye",   200, 1, 0, 6, GEMSTONE, CLR_BROWN),
-RING("stealth", STEALTH, "jade",            100, 1, 0, 6, GEMSTONE, CLR_GREEN),
+					    1, 0, 6, MINERAL, HI_MINERAL),
+RING("searching", SEARCHING, "tiger eye",   1, 0, 6, GEMSTONE, CLR_BROWN),
+RING("stealth", STEALTH, "jade",            1, 0, 6, GEMSTONE, CLR_GREEN),
 RING("sustain ability", FIXED_ABIL, "bronze",
-					    100, 1, 0, 4, COPPER, HI_COPPER),
-RING("levitation", LEVITATION, "agate",     200, 1, 0, 7, GEMSTONE, CLR_RED),
-RING("hunger", HUNGER, "topaz",             100, 1, 0, 8, GEMSTONE, CLR_CYAN),
+					    1, 0, 4, COPPER, HI_COPPER),
+RING("levitation", LEVITATION, "agate",     1, 0, 7, GEMSTONE, CLR_RED),
+RING("hunger", HUNGER, "topaz",             1, 0, 8, GEMSTONE, CLR_CYAN),
 RING("aggravate monster", AGGRAVATE_MONSTER, "sapphire",
-					    150, 1, 0, 9, GEMSTONE, CLR_BLUE),
-RING("conflict", CONFLICT, "ruby",          300, 1, 0, 9, GEMSTONE, CLR_RED),
-RING("warning", WARNING, "diamond",         100, 1, 0,10, GEMSTONE, CLR_WHITE),
+					    1, 0, 9, GEMSTONE, CLR_BLUE),
+RING("conflict", CONFLICT, "ruby",          1, 0, 9, GEMSTONE, CLR_RED),
+RING("warning", WARNING, "diamond",         1, 0,10, GEMSTONE, CLR_WHITE),
 RING("poison resistance", POISON_RES, "pearl",
-					    150, 1, 0, 4, IRON, CLR_WHITE),
-RING("fire resistance", FIRE_RES, "iron",   200, 1, 0, 5, IRON, HI_METAL),
-RING("cold resistance", COLD_RES, "brass",  150, 1, 0, 4, COPPER, HI_COPPER),
+					    1, 0, 4, IRON, CLR_WHITE),
+RING("fire resistance", FIRE_RES, "iron",   1, 0, 5, IRON, HI_METAL),
+RING("cold resistance", COLD_RES, "brass",  1, 0, 4, COPPER, HI_COPPER),
 RING("shock resistance", SHOCK_RES, "copper",
-					    150, 1, 0, 3, COPPER, HI_COPPER),
+					    1, 0, 3, COPPER, HI_COPPER),
 RING("free action",     FREE_ACTION, "twisted",
-					    200, 1, 0, 6, IRON, HI_METAL),
+					    1, 0, 6, IRON, HI_METAL),
 RING("slow digestion",  SLOW_DIGESTION, "steel",
-					    200, 1, 0, 8, IRON, HI_METAL),
-RING("teleportation", TELEPORT, "silver",   200, 1, 0, 3, SILVER, HI_SILVER),
+					    1, 0, 8, IRON, HI_METAL),
+RING("teleportation", TELEPORT, "silver",   1, 0, 3, SILVER, HI_SILVER),
 RING("teleport control", TELEPORT_CONTROL, "gold",
-					    300, 1, 0, 3, GOLD, HI_GOLD),
-RING("polymorph", POLYMORPH, "ivory",       300, 1, 0, 4, BONE, CLR_WHITE),
+					    1, 0, 3, GOLD, HI_GOLD),
+RING("polymorph", POLYMORPH, "ivory",       1, 0, 4, BONE, CLR_WHITE),
 RING("polymorph control", POLYMORPH_CONTROL, "emerald",
-					    300, 1, 0, 8, GEMSTONE, CLR_BRIGHT_GREEN),
-RING("invisibility", INVIS, "wire",         150, 1, 0, 5, IRON, HI_METAL),
+					    1, 0, 8, GEMSTONE, CLR_BRIGHT_GREEN),
+RING("invisibility", INVIS, "wire",         1, 0, 5, IRON, HI_METAL),
 RING("see invisible", SEE_INVIS, "engagement",
-					    150, 1, 0, 5, IRON, HI_METAL),
+					    1, 0, 5, IRON, HI_METAL),
 RING("protection from shape changers", PROT_FROM_SHAPE_CHANGERS, "shiny",
-					    100, 1, 0, 5, IRON, CLR_BRIGHT_CYAN),
+					    1, 0, 5, IRON, CLR_BRIGHT_CYAN),
 #undef RING
 
 /* amulets ... - THE Amulet comes last because it is special */
@@ -722,60 +722,60 @@ FOOD("tin",                 75, 0, 10, 1, METAL,   0, HI_METAL),
 #undef FOOD
 
 /* potions ... */
-#define POTION(name,desc,mgc,power,prob,cost,color) OBJECT( \
+#define POTION(name,desc,mgc,power,prob,color) OBJECT( \
 		OBJ(name,desc), BITS(0,1,0,0,mgc,0,0,0,0,0,0,P_NONE,GLASS), power, \
-		POTION_CLASS, prob, 0, 20, cost, 0, 0, 0, 0, 10, color )
-POTION("gain ability", "ruby",          1, 0,          42, 300, CLR_RED),
-POTION("restore ability", "pink",       1, 0,          40, 100, CLR_BRIGHT_MAGENTA),
-POTION("confusion", "orange",           1, CONFUSION,  42, 100, CLR_ORANGE),
-POTION("blindness", "yellow",           1, BLINDED,    40, 150, CLR_YELLOW),
-POTION("paralysis", "emerald",          1, 0,          42, 300, CLR_BRIGHT_GREEN),
-POTION("speed", "dark green",           1, FAST,       42, 200, CLR_GREEN),
-POTION("levitation", "cyan",            1, LEVITATION, 42, 200, CLR_CYAN),
-POTION("hallucination", "sky blue",     1, HALLUC,     40, 100, CLR_CYAN),
-POTION("invisibility", "brilliant blue",1, INVIS,      40, 150, CLR_BRIGHT_BLUE),
-POTION("see invisible", "magenta",      1, SEE_INVIS,  42,  50, CLR_MAGENTA),
-POTION("healing", "purple-red",         1, 0,          57, 100, CLR_MAGENTA),
-POTION("extra healing", "puce",         1, 0,          47, 100, CLR_RED),
-POTION("gain level", "milky",           1, 0,          20, 300, CLR_WHITE),
-POTION("enlightenment", "swirly",       1, 0,          20, 200, CLR_BROWN),
-POTION("monster detection", "bubbly",   1, 0,          40, 150, CLR_WHITE),
-POTION("object detection", "smoky",     1, 0,          42, 150, CLR_GRAY),
-POTION("gain energy", "cloudy",         1, 0,          42, 150, CLR_WHITE),
-POTION("sleeping",  "effervescent",     1, 0,          42, 100, CLR_GRAY),
-POTION("full healing",  "black",        1, 0,          10, 200, CLR_BLACK),
-POTION("polymorph", "golden",           1, 0,          10, 200, CLR_YELLOW),
-POTION("booze", "brown",                0, 0,          42,  50, CLR_BROWN),
-POTION("sickness", "fizzy",             0, 0,          42,  50, CLR_CYAN),
-POTION("fruit juice", "dark",           0, 0,          42,  50, CLR_BLACK),
-POTION("acid", "white",                 0, 0,          10, 250, CLR_WHITE),
-POTION("oil", "murky",                  0, 0,          30, 250, CLR_BROWN),
-POTION("water", "clear",                0, 0,          92, 100, CLR_CYAN),
+		POTION_CLASS, prob, 0, 20, 100, 0, 0, 0, 0, 10, color )
+POTION("gain ability", "ruby",          1, 0,          42, CLR_RED),
+POTION("restore ability", "pink",       1, 0,          40, CLR_BRIGHT_MAGENTA),
+POTION("confusion", "orange",           1, CONFUSION,  42, CLR_ORANGE),
+POTION("blindness", "yellow",           1, BLINDED,    40, CLR_YELLOW),
+POTION("paralysis", "emerald",          1, 0,          42, CLR_BRIGHT_GREEN),
+POTION("speed", "dark green",           1, FAST,       42, CLR_GREEN),
+POTION("levitation", "cyan",            1, LEVITATION, 42, CLR_CYAN),
+POTION("hallucination", "sky blue",     1, HALLUC,     40, CLR_CYAN),
+POTION("invisibility", "brilliant blue",1, INVIS,      40, CLR_BRIGHT_BLUE),
+POTION("see invisible", "magenta",      1, SEE_INVIS,  42, CLR_MAGENTA),
+POTION("healing", "purple-red",         1, 0,          57, CLR_MAGENTA),
+POTION("extra healing", "puce",         1, 0,          47, CLR_RED),
+POTION("gain level", "milky",           1, 0,          20, CLR_WHITE),
+POTION("enlightenment", "swirly",       1, 0,          20, CLR_BROWN),
+POTION("monster detection", "bubbly",   1, 0,          40, CLR_WHITE),
+POTION("object detection", "smoky",     1, 0,          42, CLR_GRAY),
+POTION("gain energy", "cloudy",         1, 0,          42, CLR_WHITE),
+POTION("sleeping",  "effervescent",     1, 0,          42, CLR_GRAY),
+POTION("full healing",  "black",        1, 0,          10, CLR_BLACK),
+POTION("polymorph", "golden",           1, 0,          10, CLR_YELLOW),
+POTION("booze", "brown",                0, 0,          42, CLR_BROWN),
+POTION("sickness", "fizzy",             0, 0,          42, CLR_CYAN),
+POTION("fruit juice", "dark",           0, 0,          42, CLR_BLACK),
+POTION("acid", "white",                 0, 0,          10, CLR_WHITE),
+POTION("oil", "murky",                  0, 0,          30, CLR_BROWN),
+POTION("water", "clear",                0, 0,          92, CLR_CYAN),
 #undef POTION
 
 /* scrolls ... */
 #define SCROLL(name,text,mgc,prob,cost) OBJECT( \
 		OBJ(name,text), BITS(0,1,0,0,mgc,0,0,0,0,0,0,P_NONE,PAPER), 0, \
 		SCROLL_CLASS, prob, 0, 5, cost, 0, 0, 0, 0, 6, HI_PAPER )
-	SCROLL("enchant armor",         "ZELGO MER",            1,  65,  80),
+	SCROLL("enchant armor",         "ZELGO MER",            1,  65, 100),
 	SCROLL("destroy armor",         "JUYED AWK YACC",       1,  47, 100),
 	SCROLL("confuse monster",       "NR 9",                 1,  56, 100),
 	SCROLL("scare monster",         "XIXAXA XOXAXA XUXAXA", 1,  38, 100),
-	SCROLL("remove curse",          "PRATYAVAYAH",          1,  68,  80),
-	SCROLL("enchant weapon",        "DAIYEN FOOELS",        1,  83,  60),
-	SCROLL("create monster",        "LEP GEX VEN ZEA",      1,  48, 200),
-	SCROLL("taming",                "PRIRUTSENIE",          1,  18, 200),
-	SCROLL("light",                 "VERR YED HORRE",       1,  93,  50),
+	SCROLL("remove curse",          "PRATYAVAYAH",          1,  68, 100),
+	SCROLL("enchant weapon",        "DAIYEN FOOELS",        1,  83, 100),
+	SCROLL("create monster",        "LEP GEX VEN ZEA",      1,  48, 100),
+	SCROLL("taming",                "PRIRUTSENIE",          1,  18, 100),
+	SCROLL("light",                 "VERR YED HORRE",       1,  93, 100),
 	SCROLL("teleportation",         "VENZAR BORGAVVE",      1,  58, 100),
 	SCROLL("gold detection",        "THARR",                1,  36, 100),
 	SCROLL("food detection",        "YUM YUM",              1,  28, 100),
-	SCROLL("identify",              "KERNOD WEL",           1, 183,  20),
+	SCROLL("identify",              "KERNOD WEL",           1, 183, 100),
 	SCROLL("magic mapping",         "ELAM EBOW",            1,  47, 100),
 	SCROLL("fire",                  "ANDOVA BEGARIN",       1,  32, 100),
-	SCROLL("earth",                 "KIRJE",                1,  20, 200),
-	SCROLL("punishment",            "VE FORBRYDERNE",       1,  17, 300),
-	SCROLL("charging",              "HACKEM MUCHE",         1,  17, 300),
-	SCROLL("stinking cloud",	"VELOX NEB",            1,  17, 300),
+	SCROLL("earth",                 "KIRJE",                1,  20, 100),
+	SCROLL("punishment",            "VE FORBRYDERNE",       1,  17, 100),
+	SCROLL("charging",              "HACKEM MUCHE",         1,  17, 100),
+	SCROLL("stinking cloud",	"VELOX NEB",            1,  17, 100),
 	SCROLL((char *)0,		"FOOBIE BLETCH",        1,   0, 100),
 	SCROLL((char *)0,		"TEMOV",                1,   0, 100),
 	SCROLL((char *)0,		"GARVEN DEH",           1,   0, 100),
@@ -784,14 +784,14 @@ POTION("water", "clear",                0, 0,          92, 100, CLR_CYAN),
 #ifdef MAIL
 	SCROLL("mail",                  "stamped",          0,   0,   0),
 #endif
-	SCROLL("blank paper",           "unlabeled",        0,  29,  60),
+	SCROLL("blank paper",           "unlabeled",        0,  29,  20),
 #undef SCROLL
 
 /* spellbooks ... */
 #define SPELL(name,desc,sub,prob,delay,level,mgc,dir,color) OBJECT( \
 		OBJ(name,desc), BITS(0,0,0,0,mgc,0,0,0,0,0,dir,sub,PAPER), 0, \
 		SPBOOK_CLASS, prob, delay, \
-		50, level*100, 0, 0, 0, level, 20, color )
+		50, 300, 0, 0, 0, level, 20, color )
 SPELL("dig",             "parchment",   P_MATTER_SPELL, 20,  6, 5, 1, RAY,       HI_PAPER),
 SPELL("magic missile",   "vellum",      P_ATTACK_SPELL, 45,  2, 2, 1, RAY,       HI_PAPER),
 SPELL("fireball",        "ragged",      P_ATTACK_SPELL, 20,  4, 4, 1, RAY,       HI_PAPER),
@@ -846,7 +846,7 @@ OBJECT(OBJ("Book of the Dead", "papyrus"), BITS(0,0,1,0,1,0,1,1,0,0,0,P_NONE,PAP
 /* wands ... */
 #define WAND(name,typ,prob,cost,mgc,dir,metal,color) OBJECT( \
 		OBJ(name,typ), BITS(0,0,1,0,mgc,1,0,0,0,0,dir,P_NONE,metal), 0, \
-		WAND_CLASS, prob, 0, 7, cost, 0, 0, 0, 0, 30, color )
+		WAND_CLASS, prob, 0, 7, 200, 0, 0, 0, 0, 30, color )
 WAND("light",          "glass",    95, 100, 1, NODIR,     GLASS,    HI_GLASS),
 WAND("secret door detection", "balsa",
 				   50, 150, 1, NODIR,	  WOOD,     HI_WOOD),
