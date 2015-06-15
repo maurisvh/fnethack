@@ -7,13 +7,16 @@
 STATIC_DCL long FDECL(newuexp, (int));
 STATIC_DCL int FDECL(enermod, (int));
 
+const long newuexp_table[] = {
+    -1, 50, 100, 250, 500, 1000, 2500, 5000, 10000,
+    15000, 20000, 25000, 30000, 40000, 50000,
+};
+
 STATIC_OVL long
 newuexp(lev)
 int lev;
 {
-	if (lev < 10) return (10L * (1L << lev));
-	if (lev < 20) return (10000L * (1L << (lev - 10)));
-	return (10000000L * ((long)(lev - 19)));
+    return newuexp_table[lev];
 }
 
 STATIC_OVL int
