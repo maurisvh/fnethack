@@ -320,8 +320,6 @@ learn()
 	char splname[BUFSZ];
 	boolean costly = TRUE;
 
-	/* JDS: lenses give 50% faster reading; 33% smaller read time */
-	if (delay && ublindf && ublindf->otyp == LENSES && rn2(2)) delay++;
 	if (Confusion) {		/* became confused while learning */
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
@@ -430,56 +428,33 @@ register struct obj *spellbook;
 			return 0;
 		}
 
-		/* Books are often wiser than their readers (Rus.) */
-		spellbook->in_use = TRUE;
-		if (!spellbook->blessed &&
-		    spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
-		    if (spellbook->cursed) {
-			too_hard = TRUE;
-		    } else {
-			/* uncursed - chance to fail */
-			int read_ability = ACURR(A_INT) + 4 + u.ulevel/2
-			    - 2*objects[booktype].oc_level
-			    + ((ublindf && ublindf->otyp == LENSES) ? 2 : 0);
-			/* only wizards know if a spell is too difficult */
-			if (Role_if(PM_WIZARD) && read_ability < 20 &&
-			    !confused) {
-			    char qbuf[QBUFSZ];
-			    Sprintf(qbuf,
-		      "This spellbook is %sdifficult to comprehend. Continue?",
-				    (read_ability < 12 ? "very " : ""));
-			    if (yn(qbuf) != 'y') {
-				spellbook->in_use = FALSE;
-				return(1);
-			    }
-			}
-			/* its up to random luck now */
-			if (rnd(20) > read_ability) {
-			    too_hard = TRUE;
-			}
-		    }
-		}
+                delay /= 2;
+                spellbook->in_use = TRUE;
+                if (spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+                    if (spellbook->cursed) {
+                        /* Old failure behavior. */
+                        too_hard = TRUE;
+                    } else {
+                        int read_ability = ACURR(A_INT) + 6 + u.ulevel
+                            - 2*objects[booktype].oc_level;
+                        if (read_ability < 20) {
+                            pline("This spellbook is %stoo difficult to comprehend.",
+                                read_ability < 10 ? "much "
+                                : read_ability < 15 ? "" : "slightly ");
+                            spellbook->in_use = FALSE;
+                            return 1;
+                        }
+                    }
+                }
 
 		if (too_hard) {
 		    boolean gone = cursed_book(spellbook);
-
-		    nomul(delay, "reading a book");			/* study time */
-		    delay = 0;
-		    if(gone || !rn2(3)) {
-			if (!gone) pline_The("spellbook crumbles to dust!");
-			if (!objects[spellbook->otyp].oc_name_known &&
-				!objects[spellbook->otyp].oc_uname)
-			    docall(spellbook);
-			useup(spellbook);
-		    } else
 			spellbook->in_use = FALSE;
 		    return(1);
 		} else if (confused) {
 		    if (!confused_book(spellbook)) {
 			spellbook->in_use = FALSE;
 		    }
-		    nomul(delay, "reading a book");
-		    delay = 0;
 		    return(1);
 		}
 		spellbook->in_use = FALSE;
