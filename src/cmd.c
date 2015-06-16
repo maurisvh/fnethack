@@ -1912,7 +1912,6 @@ struct ext_func_tab extcmdlist[] = {
 	{"updatestatus", "update status lines", force_bot, IFBURIED},
 	{"travel", "Travel to a specific location", dotravel, !IFBURIED},
 	{"eat", "eat something", doeat, !IFBURIED},
-	{"engrave", "engrave writing on the floor", doengrave, !IFBURIED},
 	{"fire", "fire ammunition from quiver", dofire, !IFBURIED},
 	{"history", "show long version and game history", dohistory, IFBURIED},
 	{"help", "give a help message", dohelp, IFBURIED},
@@ -2118,8 +2117,7 @@ init_bind_list(void)
 	bind_key('D',    "dropall" );
 	bind_key(M('d'), "dip" );
 	bind_key('e',    "eat" );
-	bind_key('E',    "engrave" );
-	bind_key(M('e'), "enhance" );
+	bind_key('E',    "enhance" );
 	bind_key('f',    "fire" );
 	/*       'F' : fight (one time) */
 	bind_key(M('f'), "force" );
