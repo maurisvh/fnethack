@@ -2439,6 +2439,7 @@ register struct	obj	*obj;
 	}
 	if (disclose && was_unkn) {
 	    makeknown(otyp);
+        pline("This is %s.", an(xname(obj)));
 	    more_experienced(0,10);
 	}
 	return;
