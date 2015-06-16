@@ -2656,7 +2656,6 @@ do_break_wand(obj)
     case WAN_SECRET_DOOR_DETECTION:
 	pline(nothing_else_happens);
 	goto discard_broken_wand;
-    case WAN_DEATH:
     case WAN_LIGHTNING:
 	dmg *= 4;
 	goto wanexpl;

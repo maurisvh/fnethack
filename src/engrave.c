@@ -686,7 +686,6 @@ doengrave()
 
 		    /* can't tell sleep from death - Eric Backus */
 		    case WAN_SLEEP:
-		    case WAN_DEATH:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s stop moving!",
@@ -1286,7 +1285,6 @@ static const char *epitaphs[] = {
         "I'm gonna make it!",
         "I took both pills!",
         "I will survive!",
-        "Killed by a black dragon -- This grave is empty",
         "Let me out of here!",
         "Lookin' good, Medusa.",
         "Mrs. Smith, choked on an apple.  She left behind grieving husband, daughter, and granddaughter.",

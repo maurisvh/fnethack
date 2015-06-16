@@ -679,8 +679,8 @@ gcrownu()
     if (Role_if(PM_WIZARD) &&
 	    (!uwep || (uwep->oartifact != ART_VORPAL_BLADE &&
 		       uwep->oartifact != ART_STORMBRINGER)) &&
-	    !carrying(SPE_FINGER_OF_DEATH)) {
-	class_gift = SPE_FINGER_OF_DEATH;
+	    !carrying(SPE_FIREBALL)) {
+	class_gift = SPE_FIREBALL;
  make_splbk:
 	obj = mksobj(class_gift, TRUE, FALSE);
 	bless(obj);

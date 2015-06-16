@@ -404,7 +404,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, BROADSWORD);
 			break;
 		    case PM_ORCUS:
-			(void)mongets(mtmp, WAN_DEATH); /* the Wand of Orcus */
+			(void)mongets(mtmp, WAN_LIGHTNING); /* the Wand of Orcus */
 			break;
 		    case PM_HORNED_DEVIL:
 			(void)mongets(mtmp, rn2(4) ? TRIDENT : BULLWHIP);

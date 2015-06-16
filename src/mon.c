@@ -184,7 +184,6 @@ register struct monst *mtmp;
 	    case PM_RED_DRAGON:
 	    case PM_ORANGE_DRAGON:
 	    case PM_WHITE_DRAGON:
-	    case PM_BLACK_DRAGON:
 	    case PM_BLUE_DRAGON:
 	    case PM_GREEN_DRAGON:
 	    case PM_YELLOW_DRAGON:

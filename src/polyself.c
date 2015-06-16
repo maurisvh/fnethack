@@ -1317,9 +1317,6 @@ int atyp;
 	    case WHITE_DRAGON_SCALE_MAIL:
 	    case WHITE_DRAGON_SCALES:
 		return PM_WHITE_DRAGON;
-	    case BLACK_DRAGON_SCALE_MAIL:
-	    case BLACK_DRAGON_SCALES:
-		return PM_BLACK_DRAGON;
 	    case BLUE_DRAGON_SCALE_MAIL:
 	    case BLUE_DRAGON_SCALES:
 		return PM_BLUE_DRAGON;

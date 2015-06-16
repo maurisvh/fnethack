@@ -64,7 +64,6 @@ doread()
     "I survived Yendor Military Boot Camp",
     "Ludios Accounting School Intra-Mural Lacrosse Team",
     "Oracle(TM) Fountains 10th Annual Wet T-Shirt Contest",
-    "Hey, black dragon!  Disintegrate THIS!",
     "I'm With Stupid -->",
     "Don't blame me, I voted for Izchak!",
     "Don't Panic",				/* HHGTTG */
@@ -605,9 +604,7 @@ register struct obj	*sobj;
 		special_armor = is_elven_armor(otmp) ||
 			(Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM);
 		if (sobj->cursed)
-		    same_color =
-			(otmp->otyp == BLACK_DRAGON_SCALE_MAIL ||
-			 otmp->otyp == BLACK_DRAGON_SCALES);
+		    same_color = FALSE;
 		else
 		    same_color =
 			(otmp->otyp == SILVER_DRAGON_SCALE_MAIL ||

@@ -940,7 +940,6 @@ struct monst *mtmp;
 	return 0;
 }
 
-#define MUSE_WAN_DEATH 1
 #define MUSE_WAN_SLEEP 2
 #define MUSE_WAN_FIRE 3
 #define MUSE_WAN_COLD 4
@@ -987,12 +986,7 @@ struct monst *mtmp;
 	if (!ranged_stuff) return FALSE;
 #define nomore(x) if(m.has_offense==x) continue;
 	for(obj=mtmp->minvent; obj; obj=obj->nobj) {
-		/* nomore(MUSE_WAN_DEATH); */
 		if (!reflection_skip) {
-		    if(obj->otyp == WAN_DEATH && obj->spe > 0) {
-			m.offensive = obj;
-			m.has_offense = MUSE_WAN_DEATH;
-		    }
 		    nomore(MUSE_WAN_SLEEP);
 		    if(obj->otyp == WAN_SLEEP && obj->spe > 0 && multi >= 0) {
 			m.offensive = obj;
@@ -1276,7 +1270,6 @@ struct monst *mtmp;
 	oseen = otmp && canseemon(mtmp);
 
 	switch(m.has_offense) {
-	case MUSE_WAN_DEATH:
 	case MUSE_WAN_SLEEP:
 	case MUSE_WAN_FIRE:
 	case MUSE_WAN_COLD:
@@ -1527,7 +1520,6 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) return 0;
-	if (difficulty > 7 && !rn2(35)) return WAN_DEATH;
 	switch (rn2(9 - (difficulty < 4) + 4 * (difficulty > 6))) {
 		case 0: {
 		    struct obj *helmet = which_armor(mtmp, W_ARMH);

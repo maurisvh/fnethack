@@ -212,7 +212,7 @@ register boolean special;
 		case PM_WIZARD:
 		    if (rn2(4)) weapon = rn2(2) ? QUARTERSTAFF : ATHAME;
 		    if (rn2(2)) {
-		    	armor = rn2(2) ? BLACK_DRAGON_SCALE_MAIL :
+		    	armor = rn2(2) ? RED_DRAGON_SCALE_MAIL :
 		    			SILVER_DRAGON_SCALE_MAIL;
 		    	cloak = CLOAK_OF_MAGIC_RESISTANCE;
 		    }
