@@ -967,10 +967,9 @@ boolean at_stairs, falling, portal;
 	if (dunlev(newlevel) > dunlevs_in_dungeon(newlevel))
 		newlevel->dlevel = dunlevs_in_dungeon(newlevel);
 	if (newdungeon && In_endgame(newlevel)) { /* 1st Endgame Level !!! */
-	    if (u.uhave.amulet) {
+        /* Let's just assume the player has the amulet and knows where
+         * they're going. */
 		livelog_write_string("entered the Planes");
-		assign_level(newlevel, &earth_level);
-	    } else return;
 	}
 	new_ledger = ledger_no(newlevel);
 	if (new_ledger <= 0)

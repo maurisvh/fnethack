@@ -388,7 +388,11 @@ struct obj *obj;
 	    	    && !dead_species(obj->corpsenm,TRUE)) {
 			attach_fig_transform_timeout(obj);
 		    }
-	}
+	} else if (obj->otyp == AMULET_OF_YENDOR &&
+               !on_level(&u.uz, &astral_level)) {
+        pline_The("air warps around you as you pick up the Amulet...");
+        goto_level(&astral_level, FALSE, FALSE, FALSE);
+    }
 }
 
 #endif /* OVL1 */
