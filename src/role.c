@@ -77,32 +77,6 @@ const struct Role roles[] = {
 	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
 	10, 14, 0, 0,  8, A_INT, SPE_HASTE_SELF,      -4
 },
-{	{"Caveman", "Cavewoman"}, {
-	{"Troglodyte",  0},
-	{"Aborigine",   0},
-	{"Wanderer",    0},
-	{"Vagrant",     0},
-	{"Wayfarer",    0},
-	{"Roamer",      0},
-	{"Nomad",       0},
-	{"Rover",       0},
-	{"Pioneer",     0} },
-	"Anu", "_Ishtar", "Anshar", /* Babylonian */
-	"Cav", "the Caves of the Ancestors", "the Dragon's Lair",
-	PM_CAVEMAN, PM_CAVEWOMAN, PM_LITTLE_DOG,
-	PM_SHAMAN_KARNOV, PM_NEANDERTHAL, PM_CHROMATIC_DRAGON,
-	PM_BUGBEAR, PM_HILL_GIANT, S_HUMANOID, S_GIANT,
-	ART_SCEPTRE_OF_MIGHT,
-	MH_HUMAN|MH_DWARF|MH_GNOME | ROLE_MALE|ROLE_FEMALE |
-	  ROLE_LAWFUL|ROLE_NEUTRAL,
-	/* Str Int Wis Dex Con Cha */
-	{  10,  7,  7,  7,  8,  6 },
-	{  30,  6,  7, 20, 30,  7 },
-	/* Init   Lower  Higher */
-	{ 14, 0,  0, 8,  2, 0 },	/* Hit points */
-	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
-	0, 12, 0, 1,  8, A_INT, SPE_DIG,             -4
-},
 {	{"Healer", 0}, {
 	{"Rhizotomist",    0},
 	{"Empiric",        0},

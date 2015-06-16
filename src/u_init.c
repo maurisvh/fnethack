@@ -288,21 +288,6 @@ static const struct def_skill Skill_B[] = {
     { P_NONE, 0 }
 };
 
-static const struct def_skill Skill_C[] = {
-    { P_DAGGER, P_BASIC },		{ P_KNIFE,  P_SKILLED },
-    { P_AXE, P_SKILLED },		{ P_PICK_AXE, P_BASIC },
-    { P_CLUB, P_EXPERT },		{ P_MACE, P_EXPERT },
-    { P_MORNING_STAR, P_BASIC },	{ P_FLAIL, P_SKILLED },
-    { P_HAMMER, P_SKILLED },		{ P_QUARTERSTAFF, P_EXPERT },
-    { P_POLEARMS, P_SKILLED },		{ P_SPEAR, P_EXPERT },
-    { P_JAVELIN, P_SKILLED },		{ P_TRIDENT, P_SKILLED },
-    { P_BOW, P_SKILLED },		{ P_SLING, P_EXPERT },
-    { P_ATTACK_SPELL, P_BASIC },	{ P_MATTER_SPELL, P_SKILLED },
-    { P_BOOMERANG, P_EXPERT },		{ P_UNICORN_HORN, P_BASIC },
-    { P_BARE_HANDED_COMBAT, P_MASTER },
-    { P_NONE, 0 }
-};
-
 static const struct def_skill Skill_H[] = {
     { P_DAGGER, P_SKILLED },		{ P_KNIFE, P_EXPERT },
     { P_SHORT_SWORD, P_SKILLED },	{ P_SCIMITAR, P_BASIC },
@@ -623,11 +608,6 @@ u_init()
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_B);
 		break;
-	case PM_CAVEMAN:
-		Cave_man[C_AMMO].trquan = rn1(11, 10);	/* 10..20 */
-		ini_inv(Cave_man);
-		skill_init(Skill_C);
-		break;
 	case PM_HEALER:
 #ifndef GOLDOBJ
 		u.ugold = u.ugold0 = rn1(1000, 1001);
@@ -856,7 +836,6 @@ int otyp;
     switch (Role_switch) {
      case PM_ARCHEOLOGIST:	skills = Skill_A; break;
      case PM_BARBARIAN:		skills = Skill_B; break;
-     case PM_CAVEMAN:		skills = Skill_C; break;
      case PM_HEALER:		skills = Skill_H; break;
      case PM_KNIGHT:		skills = Skill_K; break;
      case PM_MONK:		skills = Skill_Mon; break;

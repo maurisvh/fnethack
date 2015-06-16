@@ -469,8 +469,6 @@ const char *in_str;
 		{ "homunculi",		PM_HOMUNCULUS },
 		{ "baluchitheria",	PM_BALUCHITHERIUM },
 		{ "lurkers above",	PM_LURKER_ABOVE },
-		{ "cavemen",		PM_CAVEMAN },
-		{ "cavewomen",		PM_CAVEWOMAN },
 		{ "djinn",		PM_DJINNI },
 		{ "mumakil",		PM_MUMAK },
 		{ "erinyes",		PM_ERINYS },

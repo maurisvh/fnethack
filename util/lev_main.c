@@ -222,7 +222,6 @@ char **argv;
 	static char *mac_argv[] = {	"lev_comp",	/* dummy argv[0] */
 				":dat:Arch.des",
 				":dat:Barb.des",
-				":dat:Caveman.des",
 				":dat:Healer.des",
 				":dat:Knight.des",
 				":dat:Monk.des",

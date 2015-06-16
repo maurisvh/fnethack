@@ -148,7 +148,6 @@ makedog()
 	/* default pet names */
 	if (!*petname && pettype == PM_LITTLE_DOG) {
 	    /* All of these names were for dogs. */
-	    if(Role_if(PM_CAVEMAN)) petname = "Slasher";   /* The Warrior */
 	    if(Role_if(PM_SAMURAI)) petname = "Hachi";     /* Shibuya Station */
 	    if(Role_if(PM_BARBARIAN)) petname = "Idefix";  /* Obelix */
 	    if(Role_if(PM_RANGER)) petname = "Sirius";     /* Orion's dog */
