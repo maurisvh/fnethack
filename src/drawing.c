@@ -646,6 +646,7 @@ static glyph_t utf8_graphics[MAXPCHARS] = {
 	0x2261,	/* S_bars:	IDENTICAL TO */
 	0x03a8,	/* S_tree:	GREEK CAPITAL LETTER PSI */
 	0x00b7,	/* S_room:	MIDDLE DOT */
+	0x00b7,	/* S_darkroom:	MIDDLE DOT */
 	g_FILLER(S_corr),
 	g_FILLER(S_litcorr),
 	g_FILLER(S_upstair),
