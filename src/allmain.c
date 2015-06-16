@@ -247,7 +247,10 @@ moveloop()
 			}
 		    } else if (u.uhp < u.uhpmax) {
                 /* Regerate 100% of HP in this many turns */
-                int full_cycle = (Regeneration ? 250 : 350);
+                int full_cycle = (Regeneration ? 150 : 250);
+                /* But at least 0.25 HP/turn */
+                if (full_cycle > (u.uhpmax * 4))
+                    full_cycle = u.uhpmax * 4;
                 
                 int heal = u.uhpmax / full_cycle;
                 int remainder = u.uhpmax % full_cycle;
