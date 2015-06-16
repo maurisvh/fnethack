@@ -1781,6 +1781,7 @@ register struct obj *obj;
 			exercise(A_WIS, TRUE);
 			break;
 	}
+    known = TRUE;
 	if (known && !objects[obj->otyp].oc_name_known) {
 		makeknown(obj->otyp);
 		more_experienced(0,10);
@@ -2234,7 +2235,7 @@ STATIC_OVL boolean
 zap_updown(obj)
 struct obj *obj;	/* wand or spell */
 {
-	boolean striking = FALSE, disclose = FALSE;
+	boolean striking = FALSE, disclose = TRUE;
 	int x, y, xx, yy, ptmp;
 	struct obj *otmp;
 	struct engr *e;
@@ -2395,7 +2396,7 @@ weffects(obj)
 register struct	obj	*obj;
 {
 	int otyp = obj->otyp;
-	boolean disclose = FALSE, was_unkn = !objects[otyp].oc_name_known;
+	boolean disclose = TRUE, was_unkn = !objects[otyp].oc_name_known;
 
 	exercise(A_WIS, TRUE);
 #ifdef STEED
@@ -2415,9 +2416,6 @@ register struct	obj	*obj;
 	    } else {
 		(void) bhit(u.dx,u.dy, rn1(8,6),ZAPPED_WAND, bhitm,bhito, obj, NULL);
 	    }
-	    /* give a clue if obj_zapped */
-	    if (obj_zapped)
-		You_feel("shuddering vibrations.");
 
 	} else if (objects[otyp].oc_dir == NODIR) {
 	    zapnodir(obj);

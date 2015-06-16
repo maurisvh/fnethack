@@ -390,6 +390,7 @@ register struct obj *otmp;
 
 	otmp->in_use = TRUE;
 	nothing = unkn = 0;
+        makeknown(otmp->otyp);
 	if((retval = peffects(otmp)) >= 0) return(retval);
 
 	if(nothing) {
@@ -398,11 +399,7 @@ register struct obj *otmp;
 		  Hallucination ? "normal" : "peculiar");
 	}
 	if(otmp->dknown && !objects[otmp->otyp].oc_name_known) {
-		if(!unkn) {
-			makeknown(otmp->otyp);
-			more_experienced(0,10);
-		} else if(!objects[otmp->otyp].oc_uname)
-			docall(otmp);
+        makeknown(otmp->otyp);
 	}
 	useup(otmp);
 	return(1);
@@ -937,9 +934,8 @@ register const char *txt;
 	if(!obj)	/* e.g., crystal ball finds no traps */
 		return;
 
-	if(obj->dknown && !objects[obj->otyp].oc_name_known &&
-						!objects[obj->otyp].oc_uname)
-		docall(obj);
+	if(obj->dknown)
+        makeknown(obj->otyp);
 	useup(obj);
 }
 
@@ -1155,13 +1151,10 @@ boolean your_fault;
 	    mon->msleeping = 0;
     }
 
-	/* Note: potionbreathe() does its own docall() */
 	if ((distance==0 || ((distance < 3) && rn2(5))) &&
 	    (!breathless(youmonst.data) || haseyes(youmonst.data)))
 		potionbreathe(obj);
-	else if (obj->dknown && !objects[obj->otyp].oc_name_known &&
-		   !objects[obj->otyp].oc_uname && cansee(mon->mx,mon->my))
-		docall(obj);
+	else if (obj->dknown)		makeknown(obj->otyp);
 	if(*u.ushops && obj->unpaid) {
 	        register struct monst *shkp =
 			shop_keeper(*in_rooms(u.ux, u.uy, SHOPBASE));
@@ -1309,13 +1302,8 @@ register struct obj *obj;
 */
 	}
 	/* note: no obfree() */
-	if (obj->dknown) {
-	    if (kn)
+	if (obj->dknown)
 		makeknown(obj->otyp);
-	    else if (!objects[obj->otyp].oc_name_known &&
-						!objects[obj->otyp].oc_uname)
-		docall(obj);
-	}
 }
 
 STATIC_OVL short
@@ -1596,9 +1584,7 @@ dodip()
 				uncurse(obj);
 				obj->bknown=1;
 	poof:
-				if(!(objects[potion->otyp].oc_name_known) &&
-				   !(objects[potion->otyp].oc_uname))
-					docall(potion);
+                makeknown(potion->otyp);
 				useup(potion);
 				return(1);
 			} else if(!obj->blessed) {
@@ -1920,12 +1906,7 @@ dodip()
 			      newbuf);
 		    if(!objects[old_otyp].oc_uname &&
 			!objects[old_otyp].oc_name_known && old_dknown) {
-			struct obj fakeobj;
-			fakeobj = zeroobj;
-			fakeobj.dknown = 1;
-			fakeobj.otyp = old_otyp;
-			fakeobj.oclass = POTION_CLASS;
-			docall(&fakeobj);
+                        makeknown(old_otyp);
 		    }
 		}
 		obj_extract_self(singlepotion);

@@ -144,6 +144,7 @@ struct obj *wep;
 	    res++;	/* takes a turn even though it doesn't get wielded */
 	} else {
 	    /* Weapon WILL be wielded after this point */
+        fully_identify_obj(wep);
 	    res++;
 	    if (will_weld(wep)) {
 		const char *tmp = xname(wep), *thestr = "The ";

@@ -218,6 +218,7 @@ doread()
 			is_silent(youmonst.data) ? "understand" : "pronounce");
 	  }
 	}
+    makeknown(scroll->otyp);
 	if(!seffects(scroll))  {
 		if(!objects[scroll->otyp].oc_name_known) {
 		    if(known) {

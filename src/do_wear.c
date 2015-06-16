@@ -96,6 +96,7 @@ Boots_on()
 {
     long oldprop;
     if (!uarmf) return 0;
+    makeknown(uarmf->otyp);
     oldprop =
 	u.uprops[objects[uarmf->otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
 
@@ -585,6 +586,7 @@ STATIC_OVL void
 Amulet_on()
 {
     if (!uamul) return;
+    fully_identify_obj(uamul);
     switch(uamul->otyp) {
 	case AMULET_OF_ESP:
 	case AMULET_OF_LIFE_SAVING:
@@ -699,6 +701,8 @@ register struct obj *obj;
     /* only mask out W_RING when we don't have both
        left and right rings of the same type */
     if ((oldprop & W_RING) != W_RING) oldprop &= ~W_RING;
+
+    fully_identify_obj(obj);
 
     switch(obj->otyp){
 	case RIN_TELEPORTATION:
@@ -917,6 +921,7 @@ Blindf_on(otmp)
 register struct obj *otmp;
 {
 	boolean already_blind = Blind, changed = FALSE;
+    fully_identify_obj(otmp);
 
 	if (otmp == uwep)
 	    setuwep((struct obj *) 0);
