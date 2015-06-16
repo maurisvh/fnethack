@@ -226,7 +226,7 @@ boolean forcecontrol;
 	int mntmp = NON_PM;
 	int tries=0;
 	boolean draconian = (uarm &&
-				uarm->otyp >= GRAY_DRAGON_SCALE_MAIL &&
+				uarm->otyp >= GRAY_DRAGON_SCALES &&
 				uarm->otyp <= YELLOW_DRAGON_SCALES);
 	boolean iswere = (u.ulycn >= LOW_PM || is_were(youmonst.data));
 	boolean isvamp = (youmonst.data->mlet == S_VAMPIRE || u.umonnum == PM_VAMPIRE_BAT);
@@ -1297,33 +1297,24 @@ armor_to_dragon(atyp)
 int atyp;
 {
 	switch(atyp) {
-	    case GRAY_DRAGON_SCALE_MAIL:
 	    case GRAY_DRAGON_SCALES:
 		return PM_GRAY_DRAGON;
-	    case SILVER_DRAGON_SCALE_MAIL:
 	    case SILVER_DRAGON_SCALES:
 		return PM_SILVER_DRAGON;
 #if 0	/* DEFERRED */
-	    case SHIMMERING_DRAGON_SCALE_MAIL:
 	    case SHIMMERING_DRAGON_SCALES:
 		return PM_SHIMMERING_DRAGON;
 #endif
-	    case RED_DRAGON_SCALE_MAIL:
 	    case RED_DRAGON_SCALES:
 		return PM_RED_DRAGON;
-	    case ORANGE_DRAGON_SCALE_MAIL:
 	    case ORANGE_DRAGON_SCALES:
 		return PM_ORANGE_DRAGON;
-	    case WHITE_DRAGON_SCALE_MAIL:
 	    case WHITE_DRAGON_SCALES:
 		return PM_WHITE_DRAGON;
-	    case BLUE_DRAGON_SCALE_MAIL:
 	    case BLUE_DRAGON_SCALES:
 		return PM_BLUE_DRAGON;
-	    case GREEN_DRAGON_SCALE_MAIL:
 	    case GREEN_DRAGON_SCALES:
 		return PM_GREEN_DRAGON;
-	    case YELLOW_DRAGON_SCALE_MAIL:
 	    case YELLOW_DRAGON_SCALES:
 		return PM_YELLOW_DRAGON;
 	    default:

@@ -127,7 +127,7 @@ register boolean special;
 
 	if ((mtmp = makemon(ptr, x, y, NO_MM_FLAGS)) != 0) {
 	    short weapon = rn2(2) ? LONG_SWORD : rnd_class(SPEAR, BULLWHIP);
-	    short armor = rnd_class(GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL);
+	    short armor = CRYSTAL_PLATE_MAIL;
 	    short cloak = !rn2(8) ? STRANGE_OBJECT :
 	    		rnd_class(OILSKIN_CLOAK, CLOAK_OF_DISPLACEMENT);
 	    short helm = !rn2(8) ? STRANGE_OBJECT :
@@ -206,8 +206,7 @@ register boolean special;
 		case PM_WIZARD:
 		    if (rn2(4)) weapon = rn2(2) ? QUARTERSTAFF : ATHAME;
 		    if (rn2(2)) {
-		    	armor = rn2(2) ? RED_DRAGON_SCALE_MAIL :
-		    			SILVER_DRAGON_SCALE_MAIL;
+		    	armor = SILVER_DRAGON_SCALES;
 		    	cloak = CLOAK_OF_MAGIC_RESISTANCE;
 		    }
 		    if (rn2(4)) helm = HELM_OF_BRILLIANCE;

@@ -329,20 +329,6 @@ HELM("helm of telepathy", "visored helmet",
  */
 #define DRGN_ARMR(name,mgc,power,cost,ac,color) \
 	ARMOR(name,(char *)0,1,mgc,1,power,0,5,40,cost,ac,0,ARM_SUIT,DRAGON_HIDE,color)
-/* 3.4.1: dragon scale mail reclassified as "magic" since magic is
-   needed to create them */
-DRGN_ARMR("gray dragon scale mail",   1, ANTIMAGIC,  1200, 1, CLR_GRAY),
-DRGN_ARMR("silver dragon scale mail", 1, REFLECTING, 1200, 1, DRAGON_SILVER),
-#if 0	/* DEFERRED */
-DRGN_ARMR("shimmering dragon scale mail", 1, DISPLACED, 1200, 1, CLR_CYAN),
-#endif
-DRGN_ARMR("red dragon scale mail",    1, FIRE_RES,    900, 1, CLR_RED),
-DRGN_ARMR("white dragon scale mail",  1, COLD_RES,    900, 1, CLR_WHITE),
-DRGN_ARMR("orange dragon scale mail", 1, SLEEP_RES,   900, 1, CLR_ORANGE),
-DRGN_ARMR("blue dragon scale mail",   1, SHOCK_RES,   900, 1, CLR_BLUE),
-DRGN_ARMR("green dragon scale mail",  1, POISON_RES,  900, 1, CLR_GREEN),
-DRGN_ARMR("yellow dragon scale mail", 1, ACID_RES,    900, 1, CLR_YELLOW),
-
 /* For now, only dragons leave these. */
 /* 3.4.1: dragon scales left classified as "non-magic"; they confer
    magical properties but are produced "naturally" */
@@ -360,30 +346,30 @@ DRGN_ARMR("yellow dragon scales", 0, ACID_RES,   500, 7, CLR_YELLOW),
 #undef DRGN_ARMR
 
 ARMOR("plate mail", (char *)0,
-	1, 0, 1, 0,	44, 5, 450, 600,  3, 2, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 1, 0,	44, 5, 350, 600,  3, 2, ARM_SUIT, IRON, HI_METAL),
 ARMOR("crystal plate mail", (char *)0,
-	1, 0, 1, 0,	10, 5, 450, 820,  3, 2, ARM_SUIT, GLASS, CLR_WHITE),
+	1, 0, 1, 0,	10, 5, 350, 820,  3, 2, ARM_SUIT, GLASS, CLR_WHITE),
 #ifdef TOURIST
 ARMOR("bronze plate mail", (char *)0,
-	1, 0, 1, 0,	25, 5, 450, 400,  4, 0, ARM_SUIT, COPPER, HI_COPPER),
+	1, 0, 1, 0,	25, 5, 300, 400,  4, 0, ARM_SUIT, COPPER, HI_COPPER),
 #else
 ARMOR("bronze plate mail", (char *)0,
-	1, 0, 1, 0,	35, 5, 450, 400,  4, 0, ARM_SUIT, COPPER, HI_COPPER),
+	1, 0, 1, 0,	35, 5, 300, 400,  4, 0, ARM_SUIT, COPPER, HI_COPPER),
 #endif
 ARMOR("splint mail", (char *)0,
-	1, 0, 1, 0,	62, 5, 400,  80,  4, 1, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 1, 0,	62, 5, 300,  80,  4, 1, ARM_SUIT, IRON, HI_METAL),
 ARMOR("banded mail", (char *)0,
-	1, 0, 1, 0,	72, 5, 350,  90,  4, 0, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 1, 0,	72, 5, 250,  90,  4, 0, ARM_SUIT, IRON, HI_METAL),
 ARMOR("dwarvish mithril-coat", (char *)0,
-	1, 0, 0, 0,	10, 1, 150, 240,  4, 3, ARM_SUIT, MITHRIL, HI_METAL),
+	1, 0, 0, 0,	10, 1, 150, 240,  5, 3, ARM_SUIT, MITHRIL, HI_METAL),
 ARMOR("elven mithril-coat", (char *)0,
-	1, 0, 0, 0,	15, 1, 150, 240,  5, 3, ARM_SUIT, MITHRIL, HI_METAL),
+	1, 0, 0, 0,	15, 1, 150, 240,  6, 3, ARM_SUIT, MITHRIL, HI_METAL),
 ARMOR("chain mail", (char *)0,
-	1, 0, 0, 0,	72, 5, 300,  75,  5, 1, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 0, 0,	72, 5, 250,  75,  5, 1, ARM_SUIT, IRON, HI_METAL),
 ARMOR("orcish chain mail", "crude chain mail",
-	0, 0, 0, 0,	20, 5, 300,  75,  6, 1, ARM_SUIT, IRON, CLR_BLACK),
+	0, 0, 0, 0,	20, 5, 250,  75,  6, 1, ARM_SUIT, IRON, CLR_BLACK),
 ARMOR("scale mail", (char *)0,
-	1, 0, 0, 0,	72, 5, 250,  45,  6, 0, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 0, 0,	72, 5, 200,  45,  6, 0, ARM_SUIT, IRON, HI_METAL),
 ARMOR("studded leather armor", (char *)0,
 	1, 0, 0, 0,	72, 3, 200,  15,  7, 1, ARM_SUIT, LEATHER, HI_LEATHER),
 ARMOR("ring mail", (char *)0,

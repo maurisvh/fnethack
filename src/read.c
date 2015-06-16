@@ -608,8 +608,7 @@ register struct obj	*sobj;
 		    same_color = FALSE;
 		else
 		    same_color =
-			(otmp->otyp == SILVER_DRAGON_SCALE_MAIL ||
-			 otmp->otyp == SILVER_DRAGON_SCALES ||
+			(otmp->otyp == SILVER_DRAGON_SCALES ||
 			 otmp->otyp == SHIELD_OF_REFLECTION);
 		if (Blind) same_color = FALSE;
 
@@ -635,23 +634,6 @@ register struct obj	*sobj;
 		s = sobj->cursed ? -1 :
 		    otmp->spe >= 9 ? (rn2(otmp->spe) == 0) :
 		    sobj->blessed ? rnd(3-otmp->spe/3) : 1;
-		if (s >= 0 && otmp->otyp >= GRAY_DRAGON_SCALES &&
-					otmp->otyp <= YELLOW_DRAGON_SCALES) {
-			/* dragon scales get turned into dragon scale mail */
-			Your("%s merges and hardens!", xname(otmp));
-			setworn((struct obj *)0, W_ARM);
-			/* assumes same order */
-			otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
-						otmp->otyp - GRAY_DRAGON_SCALES;
-			otmp->cursed = 0;
-			if (sobj->blessed) {
-				otmp->spe++;
-				otmp->blessed = 1;
-			}
-			otmp->known = 1;
-			setworn(otmp, W_ARM);
-			break;
-		}
 		Your("%s %s%s%s%s for a %s.",
 			xname(otmp),
 		        s == 0 ? "violently " : nul,

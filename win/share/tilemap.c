@@ -72,7 +72,6 @@ struct conditionals {
 	{ OBJ_GLYPH, CLUB, "rubber hose" },
 #endif
 	/* objects commented out in objects.c at present */
-	{ OBJ_GLYPH, SILVER_DRAGON_SCALE_MAIL, "shimmering dragon scale mail" },
 	{ OBJ_GLYPH, SILVER_DRAGON_SCALES, "shimmering dragon scales" },
 #ifndef TOURIST
 	{ OBJ_GLYPH, LEATHER_JACKET, "Hawaiian shirt" },

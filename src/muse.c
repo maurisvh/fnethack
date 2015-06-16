@@ -1676,8 +1676,6 @@ struct monst *mon;
 	if ((m_armr = which_armor(mon, W_ARM)) != 0) {
 	    if (Is_dragon_scales(m_armr))
 		return Dragon_scales_to_pm(m_armr);
-	    else if (Is_dragon_mail(m_armr))
-		return Dragon_mail_to_pm(m_armr);
 	}
 	return rndmonst();
 }
@@ -2021,6 +2019,8 @@ struct monst *mon;
 const char *str;
 {
 	struct obj *orefl = which_armor(mon, W_ARMS);
+    if (rn2(2))
+        return FALSE;
 
 	if (orefl && orefl->otyp == SHIELD_OF_REFLECTION) {
 	    if (str) {
@@ -2041,7 +2041,7 @@ const char *str;
 	    }
 	    return TRUE;
 	} else if ((orefl = which_armor(mon, W_ARM)) &&
-		(orefl->otyp == SILVER_DRAGON_SCALES || orefl->otyp == SILVER_DRAGON_SCALE_MAIL)) {
+		(orefl->otyp == SILVER_DRAGON_SCALES)) {
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "armor");
 	    return TRUE;

@@ -2355,8 +2355,6 @@ struct monst *mon;
 
 		if (m_armr && Is_dragon_scales(m_armr))
 		    mndx = Dragon_scales_to_pm(m_armr) - mons;
-		else if (m_armr && Is_dragon_mail(m_armr))
-		    mndx = Dragon_mail_to_pm(m_armr) - mons;
 	      }
 		break;
 	}

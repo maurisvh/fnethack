@@ -1560,8 +1560,6 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 #endif
 	{ "dragon scales",
 			ARMOR_CLASS,  GRAY_DRAGON_SCALES, YELLOW_DRAGON_SCALES },
-	{ "dragon scale mail",
-			ARMOR_CLASS,  GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL },
 	{ "sword",	WEAPON_CLASS, SHORT_SWORD,    KATANA },
 #ifdef WIZARD
 	{ "venom",	VENOM_CLASS,  BLINDING_VENOM, ACID_VENOM },
@@ -1761,7 +1759,6 @@ struct alt_spellings {
 	{ "saber", SILVER_SABER },
 	{ "silver sabre", SILVER_SABER },
 	{ "smooth shield", SHIELD_OF_REFLECTION },
-	{ "grey dragon scale mail", GRAY_DRAGON_SCALE_MAIL },
 	{ "grey dragon scales", GRAY_DRAGON_SCALES },
 	{ "enchant armour", SCR_ENCHANT_ARMOR },
 	{ "scroll of enchant armour", SCR_ENCHANT_ARMOR },
@@ -2633,14 +2630,6 @@ typfnd:
 			if (Has_contents(otmp) && verysmall(&mons[mntmp]))
 			    delete_contents(otmp);	/* no spellbook */
 			otmp->spe = ishistoric ? STATUE_HISTORIC : 0;
-			break;
-		case SCALE_MAIL:
-			/* Dragon mail - depends on the order of objects */
-			/*		 & dragons.			 */
-			if (mntmp >= PM_GRAY_DRAGON &&
-						mntmp <= PM_YELLOW_DRAGON)
-			    otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
-						    mntmp - PM_GRAY_DRAGON;
 			break;
 		}
 	}
