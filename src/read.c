@@ -674,47 +674,6 @@ register struct obj	*sobj;
 				Blind ? "again" : "unexpectedly");
 		break;
 	    }
-	case SCR_DESTROY_ARMOR:
-	    {
-		otmp = some_armor(&youmonst);
-		if(confused) {
-			if(!otmp) {
-				strange_feeling(sobj,"Your bones itch.");
-				exercise(A_STR, FALSE);
-				exercise(A_CON, FALSE);
-				return(1);
-			}
-			otmp->oerodeproof = sobj->cursed;
-			p_glow2(otmp, NH_PURPLE);
-			break;
-		}
-		if(!sobj->cursed || !otmp || !otmp->cursed) {
-		    if(!destroy_arm(otmp)) {
-			strange_feeling(sobj,"Your skin itches.");
-			exercise(A_STR, FALSE);
-			exercise(A_CON, FALSE);
-			return(1);
-		    } else
-			known = TRUE;
-		} else {	/* armor and scroll both cursed */
-		    Your("%s %s.", xname(otmp), otense(otmp, "vibrate"));
-		    if (otmp->spe >= -6) {
-			otmp->spe--;
-			if (otmp->otyp == HELM_OF_BRILLIANCE) {
-			    ABON(A_INT)--;
-			    ABON(A_WIS)--;
-			    makeknown(otmp->otyp);
-			    flags.botl = 1;
-			} else if (otmp->otyp == GAUNTLETS_OF_DEXTERITY) {
-			    ABON(A_DEX)--;
-			    makeknown(otmp->otyp);
-			    flags.botl = 1;
-			}
-		    }
-		    make_stunned(HStun + rn1(10, 10), TRUE);
-		}
-	    }
-	    break;
 	case SCR_CONFUSE_MONSTER:
 		if(youmonst.data->mlet != S_HUMAN || sobj->cursed) {
 			if(!HConfusion) You_feel("confused.");
@@ -1151,13 +1110,11 @@ register struct obj	*sobj;
 		}
 	    }
 	    break;
-	case SCR_PUNISHMENT:
+	case SCR_NOISE:
+        You("hear a loud clanging noise!");
+        wake_nearby();
+        aggravate();
 		known = TRUE;
-		if(confused || sobj->blessed) {
-			You_feel("guilty.");
-			break;
-		}
-		punish(sobj);
 		break;
 	case SCR_STINKING_CLOUD: {
 	        coord cc;

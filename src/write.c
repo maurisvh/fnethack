@@ -30,9 +30,8 @@ register struct obj *otmp;
 	case SCR_EARTH:
 		return(8);
 /*		break; */
-	case SCR_DESTROY_ARMOR:
 	case SCR_CREATE_MONSTER:
-	case SCR_PUNISHMENT:
+	case SCR_NOISE:
 		return(10);
 /*		break; */
 	case SCR_CONFUSE_MONSTER:
