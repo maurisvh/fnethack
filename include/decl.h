@@ -58,9 +58,6 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_medusa_level;
     d_level	d_stronghold_level;
     d_level	d_valley_level;
-    d_level	d_wiz1_level;
-    d_level	d_wiz2_level;
-    d_level	d_wiz3_level;
     d_level	d_juiblex_level;
     d_level	d_orcus_level;
     d_level	d_baalzebub_level;	/* unused */
@@ -91,9 +88,6 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define medusa_level		(dungeon_topology.d_medusa_level)
 #define stronghold_level	(dungeon_topology.d_stronghold_level)
 #define valley_level		(dungeon_topology.d_valley_level)
-#define wiz1_level		(dungeon_topology.d_wiz1_level)
-#define wiz2_level		(dungeon_topology.d_wiz2_level)
-#define wiz3_level		(dungeon_topology.d_wiz3_level)
 #define juiblex_level		(dungeon_topology.d_juiblex_level)
 #define orcus_level		(dungeon_topology.d_orcus_level)
 #define baalzebub_level		(dungeon_topology.d_baalzebub_level)

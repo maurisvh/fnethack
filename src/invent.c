@@ -2749,6 +2749,8 @@ char *buf;
 	    cmap = S_tree;				/* "tree" */
 	else if (ltyp == IRONBARS)
 	    dfeature = "set of iron bars";
+	else if (ltyp == SEALED_STAIRCASE)
+	    cmap = S_sealed_staircase;				/* "sealed staircase" */
 
 	if (cmap >= 0) dfeature = defsyms[cmap].explanation;
 	if (dfeature) Strcpy(buf, dfeature);

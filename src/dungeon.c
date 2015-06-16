@@ -629,9 +629,6 @@ struct level_map {
 	{ "sanctum",	&sanctum_level },
 	{ "valley",	&valley_level },
 	{ "water",	&water_level },
-	{ "wizard1",	&wiz1_level },
-	{ "wizard2",	&wiz2_level },
-	{ "wizard3",	&wiz3_level },
 #ifdef RECORD_ACHIEVE
         { "minend",     &mineend_level },
         { "soko1",      &sokoend_level },
@@ -1202,9 +1199,9 @@ d_level *lev;
 {
     /* can't rise up from inside the top of the Wizard's tower */
     /* KMH -- or in sokoban */
-    if (In_endgame(lev) || In_sokoban(lev) ||
-			(Is_wiz1_level(lev) && In_W_tower(x, y, lev)))
+    if (In_endgame(lev) || In_sokoban(lev))
 	return FALSE;
+
     return (boolean)(lev->dlevel > 1 ||
 		(dungeons[lev->dnum].entry_lev == 1 && ledger_no(lev) != 1 &&
 		 sstairs.sx && sstairs.up));
@@ -1344,9 +1341,7 @@ boolean
 On_W_tower_level(lev)	/* is `lev' a level containing the Wizard's tower? */
 d_level	*lev;
 {
-	return (boolean)(Is_wiz1_level(lev) ||
-			 Is_wiz2_level(lev) ||
-			 Is_wiz3_level(lev));
+	return FALSE;
 }
 
 boolean

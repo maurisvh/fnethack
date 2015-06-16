@@ -392,10 +392,10 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
 	    You("were not healthy enough to survive restoration.");
-	    /* wiz1_level.dlevel is used by mklev.c to see if lots of stuff is
+	    /* portal_level.dlevel is used by mklev.c to see if lots of stuff is
 	     * uninitialized, so we only have to set it and not the other stuff.
 	     */
-	    wiz1_level.dlevel = 0;
+	    portal_level.dlevel = 0;
 	    u.uz.dnum = 0;
 	    u.uz.dlevel = 1;
 	    return(FALSE);

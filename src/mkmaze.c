@@ -439,10 +439,6 @@ fixup_special()
 		otmp->owt = weight(otmp);
 	    }
 	}
-    } else if(Is_wiz1_level(&u.uz)) {
-	croom = search_special(MORGUE);
-
-	create_secret_door(croom, W_SOUTH|W_EAST|W_WEST);
     } else if(Is_knox(&u.uz)) {
 	/* using an unfilled morgue for rm id */
 	croom = search_special(MORGUE);
@@ -582,6 +578,7 @@ register const char *s;
 	    mazexy(&mm);
 	    mkstairs(mm.x, mm.y, 0, (struct mkroom *)0);	/* down */
 	} else {	/* choose "vibrating square" location */
+        pline("You feel an ominous tension.");
 #define x_maze_min 2
 #define y_maze_min 2
 	    /*
@@ -618,6 +615,7 @@ register const char *s;
 		     !SPACE_POS(levl[x][y].typ) || occupied(x, y));
 	    inv_pos.x = x;
 	    inv_pos.y = y;
+        levl[x][y].typ = SEALED_STAIRCASE;
 #undef INVPOS_X_MARGIN
 #undef INVPOS_Y_MARGIN
 #undef INVPOS_DISTANCE

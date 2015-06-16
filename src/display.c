@@ -1560,6 +1560,7 @@ back_to_glyph(x,y)
 	case LADDER:
 	    idx = (ptr->ladder & LA_DOWN) ? S_dnladder : S_upladder;
 	    break;
+    case SEALED_STAIRCASE: idx = S_sealed_staircase; break;
 	case FOUNTAIN:		idx = S_fountain; break;
 	case SINK:		idx = S_sink;     break;
 	case ALTAR:		idx = S_altar;    break;

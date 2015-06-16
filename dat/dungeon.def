@@ -14,17 +14,16 @@
 #		number of choices for its branch level _first_.
 #
 
-DUNGEON:	"The Dungeons of Doom" "D" (25, 5)
+DUNGEON:	"The Dungeons of Doom" "D" (20, 5)
 ALIGNMENT:	unaligned
 BRANCH:		"The Gnomish Mines" @ (2, 3)
-%REINCARNATION LEVEL:		"rogue" "R" @ (15, 4)
-LEVEL:		"oracle" "O" @ (5, 5)
+%REINCARNATION LEVEL:		"rogue" "R" @ (10, 4)
+LEVEL:		"oracle" "O" @ (5, 2)
 LEVALIGN:	neutral
 CHAINBRANCH:	"Sokoban" "oracle" + (1, 0) up
-RNDLEVEL:	"bigrm" "B" @ (10, 3) 40 5
-CHAINBRANCH:	"The Quest" "oracle" + (6, 2) portal
-BRANCH:		"Fort Ludios" @ (18, 4) portal
-RNDLEVEL:	"medusa" "none" @ (-5, 4) 2
+CHAINBRANCH:	"The Quest" "oracle" + (3, 2) portal
+BRANCH:		"Fort Ludios" @ (15, 4) portal
+RNDLEVEL:	"medusa" "none" @ (-3, 2) 2
 LEVALIGN:	chaotic
 LEVEL:		"castle" "none" @ (-1, 0)
 CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
@@ -47,22 +46,18 @@ BRANCH:		"The Elemental Planes" @ (1, 0) no_down up
 #		monsters can properly migrate here under certain
 #		circumstances.
 #
-DUNGEON:	"Gehennom" "G" (20, 5)
+DUNGEON:	"Gehennom" "G" (8, 0)
 DESCRIPTION:	mazelike
 DESCRIPTION:	hellish
 ALIGNMENT:	noalign
-BRANCH:		"Vlad's Tower" @ (9, 5) up
 LEVEL:		"valley" "V" @ (1, 0)
 LEVEL:		"sanctum" "none" @ (-1, 0)
-LEVEL:		"juiblex" "J" @ (4, 4)
-LEVEL:		"baalz" "B" @ (6, 4)
-LEVEL:		"asmodeus" "A" @ (2, 6)
-LEVEL:		"wizard1" "none" @ (11, 6)
-CHAINLEVEL:	"wizard2" "X" "wizard1" + (1, 0)
-CHAINLEVEL:	"wizard3" "Y" "wizard1" + (2, 0)
-LEVEL:		"orcus" "O" @ (10, 6)
-LEVEL:		"fakewiz1" "F" @ (-6,4)
-LEVEL:		"fakewiz2" "G" @ (-6,4)
+LEVEL:		"juiblex" "J" @ (2, 4)
+LEVEL:		"baalz" "B" @ (2, 4)
+LEVEL:		"asmodeus" "A" @ (2, 4)
+LEVEL:		"orcus" "O" @ (2, 4)
+CHAINBRANCH:		"Vlad's Tower" "orcus" + (0, 0) up
+LEVEL:		"fakewiz1" "F" @ (-3,0)
 
 #
 #	The Mines of the Gnomes of Zurich.

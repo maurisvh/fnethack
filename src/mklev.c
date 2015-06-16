@@ -610,7 +610,7 @@ makelevel()
 	branch *branchp;
 	int room_threshold;
 
-	if(wiz1_level.dlevel == 0) init_dungeons();
+	if(portal_level.dlevel == 0) init_dungeons();
 	oinit();	/* assign level dependent obj probabilities */
 	clear_level_structures();
 
@@ -1430,6 +1430,7 @@ mkinvokearea()
     xchar ymin = inv_pos.y, ymax = inv_pos.y;
     register xchar i;
 
+    pline_The("runes engraved on the staircase's locks glow eerily...");
     pline_The("floor shakes violently under you!");
     pline_The("walls around you begin to bend and crumble!");
     display_nhwindow(WIN_MESSAGE, TRUE);
@@ -1458,7 +1459,7 @@ mkinvokearea()
 	delay_output();
     }
 
-    You("are standing at the top of a stairwell leading down!");
+    pline_The("locks vanish in a sudden flash!");
     mkstairs(u.ux, u.uy, 0, (struct mkroom *)0); /* down */
     newsym(u.ux, u.uy);
     vision_full_recalc = 1;	/* everything changed */
