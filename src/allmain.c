@@ -245,27 +245,24 @@ moveloop()
 			    flags.botl = 1;
 			    u.mh++;
 			}
-		    } else if (u.uhp < u.uhpmax &&
-			 (wtcap < MOD_ENCUMBER || !u.umoved || Regeneration)) {
-			if (u.ulevel > 9 && !(moves % 3)) {
-			    int heal, Con = (int) ACURR(A_CON);
-
-			    if (Con <= 12) {
-				heal = 1;
-			    } else {
-				heal = rnd(Con);
-				if (heal > u.ulevel-9) heal = u.ulevel-9;
-			    }
-			    flags.botl = 1;
-			    u.uhp += heal;
-			    if(u.uhp > u.uhpmax)
-				u.uhp = u.uhpmax;
-			} else if (Regeneration ||
-			     (u.ulevel <= 9 &&
-			      !(moves % ((MAXULEV+12) / (u.ulevel+2) + 1)))) {
-			    flags.botl = 1;
-			    u.uhp++;
-			}
+		    } else if (u.uhp < u.uhpmax) {
+                /* Regerate 100% of HP in this many turns */
+                int full_cycle = (Regeneration ? 250 : 350);
+                
+                int heal = u.uhpmax / full_cycle;
+                int remainder = u.uhpmax % full_cycle;
+                int t;
+                for (t = 0; t < remainder; t++) {
+                    if (moves % full_cycle == full_cycle * t / remainder)
+                        heal++;
+                }
+                
+                if (heal > 0) {
+                    flags.botl = 1;
+                    u.uhp += heal;
+                    if(u.uhp > u.uhpmax)
+                        u.uhp = u.uhpmax;
+                }
 		    }
 
 		    /* moving around while encumbered is hard work */

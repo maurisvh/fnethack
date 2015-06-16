@@ -628,17 +628,10 @@ newhp()
 	    u.ualign.type = aligns[flags.initalign].value;
 	    u.ualign.record = urole.initrecord;
 
-		return hp;
+		return hp * 2 + rn2(2);
 	} else {
-	    if (u.ulevel < urole.xlev) {
-	    	hp = urole.hpadv.lofix + urace.hpadv.lofix;
-	    	if (urole.hpadv.lornd > 0) hp += rnd(urole.hpadv.lornd);
-	    	if (urace.hpadv.lornd > 0) hp += rnd(urace.hpadv.lornd);
-	    } else {
-	    	hp = urole.hpadv.hifix + urace.hpadv.hifix;
-	    	if (urole.hpadv.hirnd > 0) hp += rnd(urole.hpadv.hirnd);
-	    	if (urace.hpadv.hirnd > 0) hp += rnd(urace.hpadv.hirnd);
-	    }
+        /* dwarves get slightly more hp; elves/orcs/gnomes slightly less */
+        hp = urace.hpadv.lornd + 4 + rn2(2);
 	}
 
 	if (ACURR(A_CON) <= 3) conplus = -2;
@@ -650,6 +643,8 @@ newhp()
 	else conplus = 4;
 	
 	hp += conplus;
+
+    hp = 3 * hp / 2;
 	return((hp <= 0) ? 1 : hp);
 }
 
