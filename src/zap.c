@@ -3829,6 +3829,7 @@ void
 destroy_item(osym, dmgtyp)
 register int osym, dmgtyp;
 {
+#if 0
 	register struct obj *obj, *obj2;
 	register int dmg, xresist, skip;
 	register long i, cnt, quan;
@@ -3947,6 +3948,7 @@ register int osym, dmgtyp;
 		}
 	    }
 	}
+#endif
 	return;
 }
 
