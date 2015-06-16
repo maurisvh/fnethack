@@ -670,7 +670,6 @@ struct level_map {
 	{ "water",	&water_level },
 #ifdef RECORD_ACHIEVE
         { "minend",     &mineend_level },
-        { "soko1",      &sokoend_level },
 #endif
 	{ X_START,	&qstart_level },
 	{ X_LOCATE,	&qlocate_level },
@@ -917,7 +916,6 @@ init_dungeons()		/* initialize the "dungeon" structs */
  *	I hate hardwiring these names. :-(
  */
 	quest_dnum = dname_to_dnum("The Quest");
-	sokoban_dnum = dname_to_dnum("Sokoban");
 	mines_dnum = dname_to_dnum("The Gnomish Mines");
 	tower_dnum = dname_to_dnum("Vlad's Tower");
 
@@ -2280,7 +2278,7 @@ boolean printdun;
 		 * suppress the negative numbers in the endgame.
 		 */
 		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 ||
-			mptr->lev.dnum == sokoban_dnum || In_endgame(&mptr->lev))
+			In_endgame(&mptr->lev))
 			Sprintf(buf, "%s:", dungeons[mptr->lev.dnum].dname);
 		else
 			Sprintf(buf, "%s: levels %d to %d", 

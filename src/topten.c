@@ -1058,7 +1058,7 @@ encodeachieve(void)
   if(Is_astralevel(&u.uz))       r |= 1L << 7;
   if(achieve.ascended)           r |= 1L << 8;
   if(achieve.get_luckstone)      r |= 1L << 9;
-  if(achieve.finish_sokoban)     r |= 1L << 10;
+  /* if(achieve.unused_achieve)  r |= 1L << 10; */
   if(achieve.killed_medusa)      r |= 1L << 11;
 
   return r;

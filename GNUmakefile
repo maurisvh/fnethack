@@ -195,7 +195,7 @@ QUEST_DES = Arch.des Barb.des Healer.des Knight.des		\
             Tourist.des Valkyrie.des Wizard.des
 
 SPEC_DES = bigroom.des castle.des endgame.des gehennom.des knox.des	\
-           medusa.des mines.des oracle.des sokoban.des tower.des	\
+           medusa.des mines.des oracle.des tower.des troves.des	\
            yendor.des
 
 ALL_DES = $(QUEST_DES) $(SPEC_DES)

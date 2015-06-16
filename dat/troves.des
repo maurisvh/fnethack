@@ -1,0 +1,61 @@
+MAZE:"trove1",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+  ---------
+--|.....|.|
+|.+.....|.|
+|-|.....|.|
+|.+.....+.|
+|-|.....|--
+|.+.....|  
+--|.....|  
+  -------  
+ENDMAP
+RANDOM_PLACES:(1,2),(1,4),(1,6)
+BRANCH:(9,1,9,1),(0,0,0,0)
+REGION:(00,00,10,08),lit,"ordinary"
+NON_DIGGABLE:(00,00,10,08)
+NON_PASSWALL:(00,00,10,08)
+
+# Rewards
+DOOR:locked,(8,4)
+DOOR:closed,(2,2)
+DOOR:closed,(2,4)
+DOOR:closed,(2,6)
+REGION:(3,1,7,7),lit,"zoo",filled,true
+OBJECT:'"',"amulet of reflection",place[0]
+OBJECT:'=',random,place[1]
+OBJECT:'/',random,place[2]
+
+MAZE:"trove2",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+  ---------
+--|.....|.|
+|.+.....|.|
+|-|.....|.|
+|.+.....+.|
+|-|.....|--
+|.+.....|  
+--|.....|  
+  -------  
+ENDMAP
+RANDOM_PLACES:(1,2),(1,4),(1,6)
+BRANCH:(9,1,9,1),(0,0,0,0)
+REGION:(00,00,10,08),lit,"ordinary"
+NON_DIGGABLE:(00,00,10,08)
+NON_PASSWALL:(00,00,10,08)
+
+# Rewards
+DOOR:locked,(8,4)
+DOOR:closed,(2,2)
+DOOR:closed,(2,4)
+DOOR:closed,(2,6)
+REGION:(3,1,7,7),lit,"zoo",filled,true
+OBJECT:'(',"magic marker",place[0]
+OBJECT:'=',random,place[1]
+OBJECT:'/',random,place[2]
