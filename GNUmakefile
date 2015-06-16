@@ -190,7 +190,7 @@ $(AUTO_C:%.c=%.d):
 
 ##### DATA FILES #####
 
-QUEST_DES = Arch.des Barb.des Caveman.des Healer.des Knight.des		\
+QUEST_DES = Arch.des Barb.des Healer.des Knight.des		\
             Monk.des Priest.des Ranger.des Rogue.des Samurai.des	\
             Tourist.des Valkyrie.des Wizard.des
 
