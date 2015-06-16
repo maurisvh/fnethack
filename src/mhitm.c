@@ -1076,11 +1076,7 @@ mdamagem(magr, mdef, mattk)
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    } else {
-			if (rn2(10)) tmp += rn1(10,6);
-			else {
-			    if (vis) pline_The("poison was deadly...");
-			    tmp = mdef->mhp;
-			}
+			tmp += rn1(10,6);
 		    }
 		}
 		break;

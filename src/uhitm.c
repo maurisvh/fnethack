@@ -942,9 +942,8 @@ int thrown;
 	    }
 	    if (resists_poison(mon))
 		needpoismsg = TRUE;
-	    else if (rn2(10))
+	    else
 		tmp += rnd(6);
-	    else poiskilled = TRUE;
 	}
 	if (tmp < 1) {
 	    /* make sure that negative damage adjustment can't result
@@ -1070,11 +1069,7 @@ int thrown;
 
 	if (needpoismsg)
 		pline_The("poison doesn't seem to affect %s.", mon_nam(mon));
-	if (poiskilled) {
-		pline_The("poison was deadly...");
-		if (!already_killed) xkilled(mon, 0);
-		return FALSE;
-	} else if (destroyed) {
+	if (destroyed) {
 		if (!already_killed)
 		    killed(mon);	/* takes care of most messages */
 	} else if(u.umconf && !thrown) {
@@ -1532,10 +1527,7 @@ register struct attack *mattk;
 			pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    else {
-			if (!rn2(10)) {
-			    Your("poison was deadly...");
-			    tmp = mdef->mhp;
-			} else tmp += rn1(10,6);
+			tmp += rn1(10,6);
 		    }
 		}
 		break;

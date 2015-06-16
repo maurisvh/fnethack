@@ -2053,10 +2053,7 @@ int  typ, fatal;
 	    kprefix = KILLED_BY;
 	}
 	i = rn2(fatal + 20*thrown_weapon);
-	if(i == 0 && typ != A_CHA) {
-		u.uhp = -1;
-		pline_The("poison was deadly...");
-	} else if(i <= 5) {
+	if(i <= 5) {
 		/* Check that a stat change was made */
 		if (adjattrib(typ, thrown_weapon ? -1 : -rn1(3,3), 1))
 		    pline("You%s!", poiseff[typ]);
