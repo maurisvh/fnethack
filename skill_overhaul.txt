@@ -1,0 +1,25 @@
+new skill categories:
+
+* slashing
+-- swords, saber, scimitar
+* stabbing
+-- dagger, knife, lance, polearms, spear, trident, lance
+* swinging
+-- axe, maces, flails, unihorn, whip, staves, hammer
+* ranged weapons
+-- bow, dart/shuriken/boomerang, crossbow, javelin
+* unarmed combat
+
+* offensive magic
+-- attack, enchantment
+-- hurts enemies
+* defensive magic
+-- healing, clerical
+-- helps you
+* celestial magic
+-- divination, matter, escape
+-- interact with world
+
+get rid of:
+2weapon/riding skills
+
