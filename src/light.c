@@ -572,7 +572,7 @@ struct obj *obj;
     } else {
 	/* we're only called for lit candelabrum or candles */
      /* impossible("candlelight for %d?", obj->otyp); */
-	radius = 3;		/* lamp's value */
+	radius = 4;		/* lamp's value */
     }
     return radius;
 }
