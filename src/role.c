@@ -151,7 +151,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  1, 4,  0, 1,  0, 2 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
+	10, 8,-2, 0,  9, A_WIS, SPE_PROTECTION,     -4
 },
 {	{"Monk", 0}, {
 	{"Candidate",         0},
@@ -323,7 +323,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },14,	/* Energy */
-	0, 5, 1, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4
+	0, 5, 1, 2, 10, A_INT, SPE_IDENTIFY,   -4
 },
 #endif
 {	{"Valkyrie", 0}, {

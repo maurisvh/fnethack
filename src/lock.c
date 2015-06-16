@@ -705,7 +705,6 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 
 	switch(otmp->otyp) {
 	case WAN_LOCKING:
-	case SPE_WIZARD_LOCK:
 	    if (!obj->olocked) {	/* lock it; fix if broken */
 		pline("Klunk!");
 		obj->olocked = 1;
@@ -714,7 +713,6 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	    } /* else already closed and locked */
 	    break;
 	case WAN_OPENING:
-	case SPE_KNOCK:
 	    if (obj->olocked) {		/* unlock; couldn't be broken */
 		pline("Klick!");
 		obj->olocked = 0;
@@ -748,18 +746,16 @@ int x, y;
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
 	    case WAN_OPENING:
-	    case SPE_KNOCK:
 	    case WAN_STRIKING:
 	    case SPE_FORCE_BOLT:
 		door->typ = DOOR;
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
 		newsym(x,y);
 		if (cansee(x,y)) pline("A door appears in the wall!");
-		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK)
+		if (otmp->otyp == WAN_OPENING)
 		    return TRUE;
 		break;		/* striking: continue door handling below */
 	    case WAN_LOCKING:
-	    case SPE_WIZARD_LOCK:
 	    default:
 		return FALSE;
 	    }
@@ -767,7 +763,6 @@ int x, y;
 
 	switch(otmp->otyp) {
 	case WAN_LOCKING:
-	case SPE_WIZARD_LOCK:
 #ifdef REINCARNATION
 	    if (Is_rogue_level(&u.uz)) {
 	    	boolean vis = cansee(x,y);
@@ -821,7 +816,6 @@ int x, y;
 	    newsym(x,y);
 	    break;
 	case WAN_OPENING:
-	case SPE_KNOCK:
 	    if (door->doormask & D_LOCKED) {
 		msg = "The door unlocks!";
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);

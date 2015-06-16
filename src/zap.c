@@ -67,7 +67,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"bolt of fire",
 	"bolt of cold",
 	"sleep ray",
-	"death ray",
+	"death ray XXX",
 	"bolt of lightning",
 	"",
 	"",
@@ -78,7 +78,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"fireball",
 	"cone of cold",
 	"sleep ray",
-	"finger of death",
+	"finger of death XXX",
 	"bolt of lightning",	/* There is no spell, used for retribution */
 	"",
 	"",
@@ -89,7 +89,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"blast of fire",
 	"blast of frost",
 	"blast of sleep gas",
-	"blast of disintegration",
+	"blast of disintegration XXX",
 	"blast of lightning",
 	"blast of poison gas",
 	"blast of acid",
@@ -154,23 +154,6 @@ struct obj *otmp;
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 		}
 		break;
-	case WAN_UNDEAD_TURNING:
-	case SPE_TURN_UNDEAD:
-		wake = FALSE;
-		if (unturn_dead(mtmp)) wake = TRUE;
-		if (is_undead(mtmp->data)) {
-			reveal_invis = TRUE;
-			wake = TRUE;
-			dmg = rnd(8);
-			if(dbldam) dmg *= 2;
-			if (otyp == SPE_TURN_UNDEAD)
-				dmg += spell_damage_bonus();
-			flags.bypasses = TRUE;	/* for make_corpse() */
-			if (!resist(mtmp, otmp->oclass, dmg, NOTELL)) {
-			    if (mtmp->mhp > 0) monflee(mtmp, 0, FALSE, TRUE);
-			}
-		}
-		break;
 	case WAN_POLYMORPH:
 	case SPE_POLYMORPH:
 	case POT_POLYMORPH:
@@ -224,7 +207,6 @@ struct obj *otmp;
 	    }
 	case WAN_NOTHING:
 	case WAN_LOCKING:
-	case SPE_WIZARD_LOCK:
 		wake = FALSE;
 		break;
 	case WAN_PROBING:
@@ -234,7 +216,6 @@ struct obj *otmp;
 		makeknown(otyp);
 		break;
 	case WAN_OPENING:
-	case SPE_KNOCK:
 		wake = FALSE;	/* don't want immediate counterattack */
 		if (u.uswallow && mtmp == u.ustuck) {
 			if (is_animal(mtmp->data)) {
@@ -1493,7 +1474,7 @@ struct obj *obj, *otmp;
 	if (obj == uball) {
 		res = 0;
 	} else if (obj == uchain) {
-		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK) {
+		if (otmp->otyp == WAN_OPENING) {
 		    unpunish();
 		    makeknown(otmp->otyp);
 		} else
@@ -1578,16 +1559,13 @@ struct obj *obj, *otmp;
 #endif
 		break;
 	case WAN_UNDEAD_TURNING:
-	case SPE_TURN_UNDEAD:
 		if (obj->otyp == EGG)
 			revive_egg(obj);
 		else
 			res = !!revive(obj);
 		break;
 	case WAN_OPENING:
-	case SPE_KNOCK:
 	case WAN_LOCKING:
-	case SPE_WIZARD_LOCK:
 		if(Is_box(obj))
 			res = boxlock(obj, otmp);
 		else
@@ -2050,7 +2028,6 @@ boolean ordinary;
 		    break;
 
 		case WAN_DEATH:
-		case SPE_FINGER_OF_DEATH:
 		    if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
 			pline((obj->otyp == WAN_DEATH) ?
 			  "The wand shoots an apparently harmless beam at you."
@@ -2068,15 +2045,6 @@ boolean ordinary;
 		    break;
 		case WAN_UNDEAD_TURNING:
 		    makeknown(WAN_UNDEAD_TURNING);
-		case SPE_TURN_UNDEAD:
-		    (void) unturn_dead(&youmonst);
-		    if (is_undead(youmonst.data)) {
-			You_feel("frightened and %sstunned.",
-			     Stunned ? "even more " : "");
-			make_stunned(HStun + rnd(30), FALSE);
-		    } else
-			You("shudder in dread.");
-		    break;
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
 		    healup(d(6, obj->otyp == SPE_EXTRA_HEALING ? 8 : 4),
@@ -2101,15 +2069,11 @@ boolean ordinary;
 		    break;
 		case WAN_OPENING:
 		    if (Punished) makeknown(WAN_OPENING);
-		case SPE_KNOCK:
-		    if (Punished) Your("chain quivers for a moment.");
-		    break;
 		case WAN_DIGGING:
 		case SPE_DIG:
 		case SPE_DETECT_UNSEEN:
 		case WAN_NOTHING:
 		case WAN_LOCKING:
-		case SPE_WIZARD_LOCK:
 		    break;
 		case WAN_PROBING:
 		    for (obj = invent; obj; obj = obj->nobj)
@@ -2202,7 +2166,6 @@ struct obj *obj;	/* wand or spell */
 		case SPE_EXTRA_HEALING:
 		case SPE_DRAIN_LIFE:
 		case WAN_OPENING:
-		case SPE_KNOCK:
 		    (void) bhitm(u.usteed, obj);
 		    steedhit = TRUE;
 		    break;
@@ -2314,7 +2277,6 @@ struct obj *obj;	/* wand or spell */
 	    if (!ptmp) Your("probe reveals nothing.");
 	    return TRUE;	/* we've done our own bhitpile */
 	case WAN_OPENING:
-	case SPE_KNOCK:
 	    /* up or down, but at closed portcullis only */
 	    if (is_db_wall(x,y) && find_drawbridge(&xx, &yy)) {
 		open_drawbridge(xx, yy);
@@ -2332,7 +2294,6 @@ struct obj *obj;	/* wand or spell */
 	    striking = TRUE;
 	    /*FALLTHRU*/
 	case WAN_LOCKING:
-	case SPE_WIZARD_LOCK:
 	    /* down at open bridge or up or down at open portcullis */
 	    if ((levl[x][y].typ == DRAWBRIDGE_DOWN) ? (u.dz > 0) :
 			(is_drawbridge_wall(x,y) && !is_db_wall(x,y)) &&
@@ -2483,7 +2444,7 @@ register struct	obj	*obj;
 
 	    if (otyp == WAN_DIGGING || otyp == SPE_DIG)
 		zap_dig();
-	    else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_FINGER_OF_DEATH)
+	    else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_SLEEP)
 		buzz(otyp - SPE_MAGIC_MISSILE + 10,
 		     u.ulevel / 2 + 1,
 		     u.ux, u.uy, u.dx, u.dy);
@@ -2681,7 +2642,6 @@ boolean *obj_destroyed;/* has object been deallocated? Pointer to boolean, may b
 	    if (weapon == ZAPPED_WAND && find_drawbridge(&x,&y))
 		switch (obj->otyp) {
 		    case WAN_OPENING:
-		    case SPE_KNOCK:
 			if (is_db_wall(bhitpos.x, bhitpos.y)) {
 			    if (cansee(x,y) || cansee(bhitpos.x,bhitpos.y))
 				makeknown(obj->otyp);
@@ -2689,7 +2649,6 @@ boolean *obj_destroyed;/* has object been deallocated? Pointer to boolean, may b
 			}
 			break;
 		    case WAN_LOCKING:
-		    case SPE_WIZARD_LOCK:
 			if ((cansee(x,y) || cansee(bhitpos.x, bhitpos.y))
 			    && levl[x][y].typ == DRAWBRIDGE_DOWN)
 			    makeknown(obj->otyp);
@@ -2763,8 +2722,6 @@ boolean *obj_destroyed;/* has object been deallocated? Pointer to boolean, may b
 		case WAN_OPENING:
 		case WAN_LOCKING:
 		case WAN_STRIKING:
-		case SPE_KNOCK:
-		case SPE_WIZARD_LOCK:
 		case SPE_FORCE_BOLT:
 		    if (doorlock(obj, bhitpos.x, bhitpos.y)) {
 			if (cansee(bhitpos.x, bhitpos.y) ||

@@ -719,7 +719,6 @@ register struct obj	*sobj;
 	    }
 	    break;
 	case SCR_CONFUSE_MONSTER:
-	case SPE_CONFUSE_MONSTER:
 		if(youmonst.data->mlet != S_HUMAN || sobj->cursed) {
 			if(!HConfusion) You_feel("confused.");
 			make_confused(HConfusion + rnd(100),FALSE);
@@ -894,7 +893,6 @@ register struct obj	*sobj;
 				       sobj->blessed ? rnd(3-uwep->spe/3) : 1);
 		break;
 	case SCR_TAMING:
-	case SPE_CHARM_MONSTER:
 		if (u.uswallow) {
 		    maybe_tame(u.ustuck, sobj);
 		} else {

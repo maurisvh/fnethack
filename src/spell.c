@@ -861,15 +861,11 @@ boolean atme;
 	case SPE_FORCE_BOLT:
 	case SPE_SLEEP:
 	case SPE_MAGIC_MISSILE:
-	case SPE_KNOCK:
 	case SPE_SLOW_MONSTER:
-	case SPE_WIZARD_LOCK:
 	case SPE_DIG:
-	case SPE_TURN_UNDEAD:
 	case SPE_POLYMORPH:
 	case SPE_TELEPORT_AWAY:
 	case SPE_CANCELLATION:
-	case SPE_FINGER_OF_DEATH:
 	case SPE_LIGHT:
 	case SPE_DETECT_UNSEEN:
 	case SPE_HEALING:
@@ -895,15 +891,12 @@ boolean atme;
 
 	/* these are all duplicates of scroll effects */
 	case SPE_REMOVE_CURSE:
-	case SPE_CONFUSE_MONSTER:
 	case SPE_DETECT_FOOD:
 	case SPE_CAUSE_FEAR:
 		/* high skill yields effect equivalent to blessed scroll */
 		if (role_skill >= P_SKILLED) pseudo->blessed = 1;
 		/* fall through */
-	case SPE_CHARM_MONSTER:
 	case SPE_MAGIC_MAPPING:
-	case SPE_CREATE_MONSTER:
 	case SPE_IDENTIFY:
 		(void) seffects(pseudo);
 		break;
@@ -921,9 +914,6 @@ boolean atme;
 		(void) peffects(pseudo);
 		break;
 
-	case SPE_CURE_BLINDNESS:
-		healup(0, 0, FALSE, TRUE);
-		break;
 	case SPE_CURE_SICKNESS:
 		if (Sick) You("are no longer ill.");
 		if (Slimed) {
@@ -932,9 +922,6 @@ boolean atme;
 		 /* flags.botl = 1; -- healup() handles this */
 		}
 		healup(0, 0, TRUE, FALSE);
-		break;
-	case SPE_CREATE_FAMILIAR:
-		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
 		break;
 	case SPE_CLAIRVOYANCE:
 		if (!BClairvoyant)
@@ -946,10 +933,6 @@ boolean atme;
 		break;
 	case SPE_PROTECTION:
 		cast_protection();
-		break;
-	case SPE_JUMPING:
-		if (!jump(max(role_skill,1)))
-			pline(nothing_happens);
 		break;
 	default:
 		impossible("Unknown spell %d attempted.", spell);
@@ -1195,7 +1178,6 @@ int spell;
 	/* `healing spell' bonus */
 	if (spellid(spell) == SPE_HEALING ||
 	    spellid(spell) == SPE_EXTRA_HEALING ||
-	    spellid(spell) == SPE_CURE_BLINDNESS ||
 	    spellid(spell) == SPE_CURE_SICKNESS ||
 	    spellid(spell) == SPE_RESTORE_ABILITY ||
 	    spellid(spell) == SPE_REMOVE_CURSE) splcaster += special;
