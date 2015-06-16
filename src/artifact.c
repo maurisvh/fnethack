@@ -375,8 +375,6 @@ long wp_mask;
 	    mask = &EShock_resistance;
 	else if (dtyp == AD_MAGM)
 	    mask = &EAntimagic;
-	else if (dtyp == AD_DISN)
-	    mask = &EDisint_resistance;
 	else if (dtyp == AD_DRST)
 	    mask = &EPoison_resistance;
 

@@ -71,11 +71,7 @@ int expltype;
 		case 2: str = "ball of cold";
 			adtyp = AD_COLD;
 			break;
-		case 4: str =  (olet == WAND_CLASS) ? "death field" :
-							"disintegration field";
-			adtyp = AD_DISN;
-			break;
-		case 5: str = "ball of lightning";
+		case 4: str = "ball of lightning";
 			adtyp = AD_ELEC;
 			break;
 		case 6: str = "poison gas cloud";
@@ -108,11 +104,6 @@ int expltype;
 				break;
 			case AD_COLD:
 				explmask[i][j] = !!Cold_resistance;
-				break;
-			case AD_DISN:
-				explmask[i][j] = (olet == WAND_CLASS) ?
-						!!(nonliving(youmonst.data) || is_demon(youmonst.data)) :
-						!!Disint_resistance;
 				break;
 			case AD_ELEC:
 				explmask[i][j] = !!Shock_resistance;
@@ -147,11 +138,6 @@ int expltype;
 				break;
 			case AD_COLD:
 				explmask[i][j] |= resists_cold(mtmp);
-				break;
-			case AD_DISN:
-				explmask[i][j] |= (olet == WAND_CLASS) ?
-					(nonliving(mtmp->data) || is_demon(mtmp->data)) :
-					resists_disint(mtmp);
 				break;
 			case AD_ELEC:
 				explmask[i][j] |= resists_elec(mtmp);
@@ -247,8 +233,6 @@ int expltype;
 				      Monnam(u.ustuck),
 				      (adtyp == AD_FIRE) ? "heartburn" :
 				      (adtyp == AD_COLD) ? "chilly" :
-				      (adtyp == AD_DISN) ? ((olet == WAND_CLASS) ?
-				       "irradiated by pure energy" : "perforated") :
 				      (adtyp == AD_ELEC) ? "shocked" :
 				      (adtyp == AD_DRST) ? "poisoned" :
 				      (adtyp == AD_ACID) ? "an upset stomach" :
@@ -258,8 +242,6 @@ int expltype;
 				      Monnam(u.ustuck),
 				      (adtyp == AD_FIRE) ? "toasted" :
 				      (adtyp == AD_COLD) ? "chilly" :
-				      (adtyp == AD_DISN) ? ((olet == WAND_CLASS) ?
-				       "overwhelmed by pure energy" : "perforated") :
 				      (adtyp == AD_ELEC) ? "shocked" :
 				      (adtyp == AD_DRST) ? "intoxicated" :
 				      (adtyp == AD_ACID) ? "burned" :
@@ -366,8 +348,7 @@ int expltype;
 
 	if (shopdamage) {
 		pay_for_damage(adtyp == AD_FIRE ? "burn away" :
-			       adtyp == AD_COLD ? "shatter" :
-			       adtyp == AD_DISN ? "disintegrate" : "destroy",
+			       adtyp == AD_COLD ? "shatter" : "destroy",
 			       FALSE);
 	}
 
