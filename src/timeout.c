@@ -165,9 +165,7 @@ nh_timeout()
 	register struct prop *upp;
 	int sleeptime;
 	int m_idx;
-	int baseluck = (flags.moonphase == FULL_MOON) ? 1 : 0;
-
-	if (flags.friday13) baseluck -= 1;
+	int baseluck = 0;
 
 	if (u.uluck != baseluck &&
 		moves % (u.uhave.amulet || u.ugangr ? 300 : 600) == 0) {

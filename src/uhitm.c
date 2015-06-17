@@ -1470,18 +1470,6 @@ register struct attack *mattk;
 		tmp = 0;
 		break;
 	    case AD_CURS:
-		if (night() && !rn2(10) && !mdef->mcan) {
-		    if (mdef->data == &mons[PM_CLAY_GOLEM]) {
-			if (!Blind)
-			    pline("Some writing vanishes from %s head!",
-				s_suffix(mon_nam(mdef)));
-			xkilled(mdef, 0);
-			/* Don't return yet; keep hp<1 and tmp=0 for pet msg */
-		    } else {
-			mdef->mcan = 1;
-			You("chuckle.");
-		    }
-		}
 		tmp = 0;
 		break;
 	    case AD_DRLI:

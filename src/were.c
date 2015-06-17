@@ -14,9 +14,7 @@ register struct monst *mon;
 	    return;
 
 	if (is_human(mon->data)) {
-	    if (!Protection_from_shape_changers &&
-		!rn2(night() ? (flags.moonphase == FULL_MOON ?  3 : 30)
-			     : (flags.moonphase == FULL_MOON ? 10 : 50))) {
+	    if (!Protection_from_shape_changers && !rn2(50)) {
 		new_were(mon);		/* change into animal form */
 		if (flags.soundok && !canseemon(mon)) {
 		    const char *howler;

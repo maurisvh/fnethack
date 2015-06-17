@@ -485,7 +485,7 @@ mattacku(mtmp)
 	if(!mtmp->cham && is_were(mdat) && !range2) {
 
 	    if(is_human(mdat)) {
-		if(!rn2(5 - (night() * 2)) && !mtmp->mcan) new_were(mtmp);
+		if(!rn2(5) && !mtmp->mcan) new_were(mtmp);
 	    } else if(!rn2(30) && !mtmp->mcan) new_were(mtmp);
 	    mdat = mtmp->data;
 
@@ -904,8 +904,6 @@ hitmu(mtmp, mattk)
 
 /*	First determine the base damage done */
 	dmg = d((int)mattk->damn, (int)mattk->damd);
-	if(is_undead(mdat) && midnight())
-		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 
 /*	Next a cancellation factor	*/
 /*	Use uncancelled when the cancellation factor takes into account certain
@@ -1188,8 +1186,7 @@ dopois:
 		    } else {
 			if (flags.soundok)
 			    You_hear("%s hissing!", s_suffix(mon_nam(mtmp)));
-			if(!rn2(10) ||
-			    (flags.moonphase == NEW_MOON && !have_lizard())) {
+			if(!rn2(10)) {
  do_stone:
 			    if (!Stoned && !Stone_resistance
 				    && !(poly_when_stoned(youmonst.data) &&
@@ -1427,7 +1424,7 @@ dopois:
 		break;
 	    case AD_CURS:
 		hitmsg(mtmp, mattk);
-		if(!night() && mdat == &mons[PM_GREMLIN]) break;
+		if(mdat == &mons[PM_GREMLIN]) break;
 		if(!mtmp->mcan && !rn2(10)) {
 		    if (flags.soundok) {
 			if (Blind) You_hear("laughter.");

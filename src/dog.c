@@ -755,9 +755,6 @@ register struct obj *obj;
 	/* worst case, at least it'll be peaceful. */
 	mtmp->mpeaceful = 1;
 	set_malign(mtmp);
-	if(flags.moonphase == FULL_MOON && night() && rn2(6) && obj
-						&& mtmp->data->mlet == S_DOG)
-		return((struct monst *)0);
 
 	/* If we cannot tame it, at least it's no longer afraid. */
 	mtmp->mflee = 0;

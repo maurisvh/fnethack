@@ -98,19 +98,6 @@ moveloop()
     int moveamt = 0, wtcap = 0, change = 0;
     boolean didmove = FALSE, monscanmove = FALSE;
 
-    /* flags.moonphase = phase_of_the_moon();
-    if(flags.moonphase == FULL_MOON) {
-	You("are lucky!  Full moon tonight.");
-	change_luck(1);
-    } else if(flags.moonphase == NEW_MOON) {
-	pline("Be careful!  New moon tonight.");
-    }
-    flags.friday13 = friday_13th();
-    if (flags.friday13) {
-	pline("Watch out!  Bad things can happen on Friday the 13th.");
-	change_luck(-1);
-    } */
-
     initrack();
 
 
@@ -315,7 +302,7 @@ moveloop()
 			if(Polymorph && !rn2(100))
 			    change = 1;
 			else if (u.ulycn >= LOW_PM && !Upolyd &&
-				 !rn2(80 - (20 * night())))
+				 !rn2(80))
 			    change = 2;
 			if (change && !Unchanging) {
 			    if (multi >= 0) {

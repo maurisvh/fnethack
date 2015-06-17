@@ -538,12 +538,6 @@ register struct monst *mtmp;
 	    }
 	    break;
 	case MS_WERE:
-	    if (flags.moonphase == FULL_MOON && (night() ^ !rn2(13))) {
-		pline("%s throws back %s head and lets out a blood curdling %s!",
-		      Monnam(mtmp), mhis(mtmp),
-		      ptr == &mons[PM_HUMAN_WERERAT] ? "shriek" : "howl");
-		wake_nearto(mtmp->mx, mtmp->my, 11*11);
-	    } else
 		pline_msg =
 		     "whispers inaudibly.  All you can make out is \"moon\".";
 	    break;

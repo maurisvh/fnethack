@@ -938,7 +938,7 @@ mdamagem(magr, mdef, mattk)
 		tmp = 0;
 		break;
 	    case AD_CURS:
-		if (!night() && (pa == &mons[PM_GREMLIN])) break;
+		if (pa == &mons[PM_GREMLIN]) break;
 		if (!magr->mcan && !rn2(10)) {
 		    mdef->mcan = 1;	/* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;

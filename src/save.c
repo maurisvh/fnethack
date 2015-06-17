@@ -180,10 +180,6 @@ dosave0()
 				   in the event of an impossible() call */
 	
 	/* undo date-dependent luck adjustments made at startup time */
-	if(flags.moonphase == FULL_MOON)	/* ut-sally!fletcher */
-		change_luck(-1);		/* and unido!ab */
-	if(flags.friday13)
-		change_luck(1);
 	if(iflags.window_inited)
 	    HUP clear_nhwindow(WIN_MESSAGE);
 
