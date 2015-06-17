@@ -391,19 +391,12 @@ int curse_bless;
 		else obj->spe += 1;
 		if (obj->spe > 5) obj->spe = 5;
 		break;
-	    case MAGIC_MARKER:
 	    case TINNING_KIT:
 #ifdef TOURIST
 	    case EXPENSIVE_CAMERA:
 #endif
 		if (is_cursed) stripspe(obj);
-		else if (rechrg && obj->otyp == MAGIC_MARKER) {	/* previously recharged */
-		    obj->recharged = 1;	/* override increment done above */
-		    if (obj->spe < 3)
-			Your("marker seems permanently dried out.");
-		    else
-			pline(nothing_happens);
-		} else if (is_blessed) {
+		else if (is_blessed) {
 		    n = rn1(16,15);		/* 15..30 */
 		    if (obj->spe + n <= 50)
 			obj->spe = 50;
