@@ -1731,10 +1731,8 @@ int
 zappable(wand)
 register struct obj *wand;
 {
-	if(wand->spe < 0 || (wand->spe == 0 && rn2(121)))
+	if(wand->spe <= 0)
 		return 0;
-	if(wand->spe == 0)
-		You("wrest one last charge from the worn-out wand.");
 	wand->spe--;
 	return 1;
 }
@@ -1766,10 +1764,7 @@ register struct obj *obj;
 			break;
 		case WAN_WISHING:
 			known = TRUE;
-			if(Luck + rn2(5) < 0) {
-				pline("Unfortunately, nothing happens.");
-				break;
-			}
+            obj->known = TRUE; /* know charges after a zap (always 3 total) */
 			makewish();
 			break;
 		case WAN_ENLIGHTENMENT:
