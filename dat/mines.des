@@ -698,7 +698,7 @@ MAP
 |    |.......|        |..........................-S-      --.......|      |
 |    |......-------   ---........................|.       |.......--      |
 |    |..--........-----..........................|.       -.-..----       |
-|    --..--.-----........-.....................---        --..--          |
+|    --..--..----........-.....................---        --..--          |
 |     --..--..| -----------..................---.----------..--           |
 |      |...--.|    |..S...S..............---................--            |
 |     ----..-----  ------------........--- ------------...---             |
@@ -763,6 +763,7 @@ OBJECT:'*',random,random
 OBJECT:'*',random,random
 OBJECT:'(',random,random
 OBJECT:'(',random,random
+OBJECT:'(',"tooled horn",random
 OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
@@ -884,6 +885,7 @@ OBJECT:'*',random,random
 OBJECT:'*',random,random
 OBJECT:'(',random,random
 OBJECT:'(',random,random
+OBJECT:'(',"tooled horn",random
 OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
@@ -986,6 +988,7 @@ OBJECT:'+',random,random
 OBJECT:'+',random,random
 OBJECT:'+',random,random
 OBJECT:'+',random,random
+OBJECT:'(',"wooden flute",random
 OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
@@ -996,9 +999,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-# One-time annoyance factor
-TRAP:"level teleport",place[0]
-TRAP:"level teleport",place[1]
 MONSTER:'M',random,random
 MONSTER:'M',random,random
 MONSTER:'M',random,random
