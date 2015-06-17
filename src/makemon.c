@@ -1507,7 +1507,7 @@ register int otyp;
 	    }
 
 	    if(otmp->otyp == CANDELABRUM_OF_INVOCATION) {
-		otmp->spe = 0;
+		otmp->spe = 7;
 		otmp->age = 0L;
 		otmp->lamplit = FALSE;
 		otmp->blessed = otmp->cursed = FALSE;
