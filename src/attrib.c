@@ -26,12 +26,10 @@ const struct innate {
 	long	*ability;
 	const char *gainstr, *losestr;
 }	arc_abil[] = { {	 1, &(HStealth), "", "" },
-		     {   1, &(HFast), "", "" },
 		     {  10, &(HSearching), "perceptive", "" },
 		     {	 0, 0, 0, 0 } },
 
 	bar_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
 		     {  15, &(HStealth), "stealthy", "" },
 		     {	 0, 0, 0, 0 } },
 
@@ -39,11 +37,9 @@ const struct innate {
 		     {	15, &(HWarning), "sensitive", "" },
 		     {	 0, 0, 0, 0 } },
 
-	kni_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {	 0, 0, 0, 0 } },
+	kni_abil[] = { {	 0, 0, 0, 0 } },
 
-	mon_abil[] = { {   1, &(HFast), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
+	mon_abil[] = { {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HSee_invisible), "", "" },
 		     {   3, &(HPoison_resistance), "healthy", "" },
 		     {   5, &(HStealth), "stealthy", "" },
@@ -68,8 +64,7 @@ const struct innate {
 		     {  10, &(HSearching), "perceptive", "" },
 		     {	 0, 0, 0, 0 } },
 
-	sam_abil[] = { {	 1, &(HFast), "", "" },
-		     {  15, &(HStealth), "stealthy", "" },
+	sam_abil[] = { {  15, &(HStealth), "stealthy", "" },
 		     {	 0, 0, 0, 0 } },
 
 	tou_abil[] = { {	10, &(HSearching), "perceptive", "" },
@@ -78,7 +73,6 @@ const struct innate {
 
 	val_abil[] = { {	 1, &(HCold_resistance), "", "" },
 		     {	 1, &(HStealth), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
 		     {	 0, 0, 0, 0 } },
 
 	wiz_abil[] = { {	15, &(HWarning), "sensitive", "" },
