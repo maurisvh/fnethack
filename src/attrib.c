@@ -617,34 +617,28 @@ newhp()
 {
 	int	hp, conplus;
 
-
 	if (u.ulevel == 0) {
 	    /* Initialize hit points */
 	    hp = urole.hpadv.infix + urace.hpadv.infix;
-	    if (urole.hpadv.inrnd > 0) hp += rnd(urole.hpadv.inrnd);
-	    if (urace.hpadv.inrnd > 0) hp += rnd(urace.hpadv.inrnd);
 
 	    /* Initialize alignment stuff */
 	    u.ualign.type = aligns[flags.initalign].value;
 	    u.ualign.record = urole.initrecord;
 
-		return hp * 2 + rn2(2);
-	} else {
-        /* dwarves get slightly more hp; elves/orcs/gnomes slightly less */
-        hp = urace.hpadv.lornd + 4 + rn2(2);
+		return hp * 2;
 	}
+
+    /* dwarves get slightly more hp; elves/orcs/gnomes slightly less */
+    hp = urace.hpadv.lornd + 4 + rn2(2);
 
 	if (ACURR(A_CON) <= 3) conplus = -2;
 	else if (ACURR(A_CON) <= 6) conplus = -1;
 	else if (ACURR(A_CON) <= 14) conplus = 0;
-	else if (ACURR(A_CON) <= 16) conplus = 1;
-	else if (ACURR(A_CON) == 17) conplus = 2;
-	else if (ACURR(A_CON) == 18) conplus = 3;
-	else conplus = 4;
+	else if (ACURR(A_CON) <= 18) conplus = 1;
+	else conplus = 2;
 	
 	hp += conplus;
-
-    hp = 3 * hp / 2;
+    pline("hp:%d", hp);
 	return((hp <= 0) ? 1 : hp);
 }
 
