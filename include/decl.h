@@ -64,6 +64,8 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_asmodeus_level;	/* unused */
     d_level	d_portal_level;		/* only in goto_level() [do.c] */
     d_level	d_sanctum_level;
+    d_level	d_trove1_level;
+    d_level	d_trove2_level;
     d_level	d_earth_level;
     d_level	d_water_level;
     d_level	d_fire_level;
@@ -92,6 +94,8 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define asmodeus_level		(dungeon_topology.d_asmodeus_level)
 #define portal_level		(dungeon_topology.d_portal_level)
 #define sanctum_level		(dungeon_topology.d_sanctum_level)
+#define trove1_level		(dungeon_topology.d_trove1_level)
+#define trove2_level		(dungeon_topology.d_trove2_level)
 #define earth_level		(dungeon_topology.d_earth_level)
 #define water_level		(dungeon_topology.d_water_level)
 #define fire_level		(dungeon_topology.d_fire_level)

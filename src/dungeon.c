@@ -666,6 +666,8 @@ struct level_map {
 	{ "rogue",	&rogue_level },
 #endif
 	{ "sanctum",	&sanctum_level },
+	{ "trove1",	&trove1_level },
+	{ "trove2",	&trove2_level },
 	{ "valley",	&valley_level },
 	{ "water",	&water_level },
 #ifdef RECORD_ACHIEVE

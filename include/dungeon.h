@@ -124,6 +124,7 @@ typedef struct branch {
 #endif
 
 #define In_sokoban(x)		(0)
+#define Is_trove(x) (on_level(x, &trove1_level) || on_level(x, &trove2_level))
 #define In_tower(x)		((x)->dnum == tower_dnum)
 #define Inhell			In_hell(&u.uz)	/* now gehennom */
 #define In_endgame(x)		((x)->dnum == astral_level.dnum)
