@@ -563,7 +563,7 @@ register struct	monst	*mtmp;
 		    switch (rn2(4)) {
 		    /* MAJOR fall through ... */
 		    case 0: (void) mongets(mtmp, WAN_MAGIC_MISSILE);
-		    case 1: (void) mongets(mtmp, POT_EXTRA_HEALING);
+		    case 1: (void) mongets(mtmp, POT_PARALYSIS);
 		    case 2: (void) mongets(mtmp, POT_HEALING);
 		    case 3: (void) mongets(mtmp, WAN_STRIKING);
 		    }
@@ -610,7 +610,7 @@ register struct	monst	*mtmp;
 		break;
 	    case S_LICH:
 		if (ptr == &mons[PM_MASTER_LICH] && !rn2(13))
-			(void)mongets(mtmp, (rn2(7) ? ATHAME : WAN_NOTHING));
+			(void)mongets(mtmp, (rn2(7) ? ATHAME : DAGGER));
 		else if (ptr == &mons[PM_ARCH_LICH] && !rn2(3)) {
 			otmp = mksobj(rn2(3) ? ATHAME : QUARTERSTAFF,
 				      TRUE, rn2(13) ? FALSE : TRUE);
@@ -1029,8 +1029,6 @@ register int	mmflags;
 		mitem = TWO_HANDED_SWORD;
 	} else if (ptr->msound == MS_NEMESIS) {
 		mitem = BELL_OF_OPENING;
-	} else if (mndx == PM_PESTILENCE) {
-		mitem = POT_SICKNESS;
 	}
 	if (mitem && allow_minvent) (void) mongets(mtmp, mitem);
 

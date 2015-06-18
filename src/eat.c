@@ -854,16 +854,6 @@ register int pm;
 		    display_nhwindow(WIN_MAP, TRUE);
 		}
 		break;
-	    case PM_QUANTUM_MECHANIC:
-		Your("velocity suddenly seems very uncertain!");
-		if (HFast & INTRINSIC) {
-			HFast &= ~INTRINSIC;
-			You("seem slower.");
-		} else {
-			HFast |= FROMOUTSIDE;
-			You("seem faster.");
-		}
-		break;
 	    case PM_LIZARD:
 		if (HStun > 2)  make_stunned(2L,FALSE);
 		if (HConfusion > 2)  make_confused(2L,FALSE);

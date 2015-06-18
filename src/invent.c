@@ -450,8 +450,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 
 	    obj = addinv(obj);
 	    if (inv_cnt() > 52
-		    || ((obj->otyp != LOADSTONE || !obj->cursed)
-			&& near_capacity() > prev_encumbr)) {
+		    || (near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
 		if (obj->quan > oquan) obj = splitobj(obj, oquan);
@@ -547,9 +546,7 @@ struct obj *obj;
 		set_artifact_intrinsic(obj, 0, W_ART);
 	}
 
-	if (obj->otyp == LOADSTONE) {
-		curse(obj);
-	} else if (confers_luck(obj)) {
+	if (confers_luck(obj)) {
 		set_moreluck();
 		flags.botl = 1;
 	} else if (obj->otyp == FIGURINE && obj->timed) {
@@ -1147,12 +1144,7 @@ register const char *let,*word;
 	if(allowcnt == 2) {	/* cnt given */
 	    if(cnt == 0) return (struct obj *)0;
 	    if(cnt != otmp->quan) {
-		/* don't split a stack of cursed loadstones */
-		if (otmp->otyp == LOADSTONE && otmp->cursed)
-		    /* kludge for canletgo()'s can't-drop-this message */
-		    otmp->corpsenm = (int) cnt;
-		else
-		    otmp = splitobj(otmp, cnt);
+            otmp = splitobj(otmp, cnt);
 	    }
 	}
 	return(otmp);
@@ -1487,8 +1479,7 @@ nextclass:
 			sym = 'n';
 		    else {
 			sym = 'y';
-			if (yn_number < otmp->quan && !welded(otmp) &&
-			    (!otmp->cursed || otmp->otyp != LOADSTONE)) {
+			if (yn_number < otmp->quan && !welded(otmp)) {
 			    otmp = splitobj(otmp, yn_number);
 			}
 		    }

@@ -712,7 +712,7 @@ boolean atme;
 	}
 	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
 
-	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD) {
+	if (u.uhunger <= 10) {
 		You("are too hungry to cast that spell.");
 		return(0);
 	} else if (ACURR(A_STR) < 4)  {
@@ -734,41 +734,39 @@ boolean atme;
 		You("don't have enough energy to cast that spell.");
 		return(0);
 	} else {
-		if (spellid(spell) != SPE_DETECT_FOOD) {
-			int hungr = energy * 2;
+        int hungr = energy * 2;
 
-			/* If hero is a wizard, their current intelligence
-			 * (bonuses + temporary + current)
-			 * affects hunger reduction in casting a spell.
-			 * 1. int = 17-18 no reduction
-			 * 2. int = 16    1/4 hungr
-			 * 3. int = 15    1/2 hungr
-			 * 4. int = 1-14  normal reduction
-			 * The reason for this is:
-			 * a) Intelligence affects the amount of exertion
-			 * in thinking.
-			 * b) Wizards have spent their life at magic and
-			 * understand quite well how to cast spells.
-			 */
-			intell = acurr(A_INT);
-			if (!Role_if(PM_WIZARD)) intell = 10;
-			switch (intell) {
-				case 25: case 24: case 23: case 22:
-				case 21: case 20: case 19: case 18:
-				case 17: hungr = 0; break;
-				case 16: hungr /= 4; break;
-				case 15: hungr /= 2; break;
-			}
-			/* don't put player (quite) into fainting from
-			 * casting a spell, particularly since they might
-			 * not even be hungry at the beginning; however,
-			 * this is low enough that they must eat before
-			 * casting anything else except detect food
-			 */
-			if (hungr > u.uhunger-3)
-				hungr = u.uhunger-3;
-			morehungry(hungr);
-		}
+        /* If hero is a wizard, their current intelligence
+         * (bonuses + temporary + current)
+         * affects hunger reduction in casting a spell.
+         * 1. int = 17-18 no reduction
+         * 2. int = 16    1/4 hungr
+         * 3. int = 15    1/2 hungr
+         * 4. int = 1-14  normal reduction
+         * The reason for this is:
+         * a) Intelligence affects the amount of exertion
+         * in thinking.
+         * b) Wizards have spent their life at magic and
+         * understand quite well how to cast spells.
+         */
+        intell = acurr(A_INT);
+        if (!Role_if(PM_WIZARD)) intell = 10;
+        switch (intell) {
+            case 25: case 24: case 23: case 22:
+            case 21: case 20: case 19: case 18:
+            case 17: hungr = 0; break;
+            case 16: hungr /= 4; break;
+            case 15: hungr /= 2; break;
+        }
+        /* don't put player (quite) into fainting from
+         * casting a spell, particularly since they might
+         * not even be hungry at the beginning; however,
+         * this is low enough that they must eat before
+         * casting anything else except detect food
+         */
+        if (hungr > u.uhunger-3)
+            hungr = u.uhunger-3;
+        morehungry(hungr);
 	}
 
 	chance = percent_success(spell);
@@ -866,7 +864,6 @@ boolean atme;
 
 	/* these are all duplicates of scroll effects */
 	case SPE_REMOVE_CURSE:
-	case SPE_DETECT_FOOD:
 	case SPE_CAUSE_FEAR:
 		/* high skill yields effect equivalent to blessed scroll */
 		if (role_skill >= P_SKILLED) pseudo->blessed = 1;

@@ -147,12 +147,6 @@ struct obj *otmp;
 			}
 		}
 		break;
-	case WAN_SPEED_MONSTER:
-		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
-			mon_adjust_speed(mtmp, 1, otmp);
-			m_dowear(mtmp, FALSE); /* might want speed boots */
-		}
-		break;
 	case WAN_POLYMORPH:
 	case SPE_POLYMORPH:
 	case POT_POLYMORPH:
@@ -204,35 +198,11 @@ struct obj *otmp;
 		}
 		break;
 	    }
-	case WAN_NOTHING:
-	case WAN_LOCKING:
-		wake = FALSE;
-		break;
 	case WAN_PROBING:
 		wake = FALSE;
 		reveal_invis = TRUE;
 		probe_monster(mtmp);
 		makeknown(otyp);
-		break;
-	case WAN_OPENING:
-		wake = FALSE;	/* don't want immediate counterattack */
-		if (u.uswallow && mtmp == u.ustuck) {
-			if (is_animal(mtmp->data)) {
-				if (Blind) You_feel("a sudden rush of air!");
-				else pline("%s opens its mouth!", Monnam(mtmp));
-			}
-			expels(mtmp, mtmp->data, TRUE);
-#ifdef STEED
-		} else if (!!(obj = which_armor(mtmp, W_SADDLE))) {
-			mtmp->misc_worn_check &= ~obj->owornmask;
-			update_mon_intrinsics(mtmp, obj, FALSE, FALSE);
-			obj->owornmask = 0L;
-			obj_extract_self(obj);
-			place_object(obj, mtmp->mx, mtmp->my);
-			/* call stackobj() if we ever drop anything that can merge */
-			newsym(mtmp->mx, mtmp->my);
-#endif
-		}
 		break;
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
@@ -838,8 +808,7 @@ register struct obj *obj;
 	}
 	if (objects[obj->otyp].oc_magic
 	    || (obj->spe && (obj->oclass == ARMOR_CLASS ||
-			     obj->oclass == WEAPON_CLASS || is_weptool(obj)))
-	    || obj->otyp == POT_ACID || obj->otyp == POT_SICKNESS) {
+			     obj->oclass == WEAPON_CLASS || is_weptool(obj)))) {
 	    if (obj->spe != ((obj->oclass == WAND_CLASS) ? -1 : 0) &&
 	       obj->otyp != WAN_CANCELLATION &&
 		 /* can't cancel cancellation */
@@ -863,17 +832,8 @@ register struct obj *obj;
 		break;
 	      case POTION_CLASS:
 		costly_cancel(obj);
-		if (obj->otyp == POT_SICKNESS ||
-		    obj->otyp == POT_SEE_INVISIBLE) {
-	    /* sickness is "biologically contaminated" fruit juice; cancel it
-	     * and it just becomes fruit juice... whereas see invisible
-	     * tastes like "enchanted" fruit juice, it similarly cancels.
-	     */
-		    obj->otyp = POT_FRUIT_JUICE;
-		} else {
-	            obj->otyp = POT_WATER;
+            obj->otyp = POT_WATER;
 		    obj->odiluted = 0; /* same as any other water */
-		}
 		break;
 	    }
 	}
@@ -1473,11 +1433,7 @@ struct obj *obj, *otmp;
 	if (obj == uball) {
 		res = 0;
 	} else if (obj == uchain) {
-		if (otmp->otyp == WAN_OPENING) {
-		    unpunish();
-		    makeknown(otmp->otyp);
-		} else
-		    res = 0;
+        res = 0;
 	} else
 	switch(otmp->otyp) {
 	case WAN_POLYMORPH:
@@ -1557,25 +1513,8 @@ struct obj *obj, *otmp;
 		newsym(obj->ox,obj->oy);	/* make object disappear */
 #endif
 		break;
-	case WAN_UNDEAD_TURNING:
-		if (obj->otyp == EGG)
-			revive_egg(obj);
-		else
-			res = !!revive(obj);
-		break;
-	case WAN_OPENING:
-	case WAN_LOCKING:
-		if(Is_box(obj))
-			res = boxlock(obj, otmp);
-		else
-			res = 0;
-		if (res /* && otmp->oclass == WAND_CLASS */)
-			makeknown(otmp->otyp);
-		break;
 	case WAN_SLOW_MONSTER:		/* no effect on objects */
 	case SPE_SLOW_MONSTER:
-	case WAN_SPEED_MONSTER:
-	case WAN_NOTHING:
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
 		res = 0;
@@ -1985,18 +1924,6 @@ boolean ordinary;
 		    break;
 		}
 
-		case WAN_SPEED_MONSTER:
-		    if (!(HFast & INTRINSIC)) {
-			if (!Fast)
-			    You("speed up.");
-			else
-			    Your("quickness feels more natural.");
-			makeknown(WAN_SPEED_MONSTER);
-			exercise(A_DEX, TRUE);
-		    }
-		    HFast |= FROMOUTSIDE;
-		    break;
-
 		case WAN_SLEEP:
 		    makeknown(WAN_SLEEP);
 		case SPE_SLEEP:
@@ -2022,8 +1949,6 @@ boolean ordinary;
 		    tele();
 		    break;
 
-		case WAN_UNDEAD_TURNING:
-		    makeknown(WAN_UNDEAD_TURNING);
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
 		    healup(d(6, obj->otyp == SPE_EXTRA_HEALING ? 8 : 4),
@@ -2046,13 +1971,9 @@ boolean ordinary;
 		    }
 		    damage = 0;	/* reset */
 		    break;
-		case WAN_OPENING:
-		    if (Punished) makeknown(WAN_OPENING);
 		case WAN_DIGGING:
 		case SPE_DIG:
 		case SPE_DETECT_UNSEEN:
-		case WAN_NOTHING:
-		case WAN_LOCKING:
 		    break;
 		case WAN_PROBING:
 		    for (obj = invent; obj; obj = obj->nobj)
@@ -2140,11 +2061,9 @@ struct obj *obj;	/* wand or spell */
 		case SPE_FORCE_BOLT:
 		case WAN_SLOW_MONSTER:
 		case SPE_SLOW_MONSTER:
-		case WAN_SPEED_MONSTER:
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
 		case SPE_DRAIN_LIFE:
-		case WAN_OPENING:
 		    (void) bhitm(u.usteed, obj);
 		    steedhit = TRUE;
 		    break;
@@ -2255,63 +2174,10 @@ struct obj *obj;	/* wand or spell */
 	    }
 	    if (!ptmp) Your("probe reveals nothing.");
 	    return TRUE;	/* we've done our own bhitpile */
-	case WAN_OPENING:
-	    /* up or down, but at closed portcullis only */
-	    if (is_db_wall(x,y) && find_drawbridge(&xx, &yy)) {
-		open_drawbridge(xx, yy);
-		disclose = TRUE;
-	    } else if (u.dz > 0 && (x == xdnstair && y == ydnstair) &&
-			/* can't use the stairs down to quest level 2 until
-			   leader "unlocks" them; give feedback if you try */
-			on_level(&u.uz, &qstart_level) && !ok_to_quest()) {
-		pline_The("stairs seem to ripple momentarily.");
-		disclose = TRUE;
-	    }
-	    break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:
 	    striking = TRUE;
 	    /*FALLTHRU*/
-	case WAN_LOCKING:
-	    /* down at open bridge or up or down at open portcullis */
-	    if ((levl[x][y].typ == DRAWBRIDGE_DOWN) ? (u.dz > 0) :
-			(is_drawbridge_wall(x,y) && !is_db_wall(x,y)) &&
-		    find_drawbridge(&xx, &yy)) {
-		if (!striking)
-		    close_drawbridge(xx, yy);
-		else
-		    destroy_drawbridge(xx, yy);
-		disclose = TRUE;
-	    } else if (striking && u.dz < 0 && rn2(3) &&
-			!Is_airlevel(&u.uz) && !Is_waterlevel(&u.uz) &&
-			!Underwater && !Is_qstart(&u.uz)) {
-		/* similar to zap_dig() */
-		pline("A rock is dislodged from the %s and falls on your %s.",
-		      ceiling(x, y), body_part(HEAD));
-		losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
-		       "falling rock", KILLED_BY_AN);
-		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE)) != 0) {
-		    (void)xname(otmp);	/* set dknown, maybe bknown */
-		    stackobj(otmp);
-		}
-		newsym(x, y);
-	    } else if (!striking && ttmp && ttmp->ttyp == TRAPDOOR && u.dz > 0) {
-		if (!Blind) {
-			if (ttmp->tseen) {
-				pline("A trap door beneath you closes up then vanishes.");
-				disclose = TRUE;
-			} else {
-				You("see a swirl of %s beneath you.",
-					is_ice(x,y) ? "frost" : "dust");
-			}
-		} else {
-			You_hear("a twang followed by a thud.");
-		}
-		deltrap(ttmp);
-		ttmp = (struct trap *)0;
-		newsym(x, y);
-	    }
-	    break;
 	case SPE_STONE_TO_FLESH:
 	    if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz) ||
 		     Underwater || (Is_qstart(&u.uz) && u.dz < 0)) {
@@ -2618,19 +2484,6 @@ boolean *obj_destroyed;/* has object been deallocated? Pointer to boolean, may b
 
 	    if (weapon == ZAPPED_WAND && find_drawbridge(&x,&y))
 		switch (obj->otyp) {
-		    case WAN_OPENING:
-			if (is_db_wall(bhitpos.x, bhitpos.y)) {
-			    if (cansee(x,y) || cansee(bhitpos.x,bhitpos.y))
-				makeknown(obj->otyp);
-			    open_drawbridge(x,y);
-			}
-			break;
-		    case WAN_LOCKING:
-			if ((cansee(x,y) || cansee(bhitpos.x, bhitpos.y))
-			    && levl[x][y].typ == DRAWBRIDGE_DOWN)
-			    makeknown(obj->otyp);
-			close_drawbridge(x,y);
-			break;
 		    case WAN_STRIKING:
 		    case SPE_FORCE_BOLT:
 			if (typ != DRAWBRIDGE_UP)
@@ -2696,8 +2549,6 @@ boolean *obj_destroyed;/* has object been deallocated? Pointer to boolean, may b
 	    }
 	    if(weapon == ZAPPED_WAND && (IS_DOOR(typ) || typ == SDOOR)) {
 		switch (obj->otyp) {
-		case WAN_OPENING:
-		case WAN_LOCKING:
 		case WAN_STRIKING:
 		case SPE_FORCE_BOLT:
 		    if (doorlock(obj, bhitpos.x, bhitpos.y)) {

@@ -394,12 +394,6 @@ register struct obj *obj;
 	} else if (get_wet(obj) && !rn2(2))
 		return;
 
-	/* Acid and water don't mix */
-	if (obj->otyp == POT_ACID) {
-	    useup(obj);
-	    return;
-	}
-
 	switch (rnd(30)) {
 		case 16: /* Curse the item */
 			curse(obj);

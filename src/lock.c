@@ -704,22 +704,6 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	register boolean res = 0;
 
 	switch(otmp->otyp) {
-	case WAN_LOCKING:
-	    if (!obj->olocked) {	/* lock it; fix if broken */
-		pline("Klunk!");
-		obj->olocked = 1;
-		obj->obroken = 0;
-		res = 1;
-	    } /* else already closed and locked */
-	    break;
-	case WAN_OPENING:
-	    if (obj->olocked) {		/* unlock; couldn't be broken */
-		pline("Klick!");
-		obj->olocked = 0;
-		res = 1;
-	    } else			/* silently fix if broken */
-		obj->obroken = 0;
-	    break;
 	case WAN_POLYMORPH:
 	case SPE_POLYMORPH:
 	    /* maybe start unlocking chest, get interrupted, then zap it;
@@ -745,82 +729,19 @@ int x, y;
 	
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
-	    case WAN_OPENING:
 	    case WAN_STRIKING:
 	    case SPE_FORCE_BOLT:
 		door->typ = DOOR;
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
 		newsym(x,y);
 		if (cansee(x,y)) pline("A door appears in the wall!");
-		if (otmp->otyp == WAN_OPENING)
-		    return TRUE;
 		break;		/* striking: continue door handling below */
-	    case WAN_LOCKING:
 	    default:
 		return FALSE;
 	    }
 	}
 
 	switch(otmp->otyp) {
-	case WAN_LOCKING:
-#ifdef REINCARNATION
-	    if (Is_rogue_level(&u.uz)) {
-	    	boolean vis = cansee(x,y);
-		/* Can't have real locking in Rogue, so just hide doorway */
-		if (vis) pline("%s springs up in the older, more primitive doorway.",
-			dustcloud);
-		else
-			You_hear("a swoosh.");
-		if (obstructed(x,y)) {
-			if (vis) pline_The("cloud %s.",quickly_dissipates);
-			return FALSE;
-		}
-		block_point(x, y);
-		door->typ = SDOOR;
-		if (vis) pline_The("doorway vanishes!");
-		newsym(x,y);
-		return TRUE;
-	    }
-#endif
-	    if (obstructed(x,y)) return FALSE;
-	    /* Don't allow doors to close over traps.  This is for pits */
-	    /* & trap doors, but is it ever OK for anything else? */
-	    if (t_at(x,y)) {
-		/* maketrap() clears doormask, so it should be NODOOR */
-		pline(
-		"%s springs up in the doorway, but %s.",
-		dustcloud, quickly_dissipates);
-		return FALSE;
-	    }
-
-	    switch (door->doormask & ~D_TRAPPED) {
-	    case D_CLOSED:
-		msg = "The door locks!";
-		break;
-	    case D_ISOPEN:
-		msg = "The door swings shut, and locks!";
-		break;
-	    case D_BROKEN:
-		msg = "The broken door reassembles and locks!";
-		break;
-	    case D_NODOOR:
-		msg =
-		"A cloud of dust springs up and assembles itself into a door!";
-		break;
-	    default:
-		res = FALSE;
-		break;
-	    }
-	    block_point(x, y);
-	    door->doormask = D_LOCKED | (door->doormask & D_TRAPPED);
-	    newsym(x,y);
-	    break;
-	case WAN_OPENING:
-	    if (door->doormask & D_LOCKED) {
-		msg = "The door unlocks!";
-		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
-	    } else res = FALSE;
-	    break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:
 	    if (door->doormask & (D_LOCKED | D_CLOSED)) {

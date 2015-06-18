@@ -60,7 +60,6 @@ static struct trobj Healer[] = {
 	{ LEATHER_GLOVES, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ STETHOSCOPE, 0, TOOL_CLASS, 1, 0 },
 	{ POT_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
-	{ POT_EXTRA_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
 	{ WAN_SLEEP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
 	/* always blessed, so it's guaranteed readable */
 	{ SPE_HEALING, 0, SPBOOK_CLASS, 1, 1 },
@@ -123,7 +122,6 @@ static struct trobj Rogue[] = {
 	{ SHORT_SWORD, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ DAGGER, 0, WEAPON_CLASS, 10, 0 },	/* quan is variable */
 	{ LEATHER_ARMOR, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ POT_SICKNESS, 0, POTION_CLASS, 1, 0 },
 	{ LOCK_PICK, 9, TOOL_CLASS, 1, 0 },
 	{ SACK, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -142,7 +140,6 @@ static struct trobj Tourist[] = {
 #define T_DARTS		0
 	{ DART, 2, WEAPON_CLASS, 25, UNDEF_BLESS },	/* quan is variable */
 	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 10, 0 },
-	{ POT_EXTRA_HEALING, 0, POTION_CLASS, 2, UNDEF_BLESS },
 	{ SCR_MAGIC_MAPPING, 0, SCROLL_CLASS, 4, UNDEF_BLESS },
 	{ HAWAIIAN_SHIRT, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ EXPENSIVE_CAMERA, UNDEF_SPE, TOOL_CLASS, 1, 0 },
@@ -616,7 +613,6 @@ u_init()
 #endif
 		ini_inv(Healer);
 		if(!rn2(25)) ini_inv(Lamp);
-		knows_object(POT_FULL_HEALING);
 		skill_init(Skill_H);
 		break;
 	case PM_KNIGHT:
@@ -904,14 +900,11 @@ register struct trobj *trop;
 				|| otyp == RIN_LEVITATION
 #endif
 				/* 'useless' items */
-				|| otyp == POT_HALLUCINATION
-				|| otyp == POT_ACID
 				|| otyp == SCR_FIRE
 				|| otyp == SCR_BLANK_PAPER
 				|| otyp == SPE_BLANK_PAPER
 				|| otyp == RIN_AGGRAVATE_MONSTER
 				|| otyp == RIN_HUNGER
-				|| otyp == WAN_NOTHING
 				/* Monks don't use weapons */
 				|| (otyp == SCR_ENCHANT_WEAPON &&
 				    Role_if(PM_MONK))

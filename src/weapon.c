@@ -346,7 +346,7 @@ static NEARDATA const int rwep[] =
 {	DWARVISH_SPEAR, SILVER_SPEAR, ELVEN_SPEAR, SPEAR, ORCISH_SPEAR,
 	JAVELIN, SHURIKEN, YA, SILVER_ARROW, ELVEN_ARROW, ARROW,
 	ORCISH_ARROW, CROSSBOW_BOLT, SILVER_DAGGER, ELVEN_DAGGER, DAGGER,
-	ORCISH_DAGGER, KNIFE, FLINT, ROCK, LOADSTONE, LUCKSTONE, DART,
+	ORCISH_DAGGER, KNIFE, FLINT, ROCK, LUCKSTONE, DART,
 	/* BOOMERANG, */ CREAM_PIE
 	/* note: CREAM_PIE should NOT be #ifdef KOPS */
 };
@@ -414,8 +414,7 @@ register struct monst *mtmp;
 	    if (rwep[i] == DART && !likes_gems(mtmp->data) &&
 		    m_carrying(mtmp, SLING)) {		/* propellor */
 		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
-		    if (otmp->oclass == GEM_CLASS &&
-			    (otmp->otyp != LOADSTONE || !otmp->cursed)) {
+		    if (otmp->oclass == GEM_CLASS) {
 			propellor = m_carrying(mtmp, SLING);
 			return otmp;
 		    }
@@ -452,16 +451,10 @@ register struct monst *mtmp;
 		 * always select the first object of a type, and maybe the
 		 * monster is carrying two but only the first is unthrowable.
 		 */
-		if (rwep[i] != LOADSTONE) {
-			/* Don't throw a cursed weapon-in-hand or an artifact */
 			if ((otmp = oselect(mtmp, rwep[i])) && !otmp->oartifact
 			    && (!otmp->cursed || otmp != MON_WEP(mtmp)))
 				return(otmp);
-		} else for(otmp=mtmp->minvent; otmp; otmp=otmp->nobj) {
-		    if (otmp->otyp == LOADSTONE && !otmp->cursed)
-			return otmp;
 		}
-	    }
 	  }
 
 	/* failure */

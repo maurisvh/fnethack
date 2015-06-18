@@ -692,12 +692,10 @@ int alone;
 			   	u.twoweap ? "s" : "");
 	    otmp2 = u.twoweap ? uswapwep : 0;
 	    uwepgone();
-	    if (!wep->cursed || wep->otyp != LOADSTONE)
 		dropx(otmp);
 	    if (otmp2 != 0) {
 		uswapwepgone();
-		if (!otmp2->cursed || otmp2->otyp != LOADSTONE)
-		    dropx(otmp2);
+		dropx(otmp2);
 	    }
 	    untwoweapon();
 	} else if (!could_twoweap(youmonst.data)) {

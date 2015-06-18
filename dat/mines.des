@@ -749,7 +749,6 @@ OBJECT:'*',"worthless piece of violet glass",place[3]
 MONSTER:'m',random,place[3], m_object "touchstone"
 OBJECT:'*',"worthless piece of red glass",place[4]
 OBJECT:'*',"ruby",place[4]
-OBJECT:'*',"loadstone",place[4]
 OBJECT:'*',"ruby",place[5]
 OBJECT:'*',"worthless piece of red glass",place[5]
 OBJECT:'*',"luckstone",place[5]
@@ -847,14 +846,14 @@ NON_DIGGABLE:(53,14,61,14)
 # The Gnome King's wine cellar.
 ENGRAVING:(12,03),engrave,"You are now entering the Gnome King's wine cellar."
 ENGRAVING:(12,04),engrave,"Trespassers will be persecuted!"
-OBJECT:'!',"booze",(10,07)
-OBJECT:'!',"booze",(10,07)
+OBJECT:'!',"confusion",(10,07)
+OBJECT:'!',"confusion",(10,07)
 OBJECT:'!',random,(10,07)
-OBJECT:'!',"booze",(10,08)
-OBJECT:'!',"booze",(10,08)
+OBJECT:'!',"confusion",(10,08)
+OBJECT:'!',"confusion",(10,08)
 OBJECT:'!',random,(10,08)
-OBJECT:'!',"booze",(10,09)
-OBJECT:'!',"booze",(10,09)
+OBJECT:'!',"confusion",(10,09)
+OBJECT:'!',"confusion",(10,09)
 OBJECT:'!',"object detection",(10,09)
 # Objects
 # The Treasure chamber...

@@ -439,22 +439,6 @@ register const char *word;
 				something);
 		return(FALSE);
 	}
-	if (obj->otyp == LOADSTONE && obj->cursed) {
-		/* getobj() kludge sets corpsenm to user's specified count
-		   when refusing to split a stack of cursed loadstones */
-		if (*word) {
-			/* getobj() ignores a count for throwing since that is
-			   implicitly forced to be 1; replicate its kludge... */
-			if (!strcmp(word, "throw") && obj->quan > 1L)
-			    obj->corpsenm = 1;
-			pline("For some reason, you cannot %s%s the stone%s!",
-			      word, obj->corpsenm ? " any of" : "",
-			      plur(obj->quan));
-		}
-		obj->corpsenm = 0;		/* reset */
-		obj->bknown = 1;
-		return(FALSE);
-	}
 	if (obj->otyp == LEASH && obj->leashmon != 0) {
 		if (*word)
 			pline_The("leash is tied around your %s.",
@@ -729,9 +713,6 @@ int retry;
 		if (cnt < otmp->quan) {
 		    if (welded(otmp)) {
 			;	/* don't split */
-		    } else if (otmp->otyp == LOADSTONE && otmp->cursed) {
-			/* same kludge as getobj(), for canletgo()'s use */
-			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {
 #ifndef GOLDOBJ
 			if (otmp->oclass == COIN_CLASS)

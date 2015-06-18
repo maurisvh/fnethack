@@ -207,11 +207,6 @@ worst_cursed_item()
 {
     register struct obj *otmp;
 
-    /* if strained or worse, check for loadstone first */
-    if (near_capacity() >= HVY_ENCUMBER) {
-	for (otmp = invent; otmp; otmp = otmp->nobj)
-	    if (Cursed_obj(otmp, LOADSTONE)) return otmp;
-    }
     /* weapon takes precedence if it is interfering
        with taking off a ring or putting on a shield */
     if (welded(uwep) && (uright || bimanual(uwep))) {	/* weapon */
@@ -253,7 +248,7 @@ worst_cursed_item()
     } else {
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
 	    if (!otmp->cursed) continue;
-	    if (otmp->otyp == LOADSTONE || confers_luck(otmp))
+	    if (confers_luck(otmp))
 		break;
 	}
     }
@@ -957,10 +952,7 @@ pleased(g_align)
 	case 5: {
 	    const char *msg="\"and thus I grant thee the gift of %s!\"";
 	    godvoice(u.ualign.type, "Thou hast pleased me with thy progress,");
-	    if (!(HFast & INTRINSIC))  {
-		HFast |= FROMOUTSIDE;
-		pline(msg, "Speed");
-	    } else if (!(HStealth & INTRINSIC))  {
+	    if (!(HStealth & INTRINSIC))  {
 		HStealth |= FROMOUTSIDE;
 		pline(msg, "Stealth");
 	    } else {

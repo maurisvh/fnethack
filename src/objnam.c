@@ -39,18 +39,6 @@ STATIC_DCL struct Jitem Japanese_items[];
 #else /* OVLB */
 
 STATIC_OVL struct Jitem Japanese_items[] = {
-	{ SHORT_SWORD, "wakizashi" },
-	{ BROADSWORD, "ninja-to" },
-	{ FLAIL, "nunchaku" },
-	{ GLAIVE, "naginata" },
-	{ LOCK_PICK, "osaku" },
-	{ WOODEN_HARP, "koto" },
-	{ KNIFE, "shito" },
-	{ PLATE_MAIL, "tanko" },
-	{ HELMET, "kabuto" },
-	{ LEATHER_GLOVES, "yugake" },
-	{ FOOD_RATION, "gunyoki" },
-	{ POT_BOOZE, "sake" },
 	{0, "" }
 };
 

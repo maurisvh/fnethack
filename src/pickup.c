@@ -1197,8 +1197,7 @@ boolean telekinesis;
 			body_part(HAND), xname(obj));
 	return -1;
     }
-    if (obj->otyp == LOADSTONE ||
-	    (obj->otyp == BOULDER && throws_rocks(youmonst.data)))
+    if ((obj->otyp == BOULDER && throws_rocks(youmonst.data)))
 	return 1;		/* lift regardless of current situation */
 
     *cnt_p = carry_count(obj, container, *cnt_p, telekinesis, &old_wt, &new_wt);
@@ -1394,7 +1393,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
         /* Whats left of the special case for gold :-) */
 	if (obj->oclass == COIN_CLASS) flags.botl = 1;
 #endif
-	if (obj->quan != count && obj->otyp != LOADSTONE)
+	if (obj->quan != count)
 	    obj = splitobj(obj, count);
 
 	obj = pick_obj(obj);
@@ -1889,10 +1888,6 @@ register struct obj *obj;
 		Norep("You cannot %s %s you are wearing.",
 			Icebox ? "refrigerate" : "stash", something);
 		return 0;
-	} else if ((obj->otyp == LOADSTONE) && obj->cursed) {
-		obj->bknown = 1;
-	      pline_The("stone%s won't leave your person.", plur(obj->quan));
-		return 0;
 	} else if (obj->otyp == AMULET_OF_YENDOR ||
 		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
 		   obj->otyp == BELL_OF_OPENING ||
@@ -2064,7 +2059,7 @@ register struct obj *obj;
 	if ((res = lift_object(obj, current_container, &count, FALSE)) <= 0)
 	    return res;
 
-	if (obj->quan != count && obj->otyp != LOADSTONE)
+	if (obj->quan != count)
 	    obj = splitobj(obj, count);
 
 	/* Remove the object from the list. */

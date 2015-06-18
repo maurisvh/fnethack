@@ -2648,11 +2648,8 @@ do_break_wand(obj)
 
     switch (obj->otyp) {
     case WAN_WISHING:
-    case WAN_NOTHING:
-    case WAN_LOCKING:
     case WAN_PROBING:
     case WAN_ENLIGHTENMENT:
-    case WAN_OPENING:
     case WAN_SECRET_DOOR_DETECTION:
 	pline(nothing_else_happens);
 	goto discard_broken_wand;
@@ -2677,7 +2674,6 @@ do_break_wand(obj)
     case WAN_CANCELLATION:
     case WAN_POLYMORPH:
     case WAN_TELEPORTATION:
-    case WAN_UNDEAD_TURNING:
 	affects_objects = TRUE;
 	break;
     default:
@@ -2963,9 +2959,7 @@ doapply()
 		    consume_obj_charge(obj, TRUE);
 		    if (!rn2(13)) {
 			otmp = mkobj(POTION_CLASS, FALSE);
-			if (objects[otmp->otyp].oc_magic) do {
-			    otmp->otyp = rnd_class(POT_BOOZE, POT_WATER);
-			} while (otmp->otyp == POT_SICKNESS);
+            otmp->otyp = POT_WATER;
 			what = "A potion";
 		    } else {
 			otmp = mkobj(FOOD_CLASS, FALSE);
@@ -2997,7 +2991,6 @@ doapply()
 		break;
 	case FLINT:
 	case LUCKSTONE:
-	case LOADSTONE:
 	case TOUCHSTONE:
 		use_stone(obj);
 		break;

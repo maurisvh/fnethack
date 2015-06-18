@@ -23,8 +23,6 @@ register struct obj *otmp;
 /*		break; */
 # endif
 	case SCR_LIGHT:
-	case SCR_GOLD_DETECTION:
-	case SCR_FOOD_DETECTION:
 	case SCR_MAGIC_MAPPING:
 	case SCR_FIRE:
 	case SCR_EARTH:

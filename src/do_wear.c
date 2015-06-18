@@ -1680,8 +1680,7 @@ glibr()
 			makeplural(body_part(HAND)));
 		setuswapwep((struct obj *)0);
 		xfl++;
-		if (otmp->otyp != LOADSTONE || !otmp->cursed)
-			dropx(otmp);
+        dropx(otmp);
 	}
 	otmp = uwep;
 	if (otmp && !welded(otmp)) {
@@ -1698,8 +1697,7 @@ glibr()
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
 		setuwep((struct obj *)0);
-		if (otmp->otyp != LOADSTONE || !otmp->cursed)
-			dropx(otmp);
+        dropx(otmp);
 	}
 }
 

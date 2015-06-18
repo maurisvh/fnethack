@@ -222,7 +222,7 @@ struct obj *otmp;
 #define MUSE_SCR_TELEPORTATION 1
 #define MUSE_WAN_TELEPORTATION_SELF 2
 #define MUSE_POT_HEALING 3
-#define MUSE_POT_EXTRA_HEALING 4
+/*#define MUSE_POT_EXTRA_HEALING 4*/
 #define MUSE_WAN_DIGGING 5
 #define MUSE_TRAPDOOR 6
 #define MUSE_TELEPORT_TRAP 7
@@ -236,7 +236,7 @@ struct obj *otmp;
 #define MUSE_WAN_TELEPORTATION 15
 #define MUSE_BUGLE 16
 #define MUSE_UNICORN_HORN 17
-#define MUSE_POT_FULL_HEALING 18
+/*#define MUSE_POT_FULL_HEALING 18*/
 #define MUSE_LIZARD_CORPSE 19
 /*
 #define MUSE_INNATE_TPT 9999
@@ -305,16 +305,6 @@ struct monst *mtmp;
 	 */
 	if (!mtmp->mcansee && !nohands(mtmp->data) &&
 		mtmp->data != &mons[PM_PESTILENCE]) {
-	    if ((obj = m_carrying(mtmp, POT_FULL_HEALING)) != 0) {
-		m.defensive = obj;
-		m.has_defense = MUSE_POT_FULL_HEALING;
-		return TRUE;
-	    }
-	    if ((obj = m_carrying(mtmp, POT_EXTRA_HEALING)) != 0) {
-		m.defensive = obj;
-		m.has_defense = MUSE_POT_EXTRA_HEALING;
-		return TRUE;
-	    }
 	    if ((obj = m_carrying(mtmp, POT_HEALING)) != 0) {
 		m.defensive = obj;
 		m.has_defense = MUSE_POT_HEALING;
@@ -329,16 +319,6 @@ struct monst *mtmp;
 
 	if (mtmp->mpeaceful) {
 	    if (!nohands(mtmp->data)) {
-		if ((obj = m_carrying(mtmp, POT_FULL_HEALING)) != 0) {
-		    m.defensive = obj;
-		    m.has_defense = MUSE_POT_FULL_HEALING;
-		    return TRUE;
-		}
-		if ((obj = m_carrying(mtmp, POT_EXTRA_HEALING)) != 0) {
-		    m.defensive = obj;
-		    m.has_defense = MUSE_POT_EXTRA_HEALING;
-		    return TRUE;
-		}
 		if ((obj = m_carrying(mtmp, POT_HEALING)) != 0) {
 		    m.defensive = obj;
 		    m.has_defense = MUSE_POT_HEALING;
@@ -476,16 +456,6 @@ struct monst *mtmp;
 		}
 
 	    if (mtmp->data != &mons[PM_PESTILENCE]) {
-		nomore(MUSE_POT_FULL_HEALING);
-		if(obj->otyp == POT_FULL_HEALING) {
-			m.defensive = obj;
-			m.has_defense = MUSE_POT_FULL_HEALING;
-		}
-		nomore(MUSE_POT_EXTRA_HEALING);
-		if(obj->otyp == POT_EXTRA_HEALING) {
-			m.defensive = obj;
-			m.has_defense = MUSE_POT_EXTRA_HEALING;
-		}
 		nomore(MUSE_WAN_CREATE_MONSTER);
 		if(obj->otyp == WAN_CREATE_MONSTER && obj->spe > 0) {
 			m.defensive = obj;
@@ -497,11 +467,6 @@ struct monst *mtmp;
 			m.has_defense = MUSE_POT_HEALING;
 		}
 	    } else {	/* Pestilence */
-		nomore(MUSE_POT_FULL_HEALING);
-		if (obj->otyp == POT_SICKNESS) {
-			m.defensive = obj;
-			m.has_defense = MUSE_POT_FULL_HEALING;
-		}
 		nomore(MUSE_WAN_CREATE_MONSTER);
 		if (obj->otyp == WAN_CREATE_MONSTER && obj->spe > 0) {
 			m.defensive = obj;
@@ -856,34 +821,6 @@ mon_tele:
 		if (oseen) makeknown(POT_HEALING);
 		m_useup(mtmp, otmp);
 		return 2;
-	case MUSE_POT_EXTRA_HEALING:
-		mquaffmsg(mtmp, otmp);
-		i = d(6 + 2 * bcsign(otmp), 8);
-		mtmp->mhp += i;
-		if (mtmp->mhp > mtmp->mhpmax)
-			mtmp->mhp = (mtmp->mhpmax += (otmp->blessed ? 5 : 2));
-		if (!mtmp->mcansee) {
-			mtmp->mcansee = 1;
-			mtmp->mblinded = 0;
-			if (vismon) pline(mcsa, Monnam(mtmp));
-		}
-		if (vismon) pline("%s looks much better.", Monnam(mtmp));
-		if (oseen) makeknown(POT_EXTRA_HEALING);
-		m_useup(mtmp, otmp);
-		return 2;
-	case MUSE_POT_FULL_HEALING:
-		mquaffmsg(mtmp, otmp);
-		if (otmp->otyp == POT_SICKNESS) unbless(otmp); /* Pestilence */
-		mtmp->mhp = (mtmp->mhpmax += (otmp->blessed ? 8 : 4));
-		if (!mtmp->mcansee && otmp->otyp != POT_SICKNESS) {
-			mtmp->mcansee = 1;
-			mtmp->mblinded = 0;
-			if (vismon) pline(mcsa, Monnam(mtmp));
-		}
-		if (vismon) pline("%s looks completely healed.", Monnam(mtmp));
-		if (oseen) makeknown(otmp->otyp);
-		m_useup(mtmp, otmp);
-		return 2;
 	case MUSE_LIZARD_CORPSE:
 		/* not actually called for its unstoning effect */
 		mon_consume_unstone(mtmp, otmp, FALSE, FALSE);
@@ -925,10 +862,7 @@ struct monst *mtmp;
 			if (!rn2(3)) return WAN_CREATE_MONSTER;
 			/* else FALLTHRU */
 		case 2: return SCR_CREATE_MONSTER;
-		case 3: return POT_HEALING;
-		case 4: return POT_EXTRA_HEALING;
-		case 5: return (mtmp->data != &mons[PM_PESTILENCE]) ?
-				POT_FULL_HEALING : POT_SICKNESS;
+		case 3: case 4: case 5: return POT_HEALING;
 		case 7: if (is_floater(pm) || mtmp->isshk || mtmp->isgd
 						|| mtmp->ispriest
 									)
@@ -952,9 +886,9 @@ struct monst *mtmp;
 #define MUSE_POT_CONFUSION 11
 #define MUSE_FROST_HORN 12
 #define MUSE_FIRE_HORN 13
-#define MUSE_POT_ACID 14
+/*#define MUSE_POT_ACID 14*/
 /*#define MUSE_WAN_TELEPORTATION 15*/
-#define MUSE_POT_SLEEPING 16
+/*#define MUSE_POT_SLEEPING 16*/
 #define MUSE_SCR_EARTH 17
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
@@ -1042,16 +976,6 @@ struct monst *mtmp;
 		if(obj->otyp == POT_CONFUSION) {
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_CONFUSION;
-		}
-		nomore(MUSE_POT_SLEEPING);
-		if(obj->otyp == POT_SLEEPING) {
-			m.offensive = obj;
-			m.has_offense = MUSE_POT_SLEEPING;
-		}
-		nomore(MUSE_POT_ACID);
-		if(obj->otyp == POT_ACID) {
-			m.offensive = obj;
-			m.has_offense = MUSE_POT_ACID;
 		}
 		/* we can safely put this scroll here since the locations that
 		 * are in a 1 square radius are a subset of the locations that
@@ -1228,8 +1152,6 @@ struct obj *obj;			/* 2nd arg to fhitm/fhito */
 		    switch (obj->otyp) {
 			/* note: monsters don't use opening or locking magic
 			   at present, but keep these as placeholders */
-			case WAN_OPENING:
-			case WAN_LOCKING:
 			case WAN_STRIKING:
 			    if (doorlock(obj, bhitpos.x, bhitpos.y)) {
 				makeknown(obj->otyp);
@@ -1483,8 +1405,6 @@ struct monst *mtmp;
 	case MUSE_POT_PARALYSIS:
 	case MUSE_POT_BLINDNESS:
 	case MUSE_POT_CONFUSION:
-	case MUSE_POT_SLEEPING:
-	case MUSE_POT_ACID:
 		/* Note: this setting of dknown doesn't suffice.  A monster
 		 * which is out of sight might throw and it hits something _in_
 		 * sight, a problem not existing with wands because wand rays
@@ -1528,10 +1448,8 @@ struct monst *mtmp;
 			return SCR_EARTH;
 		} /* fall through */
 		case 1: return WAN_STRIKING;
-		case 2: return POT_ACID;
 		case 3: return POT_CONFUSION;
 		case 4: return POT_BLINDNESS;
-		case 5: return POT_SLEEPING;
 		case 6: return POT_PARALYSIS;
 		case 7: case 8:
 			return WAN_MAGIC_MISSILE;
@@ -1550,9 +1468,8 @@ struct monst *mtmp;
 #define MUSE_POLY_TRAP 4
 #define MUSE_WAN_POLYMORPH 5
 #define MUSE_POT_SPEED 6
-#define MUSE_WAN_SPEED_MONSTER 7
-#define MUSE_BULLWHIP 8
-#define MUSE_POT_POLYMORPH 9
+#define MUSE_BULLWHIP 7
+#define MUSE_POT_POLYMORPH 8
 
 boolean
 find_misc(mtmp)
@@ -1635,12 +1552,6 @@ struct monst *mtmp;
 		    (!attacktype(mtmp->data, AT_GAZE) || mtmp->mcan)) {
 			m.misc = obj;
 			m.has_misc = MUSE_POT_INVISIBILITY;
-		}
-		nomore(MUSE_WAN_SPEED_MONSTER);
-		if(obj->otyp == WAN_SPEED_MONSTER && obj->spe > 0
-				&& mtmp->mspeed != MFAST && !mtmp->isgd) {
-			m.misc = obj;
-			m.has_misc = MUSE_WAN_SPEED_MONSTER;
 		}
 		nomore(MUSE_POT_SPEED);
 		if(obj->otyp == POT_SPEED && mtmp->mspeed != MFAST
@@ -1757,11 +1668,6 @@ skipmsg:
 		    if (otmp->cursed) you_aggravate(mtmp);
 		    m_useup(mtmp, otmp);
 		}
-		return 2;
-	case MUSE_WAN_SPEED_MONSTER:
-		mzapmsg(mtmp, otmp, TRUE);
-		otmp->spe--;
-		mon_adjust_speed(mtmp, 1, otmp);
 		return 2;
 	case MUSE_POT_SPEED:
 		mquaffmsg(mtmp, otmp);
@@ -1920,7 +1826,7 @@ struct monst *mtmp;
 	switch (rn2(3)) {
 		case 0:
 			if (mtmp->isgd) return 0;
-			return rn2(6) ? POT_SPEED : WAN_SPEED_MONSTER;
+			return POT_SPEED;
 		case 1:
 			if (mtmp->mpeaceful && !See_invisible) return 0;
 			return rn2(6) ? POT_INVISIBILITY : WAN_MAKE_INVISIBLE;
@@ -1945,7 +1851,7 @@ struct obj *obj;
 
 	if (typ == WAN_MAKE_INVISIBLE || typ == POT_INVISIBILITY)
 	    return (boolean)(!mon->minvis && !mon->invis_blkd && !attacktype(mon->data, AT_GAZE));
-	if (typ == WAN_SPEED_MONSTER || typ == POT_SPEED)
+	if (typ == POT_SPEED)
 	    return (boolean)(mon->mspeed != MFAST);
 
 	switch (obj->oclass) {
@@ -1964,13 +1870,9 @@ struct obj *obj;
 	    break;
 	case POTION_CLASS:
 	    if (typ == POT_HEALING ||
-		    typ == POT_EXTRA_HEALING ||
-		    typ == POT_FULL_HEALING ||
 		    typ == POT_POLYMORPH ||
 		    typ == POT_GAIN_LEVEL ||
 		    typ == POT_PARALYSIS ||
-		    typ == POT_SLEEPING ||
-		    typ == POT_ACID ||
 		    typ == POT_CONFUSION)
 		return TRUE;
 	    if (typ == POT_BLINDNESS && !attacktype(mon->data, AT_GAZE))
@@ -2102,8 +2004,7 @@ boolean by_you;
 	if (mon->meating || !mon->mcanmove || mon->msleeping) return FALSE;
 
 	for(obj = mon->minvent; obj; obj = obj->nobj) {
-	    /* Monsters can also use potions of acid */
-	    if ((obj->otyp == POT_ACID) || (obj->otyp == CORPSE &&
+	    if ((obj->otyp == CORPSE &&
 	    		(obj->corpsenm == PM_LIZARD || (acidic(&mons[obj->corpsenm]) && obj->corpsenm != PM_GREEN_SLIME)))) {
 		mon_consume_unstone(mon, obj, by_you, TRUE);
 		return TRUE;
@@ -2134,14 +2035,12 @@ boolean stoning;
 
 	obj->quan = 1L;
 	pline("%s %ss %s.", Monnam(mon),
-		    (obj->otyp == POT_ACID) ? "quaff" : "eat",
-		    distant_name(obj,doname));
+		    "eat", distant_name(obj,doname));
 	obj->quan = save_quan;
     } else if (flags.soundok)
-	You_hear("%s.", (obj->otyp == POT_ACID) ? "drinking" : "chewing");
+	You_hear("%s.", "chewing");
     m_useup(mon, obj);
-    if (((obj_otyp == POT_ACID) || acidic(&mons[obj_corpsenm])) &&
-		    !resists_acid(mon)) {
+    if (acidic(&mons[obj_corpsenm]) && !resists_acid(mon)) {
 	mon->mhp -= rnd(15);
 	pline("%s has a very bad case of stomach acid.",
 	    Monnam(mon));

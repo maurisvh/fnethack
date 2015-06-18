@@ -2723,13 +2723,7 @@ register boolean force, here;
 				pline("Steam rises from %s.", the(xname(obj)));
 			else obj->otyp = SPE_BLANK_PAPER;
 		} else if (obj->oclass == POTION_CLASS) {
-			if (obj->otyp == POT_ACID) {
-				/* damage player/monster? */
-				pline("A potion explodes!");
-				delobj(obj);
-				obj_destroyed = (obj == obj_original);
-				continue;
-			} else if (obj->odiluted) {
+			if (obj->odiluted) {
 				obj->otyp = POT_WATER;
 				obj->blessed = obj->cursed = 0;
 				obj->odiluted = 0;
@@ -2775,8 +2769,7 @@ boolean *lostsome;
 		     * in removing them + loadstone and other cursed stuff
 		     * for obvious reasons.
 		     */
-		    if (!((obj->otyp == LOADSTONE && obj->cursed) ||
-			  obj == uamul || obj == uleft || obj == uright ||
+		    if (!(obj == uamul || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||
 #ifdef TOURIST

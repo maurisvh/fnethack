@@ -776,7 +776,6 @@ register struct obj	*sobj;
 			    }
 			}
 			if (sobj->blessed || wornmask ||
-			     obj->otyp == LOADSTONE ||
 			     (obj->otyp == LEASH && obj->leashmon)) {
 			    if(confused) blessorcurse(obj, 2);
 			    else uncurse(obj);
@@ -855,14 +854,6 @@ register struct obj	*sobj;
 			   (distu(u.ux0, u.uy0) >= 16))
 				known = TRUE;
 		}
-		break;
-	case SCR_GOLD_DETECTION:
-		if (confused || sobj->cursed) return(trap_detect(sobj));
-		else return(gold_detect(sobj));
-	case SCR_FOOD_DETECTION:
-	case SPE_DETECT_FOOD:
-		if (food_detect(sobj))
-			return(1);	/* nothing detected */
 		break;
 	case SPE_IDENTIFY:
 		cval = rn2(5);
