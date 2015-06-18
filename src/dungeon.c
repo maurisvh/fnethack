@@ -917,8 +917,8 @@ init_dungeons()		/* initialize the "dungeon" structs */
 /*
  *	I hate hardwiring these names. :-(
  */
-	quest_dnum = dname_to_dnum("The Quest");
-	mines_dnum = dname_to_dnum("The Gnomish Mines");
+	quest_dnum = dname_to_dnum("the Quest");
+	mines_dnum = dname_to_dnum("the Gnomish Mines");
 	tower_dnum = dname_to_dnum("Vlad's Tower");
 
 	/* one special fixup for dummy surface level */

@@ -2719,13 +2719,15 @@ char *buf;
 	    Sprintf(altbuf, "altar to %s (%s)", a_gname(),
 		    align_str(Amask2align(lev->altarmask & ~AM_SHRINE)));
 	    dfeature = altbuf;
-	} else if ((x == xupstair && y == yupstair) ||
-		 (x == sstairs.sx && y == sstairs.sy && sstairs.up))
+	} else if (x == xupstair && y == yupstair)
 	    cmap = S_upstair;				/* "staircase up" */
-	else if ((x == xdnstair && y == ydnstair) ||
-		 (x == sstairs.sx && y == sstairs.sy && !sstairs.up))
+	else if (x == xdnstair && y == ydnstair)
 	    cmap = S_dnstair;				/* "staircase down" */
-	else if (x == xupladder && y == yupladder)
+    else if (x == sstairs.sx && y == sstairs.sy) {
+        Sprintf(altbuf, "staircase %s to %s", sstairs.up ? "up" : "down",
+            dungeons[sstairs.tolev.dnum].dname);
+        dfeature = altbuf;
+	} else if (x == xupladder && y == yupladder)
 	    cmap = S_upladder;				/* "ladder up" */
 	else if (x == xdnladder && y == ydnladder)
 	    cmap = S_dnladder;				/* "ladder down" */

@@ -1582,7 +1582,7 @@ xchar x, y;
 				      )) return;
 
 	if (! (u.uz.dnum == oracle_level.dnum	    /* in main dungeon */
-		&& !at_dgn_entrance("The Quest")    /* but not Quest's entry */
+		&& !at_dgn_entrance("the Quest")    /* but not Quest's entry */
 		&& (u_depth = depth(&u.uz)) > 10    /* beneath 10 */
 		&& u_depth < depth(&medusa_level))) /* and above Medusa */
 	    return;

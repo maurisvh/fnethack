@@ -195,6 +195,9 @@ unsigned *ospecial;
                     case A_CHAOTIC: color = CLR_BLACK; break;
                     default: color = CLR_RED; break;
                 }
+            } else if ((offset == S_upstair || offset == S_dnstair)
+                       && x == sstairs.sx && y == sstairs.sy) {
+                color = CLR_BRIGHT_BLUE;
             } else if (offset == S_fountain && In_hell(&u.uz))
                 color = CLR_RED;
         }
