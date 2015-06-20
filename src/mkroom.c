@@ -268,7 +268,7 @@ struct mkroom *sroom;
 		break;
 	    case ZOO:
 	    case LEPREHALL:
-		goldlim = 500 * level_difficulty();
+		goldlim = 200 * level_difficulty();
 		break;
 	}
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
@@ -318,7 +318,7 @@ struct mkroom *sroom;
 			}
 			else
 			    i = goldlim;
-			if(i >= goldlim) i = 5*level_difficulty();
+			if(i >= goldlim) i = 2*level_difficulty();
 			goldlim -= i;
 			(void) mkgold((long) rn1(i, 10), sx, sy);
 			break;
