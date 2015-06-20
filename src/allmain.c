@@ -149,8 +149,8 @@ moveloop()
 		    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			mtmp->movement += mcalcmove(mtmp);
 
-		    if(!rn2(u.uevent.udemigod ? 25 :
-			    (depth(&u.uz) > depth(&stronghold_level)) ? 50 : 70))
+		    if(!rn2(u.uevent.udemigod ? 37 :
+			     (depth(&u.uz) > depth(&stronghold_level)) ? 75 : 105))
 			(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 
 		    /* calculate how much time passed. */
