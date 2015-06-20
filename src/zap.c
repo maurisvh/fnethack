@@ -1692,7 +1692,7 @@ register struct obj *obj;
 			litroom(TRUE,obj);
 			if (!Blind) known = TRUE;
 			break;
-		case WAN_SECRET_DOOR_DETECTION:
+		case WAN_TRAP_DETECTION:
 		case SPE_DETECT_UNSEEN:
 			if(!findit()) return;
 			if (!Blind) known = TRUE;

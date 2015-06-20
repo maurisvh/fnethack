@@ -356,10 +356,22 @@ finish_map(fg_typ, bg_typ, lit, walled)
 		rooms[i].rlit = 1;
 	}
 	/* light lava even if everything's otherwise unlit */
-	for(i=1; i<COLNO; i++)
-	    for(j=0; j<ROWNO; j++)
-		if (levl[i][j].typ == LAVAPOOL)
-		    levl[i][j].lit = TRUE;
+    /* also, remove secret doors */
+	for(i=1; i<COLNO; i++) {
+	    for(j=0; j<ROWNO; j++) {
+            if (levl[i][j].typ == LAVAPOOL)
+                levl[i][j].lit = TRUE;
+            else if (levl[i][j].typ == SDOOR) {
+                cvt_sdoor_to_door(&levl[i][j]);
+                newsym(i, j);
+            } else if (levl[i][j].typ == SCORR) {
+                levl[i][j].typ = CORR;
+                unblock_point(i, j);
+                newsym(i, j);
+            }
+        }
+    }
+
 }
 
 /*

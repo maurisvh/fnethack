@@ -1172,10 +1172,7 @@ register int aflag;
 	register struct trap *trap;
 	register struct monst *mtmp;
 
-	if(u.uswallow) {
-		if (!aflag)
-			pline("What are you looking for?  The exit?");
-	} else {
+	if(!u.uswallow) {
 	    int fund = (uwep && uwep->oartifact &&
 		    spec_ability(uwep, SPFX_SEARCH)) ?
 		    uwep->spe : 0;

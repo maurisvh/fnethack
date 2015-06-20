@@ -2650,7 +2650,7 @@ do_break_wand(obj)
     case WAN_WISHING:
     case WAN_PROBING:
     case WAN_ENLIGHTENMENT:
-    case WAN_SECRET_DOOR_DETECTION:
+    case WAN_TRAP_DETECTION:
 	pline(nothing_else_happens);
 	goto discard_broken_wand;
     case WAN_LIGHTNING:
