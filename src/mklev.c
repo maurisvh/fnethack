@@ -829,7 +829,20 @@ skip0:
 			(void) mkobj_at(0, somex(croom), somey(croom), TRUE);
 		    }
 		}
-	}
+    /* remove secret doors? */
+	for(x=1; x<COLNO; x++) {
+	    for(y=0; y<ROWNO; y++) {
+            if (levl[x][y].typ == SDOOR) {
+                cvt_sdoor_to_door(&levl[x][y]);
+                newsym(x, y);
+            } else if (levl[x][y].typ == SCORR) {
+                levl[x][y].typ = CORR;
+                unblock_point(x, y);
+                newsym(x, y);
+            }
+        }
+    }
+    }
 }
 
 /*
