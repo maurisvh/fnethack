@@ -645,11 +645,6 @@ int mode;
 		Your("body is too large to fit through.");
 	    return FALSE;
 	}
-	if (invent && (inv_weight() + weight_cap() > 600)) {
-	    if (mode == DO_MOVE)
-		You("are carrying too much to get through.");
-	    return FALSE;
-	}
     }
     /* Pick travel path that does not require crossing a trap.
      * Avoid water and lava using the usual running rules.
