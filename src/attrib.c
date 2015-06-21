@@ -632,7 +632,6 @@ newhp()
 	else conplus = 2;
 	
 	hp += conplus;
-    pline("hp:%d", hp);
 	return((hp <= 0) ? 1 : hp);
 }
 
