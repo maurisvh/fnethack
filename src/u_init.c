@@ -587,9 +587,6 @@ u_init()
 	 */
 	case PM_ARCHEOLOGIST:
 		ini_inv(Archeologist);
-		if(!rn2(10)) ini_inv(Tinopener);
-		else if(!rn2(4)) ini_inv(Lamp);
-		else if(!rn2(10)) ini_inv(Magicmarker);
 		knows_object(SACK);
 		knows_object(TOUCHSTONE);
 		skill_init(Skill_A);
@@ -600,7 +597,6 @@ u_init()
 		    Barbarian[B_MINOR].trotyp = SHORT_SWORD;
 		}
 		ini_inv(Barbarian);
-		if(!rn2(6)) ini_inv(Lamp);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_B);
@@ -612,7 +608,6 @@ u_init()
 		u.umoney0 = rn1(1000, 1001);
 #endif
 		ini_inv(Healer);
-		if(!rn2(25)) ini_inv(Lamp);
 		skill_init(Skill_H);
 		break;
 	case PM_KNIGHT:
@@ -631,15 +626,11 @@ u_init()
 		case 2: Monk[M_BOOK].trotyp = SPE_SLEEP; break;
 		}
 		ini_inv(Monk);
-		if(!rn2(5)) ini_inv(Magicmarker);
-		else if(!rn2(10)) ini_inv(Lamp);
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_Mon);
 		break;
 	case PM_PRIEST:
 		ini_inv(Priest);
-		if(!rn2(10)) ini_inv(Magicmarker);
-		else if(!rn2(10)) ini_inv(Lamp);
 		knows_object(POT_WATER);
 		skill_init(Skill_P);
 		/* KMH, conduct --
@@ -664,14 +655,12 @@ u_init()
 		u.umoney0 = 0;
 #endif
 		ini_inv(Rogue);
-		if(!rn2(5)) ini_inv(Blindfold);
 		knows_object(SACK);
 		skill_init(Skill_R);
 		break;
 	case PM_SAMURAI:
 		Samurai[S_ARROWS].trquan = rn1(20, 26);
 		ini_inv(Samurai);
-		if(!rn2(5)) ini_inv(Blindfold);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_S);
@@ -685,24 +674,18 @@ u_init()
 		u.umoney0 = rnd(1000);
 #endif
 		ini_inv(Tourist);
-		if(!rn2(25)) ini_inv(Tinopener);
-		else if(!rn2(25)) ini_inv(Leash);
-		else if(!rn2(25)) ini_inv(Towel);
-		else if(!rn2(25)) ini_inv(Magicmarker);
+		ini_inv(Towel);
 		skill_init(Skill_T);
 		break;
 #endif
 	case PM_VALKYRIE:
 		ini_inv(Valkyrie);
-		if(!rn2(6)) ini_inv(Lamp);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_V);
 		break;
 	case PM_WIZARD:
 		ini_inv(Wizard);
-		if(!rn2(5)) ini_inv(Magicmarker);
-		if(!rn2(5)) ini_inv(Blindfold);
 		skill_init(Skill_W);
 		break;
 
