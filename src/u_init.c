@@ -572,12 +572,14 @@ u_init()
 #endif
 
 	/*
-	 *  For now, everyone starts out with a night vision range of 1 and
+	 *  For now, everyone starts out with a night vision range of 2 and
 	 *  their xray range disabled.
 	 */
 	u.nv_range   =  2;
 	u.xray_range = -1;
 
+    knows_class(WEAPON_CLASS);
+    knows_class(ARMOR_CLASS);
 
 	/*** Role-specific initializations ***/
 	switch (Role_switch) {
@@ -597,8 +599,6 @@ u_init()
 		    Barbarian[B_MINOR].trotyp = SHORT_SWORD;
 		}
 		ini_inv(Barbarian);
-		knows_class(WEAPON_CLASS);
-		knows_class(ARMOR_CLASS);
 		skill_init(Skill_B);
 		break;
 	case PM_HEALER:
@@ -612,8 +612,6 @@ u_init()
 		break;
 	case PM_KNIGHT:
 		ini_inv(Knight);
-		knows_class(WEAPON_CLASS);
-		knows_class(ARMOR_CLASS);
 		/* give knights chess-like mobility
 		 * -- idea from wooledge@skybridge.scl.cwru.edu */
 		HJumping |= FROMOUTSIDE;
@@ -626,7 +624,6 @@ u_init()
 		case 2: Monk[M_BOOK].trotyp = SPE_SLEEP; break;
 		}
 		ini_inv(Monk);
-		knows_class(ARMOR_CLASS);
 		skill_init(Skill_Mon);
 		break;
 	case PM_PRIEST:
@@ -661,8 +658,6 @@ u_init()
 	case PM_SAMURAI:
 		Samurai[S_ARROWS].trquan = rn1(20, 26);
 		ini_inv(Samurai);
-		knows_class(WEAPON_CLASS);
-		knows_class(ARMOR_CLASS);
 		skill_init(Skill_S);
 		break;
 #ifdef TOURIST
@@ -680,8 +675,6 @@ u_init()
 #endif
 	case PM_VALKYRIE:
 		ini_inv(Valkyrie);
-		knows_class(WEAPON_CLASS);
-		knows_class(ARMOR_CLASS);
 		skill_init(Skill_V);
 		break;
 	case PM_WIZARD:
