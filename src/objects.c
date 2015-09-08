@@ -572,7 +572,7 @@ CONTAINER("bag of tricks", "bag",       0, 1, 1,  20, 15,  20, CLOTH, HI_CLOTH),
 #undef CONTAINER
 
 /* lock opening tools */
-TOOL("skeleton key", "key",     0, 0, 0, 0,  80,  3,  10, IRON, HI_METAL),
+TOOL("key", (char *)0,          0, 0, 0, 0,  80,  3,  10, IRON, HI_METAL),
 #ifdef TOURIST
 TOOL("lock pick", (char *)0,    1, 0, 0, 0,  60,  4,  20, IRON, HI_METAL),
 TOOL("credit card", (char *)0,  1, 0, 0, 0,  15,  1,  10, PLASTIC, CLR_WHITE),

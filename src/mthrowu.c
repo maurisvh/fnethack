@@ -765,7 +765,7 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 		hits = (objects[obj_type].oc_armcat != ARM_GLOVES);
 		break;
 	case TOOL_CLASS:
-		hits = (obj_type != SKELETON_KEY &&
+		hits = (obj_type != KEY &&
 			obj_type != LOCK_PICK &&
 #ifdef TOURIST
 			obj_type != CREDIT_CARD &&

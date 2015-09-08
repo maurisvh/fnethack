@@ -635,7 +635,7 @@ register int after;
 #endif
 	    can_tunnel = tunnels(ptr);
 	can_open = !(nohands(ptr) || verysmall(ptr));
-	can_unlock = ((can_open && m_carrying(mtmp, SKELETON_KEY)) ||
+	can_unlock = ((can_open && m_carrying(mtmp, KEY)) ||
 		      mtmp->iswiz || is_rider(ptr));
 	doorbuster = is_giant(ptr);
 	if(mtmp->wormno) goto not_special;
@@ -1356,7 +1356,7 @@ struct monst *mtmp;
 		    typ != STETHOSCOPE && typ != BLINDFOLD && typ != TOWEL &&
 		    typ != TIN_WHISTLE && typ != MAGIC_WHISTLE &&
 		    typ != MAGIC_MARKER && typ != TIN_OPENER &&
-		    typ != SKELETON_KEY && typ != LOCK_PICK
+		    typ != KEY && typ != LOCK_PICK
 		) return FALSE;
 		if (Is_container(obj) && obj->cobj) return FALSE;
 		    

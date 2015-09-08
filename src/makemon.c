@@ -559,7 +559,7 @@ register struct	monst	*mtmp;
 			   if (ptr == &mons[PM_WATCHMAN] && rn2(3))
 				(void) mongets(mtmp, TIN_WHISTLE);
 		} else if (ptr == &mons[PM_SHOPKEEPER]) {
-		    (void) mongets(mtmp,SKELETON_KEY);
+		    (void) mongets(mtmp,KEY);
 		    switch (rn2(4)) {
 		    /* MAJOR fall through ... */
 		    case 0: (void) mongets(mtmp, WAN_MAGIC_MISSILE);

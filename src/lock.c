@@ -267,7 +267,7 @@ pick_lock(pick) /* pick a lock with a given object */
 #ifdef TOURIST
 	    picktyp != CREDIT_CARD &&
 #endif
-	    picktyp != SKELETON_KEY)) {
+	    picktyp != KEY)) {
 		impossible("picking lock with object %d?", picktyp);
 		return(0);
 	}
@@ -335,7 +335,7 @@ pick_lock(pick) /* pick a lock with a given object */
 			case LOCK_PICK:
 			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE);
 			    break;
-			case SKELETON_KEY:
+			case KEY:
 			    ch = 75 + ACURR(A_DEX);
 			    break;
 			default:	ch = 0;
@@ -416,7 +416,7 @@ pick_lock(pick) /* pick a lock with a given object */
 			case LOCK_PICK:
 			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE);
 			    break;
-			case SKELETON_KEY:
+			case KEY:
 			    ch = 70 + ACURR(A_DEX);
 			    break;
 			default:    ch = 0;

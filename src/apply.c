@@ -2837,7 +2837,7 @@ doapply()
 #ifdef TOURIST
 	case CREDIT_CARD:
 #endif
-	case SKELETON_KEY:
+	case KEY:
 		(void) pick_lock(obj);
 		break;
 	case PICK_AXE:

@@ -1763,7 +1763,7 @@ struct obj *obj;
 #ifdef TOURIST
 			obj->otyp == CREDIT_CARD ||
 #endif
-			obj->otyp == SKELETON_KEY)
+			obj->otyp == KEY)
 		add_menu(win, NO_GLYPH, &any, 'a', 0, ATR_NONE,
 				"Use this tool to pick a lock", MENU_UNSELECTED);
 	else if (obj->otyp == TINNING_KIT)
