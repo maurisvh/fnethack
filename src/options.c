@@ -117,7 +117,7 @@ static struct Bool_Opt
 	{"fullscreen", &iflags.wc2_fullscreen, FALSE, SET_IN_FILE},
 	{"guicolor", &iflags.wc2_guicolor, TRUE, SET_IN_GAME},
 	{"help", &flags.help, TRUE, SET_IN_GAME},
-	{"hilite_pet",    &iflags.wc_hilite_pet, FALSE, SET_IN_GAME},	/*WC*/
+	{"hilite_pet",    &iflags.wc_hilite_pet, TRUE, SET_IN_GAME},	/*WC*/
 	{"hilite_hidden_stairs",    &iflags.hilite_hidden_stairs, FALSE, SET_IN_GAME},	/*WC*/
 	{"hilite_obj_piles",    &iflags.hilite_obj_piles, FALSE, SET_IN_GAME},	/*WC*/
 	{"hitpointbar", &iflags.hitpointbar, FALSE, SET_IN_GAME},
@@ -135,8 +135,8 @@ static struct Bool_Opt
 #endif
 	{"item_use_menu", &iflags.item_use_menu, TRUE, SET_IN_GAME},
 	{"large_font", &iflags.obsolete, FALSE, SET_IN_FILE},	/* OBSOLETE */
-	{"legacy", &flags.legacy, TRUE, DISP_IN_GAME},
-	{"lit_corridor", &flags.lit_corridor, FALSE, SET_IN_GAME},
+	{"legacy", &flags.legacy, FALSE, DISP_IN_GAME},
+	{"lit_corridor", &flags.lit_corridor, TRUE, SET_IN_GAME},
 	{"lootabc", &iflags.lootabc, FALSE, SET_IN_GAME},
 #ifdef MAC_GRAPHICS_ENV
 	{"Macgraphics", &iflags.MACgraphics, TRUE, SET_IN_GAME},
@@ -185,7 +185,7 @@ static struct Bool_Opt
 #endif
 #ifdef PARANOID
 	{"paranoid_hit", &iflags.paranoid_hit, FALSE, SET_IN_GAME},
-	{"paranoid_quit", &iflags.paranoid_quit, FALSE, SET_IN_GAME},
+	{"paranoid_quit", &iflags.paranoid_quit, TRUE, SET_IN_GAME},
 	{"paranoid_remove", &iflags.paranoid_remove, FALSE, SET_IN_GAME},
 #endif
 	{"perm_invent", &flags.perm_invent, FALSE, SET_IN_GAME},
@@ -213,7 +213,7 @@ static struct Bool_Opt
 #ifdef SHOW_BORN
 	{"showborn", &iflags.show_born, FALSE, SET_IN_GAME},
 #endif
-	{"showbuc", &iflags.show_buc, FALSE, SET_IN_GAME},
+	{"showbuc", &iflags.show_buc, TRUE, SET_IN_GAME},
 #ifdef EXP_ON_BOTL
 	{"showexp", &flags.showexp, FALSE, SET_IN_GAME},
 #else

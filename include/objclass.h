@@ -168,7 +168,7 @@ extern uchar oc_syms[MAXOCLASSES];		/* current class symbols */
 #define WAND_SYM	'/'
 #define GOLD_SYM	'$'
 #define GEM_SYM		'*'
-#define ROCK_SYM	'`'
+#define ROCK_SYM	'0'
 #define BALL_SYM	'0'
 #define CHAIN_SYM	'_'
 #define VENOM_SYM	'.'
