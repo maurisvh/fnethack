@@ -1,4 +1,4 @@
-GAMEDIR = nethackdir
+GAMEDIR = fnethackdir
 
 CFLAGS = -g -fPIE -fstack-protector
 LDFLAGS = -fPIE -pie
@@ -9,12 +9,12 @@ CPPFLAGS += -DDLB
 .DELETE_ON_ERROR:
 
 .PHONY: all
-all: src/nethack util/recover dat/nhdat dat/license
+all: src/fnethack util/recover dat/nhdat dat/license
 
 .PHONY: install
 install: all
 	mkdir -p $(GAMEDIR)
-	install src/nethack $(GAMEDIR)
+	install src/fnethack $(GAMEDIR)
 	install util/recover $(GAMEDIR)
 	install -m 644 dat/nhdat dat/license $(GAMEDIR)
 	touch $(GAMEDIR)/perm
@@ -51,9 +51,9 @@ GAME_O = $(SRCOBJ:%.o=src/%.o) $(SYSUNIXOBJ:%.o=sys/unix/%.o)	\
          $(SYSSHAREOBJ:%.o=sys/share/%.o)			\
          $(WINTTYOBJ:%.o=win/tty/%.o)				\
          $(WINCURSESOBJ:%.o=win/curses/%.o)
-src/nethack: $(GAME_O)
+src/fnethack: $(GAME_O)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -lncurses -o $@
-AUTO_BIN += src/nethack
+AUTO_BIN += src/fnethack
 
 RECOVER_O = util/recover_main.o src/recover.o
 util/recover: $(RECOVER_O)

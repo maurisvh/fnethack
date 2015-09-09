@@ -473,7 +473,7 @@ panic VA_DECL(const char *, str)
 # if defined(NOTIFY_NETHACK_BUGS)
 	if (!wizard)
 	    raw_printf("Report the following error to \"%s\".",
-			"nethack-bugs@nethack.org");
+			"https://github.com/maurisvh/fnethack/pulls");
 	else if (program_state.something_worth_saving)
 	    raw_print("\nError save file being written.\n");
 # else

@@ -530,7 +530,7 @@ do_look(quick)
 	    glyph = glyph_at(cc.x,cc.y);
 	    if (glyph_is_cmap(glyph)) {
 		if (iflags.UTF8graphics) {
-			/* Temporary workaround as NetHack can't yet
+			/* Temporary workaround as fNetHack can't yet
 			 * display UTF-8 glyphs on the topline */
 			force_defsyms = TRUE;
 			sym = defsyms[glyph_to_cmap(glyph)].sym;
@@ -875,7 +875,7 @@ static const char *help_menu_items[] = {
 /* 6*/	"Longer explanation of game options.",
 /* 7*/  "Full list of keyboard commands.",
 /* 8*/	"List of extended commands.",
-/* 9*/	"The NetHack license.",
+/* 9*/	"The fNetHack license.",
 #ifdef PORT_HELP
 	"%s-specific help and commands.",
 #define PORT_HELP_ID 100

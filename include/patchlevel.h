@@ -16,13 +16,13 @@
 #define EDITLEVEL	0
 
 #define COPYRIGHT_BANNER_A \
-"NetHack, Copyright 1985-2003"
+"NetHack (c) 1985-2003 Stichting Mathematisch Centrum and M. Stephenson."
 
 #define COPYRIGHT_BANNER_B \
-"         By Stichting Mathematisch Centrum and M. Stephenson."
+"fNetHack (c) 2015 Mauris Van Hauwe."
 
 #define COPYRIGHT_BANNER_C \
-"         See license for details."
+"See license for details."
 
 /*
  * If two or more successive releases have compatible data files, define
@@ -35,6 +35,11 @@
  */
 #define VERSION_COMPATIBILITY 0x03040000L	/* 3.4.0-0 */
 
+/*****************************************************************************/
+/* The release notes for fNetHack can be found at:
+ *
+ *    https://github.com/maurisvh/fnethack
+ */
 
 /*****************************************************************************/
 /* Version 3.4.x */

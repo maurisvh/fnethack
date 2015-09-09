@@ -85,7 +85,7 @@ char lock[PL_NSIZ+25];		/* long enough for username+-+name+.99 */
 #define SAVESIZE	(PL_NSIZ + 22)	/* [.save]<uid>player.e;1 */
 # else
 #  if defined(WIN32)
-#define SAVESIZE	(PL_NSIZ + 40)	/* username-player.NetHack-saved-game */
+#define SAVESIZE	(PL_NSIZ + 40)	/* username-player.fNetHack-saved-game */
 #  else
 #define SAVESIZE	FILENAME	/* from macconf.h or pcconf.h */
 #  endif
@@ -102,7 +102,7 @@ struct level_ftrack {
 int init;
 int fd;					/* file descriptor for level file     */
 int oflag;				/* open flags                         */
-boolean nethack_thinks_it_is_open;	/* Does NetHack think it's open?       */
+boolean nethack_thinks_it_is_open;	/* Does fNetHack think it's open?       */
 } lftrack;
 # if defined(WIN32)
 #include <share.h>
@@ -897,7 +897,7 @@ set_savefile_name()
 	Sprintf(fnamebuf, "%s-%s", get_username(0), plname);
 	(void)fname_encode("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-.",
 				'%', fnamebuf, encodedfnamebuf, BUFSZ);
-	Sprintf(SAVEF, "%s.NetHack-saved-game", encodedfnamebuf);
+	Sprintf(SAVEF, "%s.fNetHack-saved-game", encodedfnamebuf);
 #  else
 	Sprintf(SAVEF, "save/%d%s", (int)getuid(), plname);
 	regularize(SAVEF+5);	/* avoid . or / in name */
@@ -1578,12 +1578,12 @@ const char *configfile =
 			".nethackrc";
 #else
 # if defined(MAC) || defined(__BEOS__)
-			"NetHack Defaults";
+			"fNetHack Defaults";
 # else
 #  if defined(MSDOS) || defined(WIN32)
 			"defaults.nh";
 #  else
-			"NetHack.cnf";
+			"fNetHack.cnf";
 #  endif
 # endif
 #endif
@@ -1591,7 +1591,7 @@ const char *configfile =
 
 #ifdef MSDOS
 /* conflict with speed-dial under windows
- * for XXX.cnf file so support of NetHack.cnf
+ * for XXX.cnf file so support of fNetHack.cnf
  * is for backward compatibility only.
  * Preferred name (and first tried) is now defaults.nh but
  * the game will try the old name if there
@@ -1669,9 +1669,9 @@ const char *filename;
 
 	envp = nh_getenv("HOME");
 	if (!envp)
-		Strcpy(tmp_config, "NetHack.cnf");
+		Strcpy(tmp_config, "fNetHack.cnf");
 	else
-		Sprintf(tmp_config, "%s%s", envp, "NetHack.cnf");
+		Sprintf(tmp_config, "%s%s", envp, "fNetHack.cnf");
 	if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 		return(fp);
 # else	/* should be only UNIX left */
@@ -1685,10 +1685,10 @@ const char *filename;
 # if defined(__APPLE__)
 	/* try an alternative */
 	if (envp) {
-		Sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/NetHack Defaults");
+		Sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/fNetHack Defaults");
 		if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 			return(fp);
-		Sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/NetHack Defaults.txt");
+		Sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/fNetHack Defaults.txt");
 		if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 			return(fp);
 	}
@@ -1696,7 +1696,7 @@ const char *filename;
 	if (errno != ENOENT) {
 	    char *details;
 
-	    /* e.g., problems when setuid NetHack can't search home
+	    /* e.g., problems when setuid fNetHack can't search home
 	     * directory restricted to user */
 
 #if defined (NHSTDC) && !defined(NOTSTDC)
@@ -2307,7 +2307,7 @@ fopen_wizkit_file()
 	if (access(wizkit, 4) == -1) {
 		/* 4 is R_OK on newer systems */
 		/* nasty sneaky attempt to read file through
-		 * NetHack's setuid permissions -- this is a
+		 * fNetHack's setuid permissions -- this is a
 		 * place a file name may be wholly under the player's
 		 * control
 		 */
@@ -2349,7 +2349,7 @@ fopen_wizkit_file()
 	if ((fp = fopenp(tmp_wizkit, "r")) != (FILE *)0)
 		return(fp);
 	else if (errno != ENOENT) {
-		/* e.g., problems when setuid NetHack can't search home
+		/* e.g., problems when setuid fNetHack can't search home
 		 * directory restricted to user */
 		raw_printf("Couldn't open default wizkit file %s (%d).",
 					tmp_wizkit, errno);

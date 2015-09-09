@@ -535,7 +535,7 @@ const char *build_date;
     Strcat(subbuf, " Beta");
 #endif
 
-    Sprintf(outbuf, "%s NetHack%s Version %s - last build %s.",
+    Sprintf(outbuf, "%s fNetHack%s Version %s - last build %s.",
 	    PORT_ID, subbuf, version_string(versbuf), build_date);
     return outbuf;
 }
@@ -597,7 +597,7 @@ do_date()
 	{
 	struct tm *tm = localtime((time_t *) &clocktim);
 	Fprintf(ofp,"#define AMIGA_VERSION_STRING ");
-	Fprintf(ofp,"\"\\0$VER: NetHack %d.%d.%d (%d.%d.%d)\"\n",
+	Fprintf(ofp,"\"\\0$VER: fNetHack %d.%d.%d (%d.%d.%d)\"\n",
 		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL,
 		tm->tm_mday, tm->tm_mon+1, tm->tm_year+1900);
 	}
@@ -813,7 +813,7 @@ static const char *build_opts[] = {
                 "record initial alignment in xlogfile",
 #endif
 		save_bones_compat_buf,
-		"basic NetHack features"
+		"basic fNetHack features"
 	};
 
 static const char *window_opts[] = {
@@ -869,9 +869,9 @@ do_options()
 	build_savebones_compat_string();
 	Fprintf(ofp,
 #ifdef BETA
-		"\n    NetHack version %d.%d.%d [beta]\n",
+		"\n    fNetHack version %d.%d.%d [beta]\n",
 #else
-		"\n    NetHack version %d.%d.%d\n",
+		"\n    fNetHack version %d.%d.%d\n",
 #endif
 		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL);
 

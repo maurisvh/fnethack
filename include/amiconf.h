@@ -42,8 +42,8 @@ typedef long off_t;
 
 /* data librarian defs */
 #ifndef NOCWD_ASSUMPTIONS
-# define DLBFILE	"NetHack:nhdat"		/* main library */
-# define DLBFILE2	"NetHack:nhsdat"	/* sound library */
+# define DLBFILE	"fNetHack:nhdat"		/* main library */
+# define DLBFILE2	"fNetHack:nhsdat"	/* sound library */
 #else
 # define DLBFILE	"nhdat"			/* main library */
 # define DLBFILE2	"nhsdat"		/* sound library */
@@ -140,7 +140,7 @@ extern char *FDECL(gets, (char *));
 #define HACKFONT		/* Use special hack.font */
 #define SHELL			/* Have a shell escape command (!) */
 #define MAIL			/* Get mail at unexpected occasions */
-#define DEFAULT_ICON "NetHack:default.icon"	/* private icon */
+#define DEFAULT_ICON "fNetHack:default.icon"	/* private icon */
 #define AMIFLUSH		/* toss typeahead (select flush in .cnf) */
 /* #define OPT_DISPMAP		/* enable fast_map option */
 

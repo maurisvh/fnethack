@@ -693,7 +693,7 @@ initoptions()
 	objects[SLIME_MOLD].oc_name_idx = SLIME_MOLD;
 	nmcpy(pl_fruit, OBJ_NAME(objects[SLIME_MOLD]), PL_FSIZ);
 #ifndef MAC
-	opts = getenv("NETHACKOPTIONS");
+	opts = getenv("FNETHACKOPTIONS");
 	if (!opts) opts = getenv("HACKOPTIONS");
 	if (opts) {
 		if (*opts == '/' || *opts == '\\' || *opts == '@') {
@@ -816,7 +816,7 @@ const char *optname;
 #ifdef MICRO
 	pline("\"%s\" settable only from %s.", optname, configfile);
 #else
-	pline("%s can be set only from NETHACKOPTIONS or %s.", optname,
+	pline("%s can be set only from FNETHACKOPTIONS or %s.", optname,
 			configfile);
 #endif
 }
@@ -839,7 +839,7 @@ const char *opts;
 	if(from_file)
 	    raw_printf("Bad syntax in OPTIONS in %s: %s.", configfile, opts);
 	else
-	    raw_printf("Bad syntax in NETHACKOPTIONS: %s.", opts);
+	    raw_printf("Bad syntax in FNETHACKOPTIONS: %s.", opts);
 
 	wait_synch();
 }
@@ -3145,7 +3145,7 @@ map_menu_cmd(ch)
 #if defined(MICRO) || defined(MAC) || defined(WIN32)
 # define OPTIONS_HEADING "OPTIONS"
 #else
-# define OPTIONS_HEADING "NETHACKOPTIONS"
+# define OPTIONS_HEADING "FNETHACKOPTIONS"
 #endif
 
 static char fmtstr_doset_add_menu[] = "%s%-15s [%s]   "; 
@@ -4173,11 +4173,11 @@ static const char *opt_intro[] = {
 #define CONFIG_SLOT 3	/* fill in next value at run-time */
 	(char *)0,
 #if !defined(MICRO) && !defined(MAC)
-	"or use `NETHACKOPTIONS=\"<options>\"' in your environment",
+	"or use `FNETHACKOPTIONS=\"<options>\"' in your environment",
 #endif
 	"(<options> is a list of options separated by commas)",
 #ifdef VMS
-	"-- for example, $ DEFINE NETHACKOPTIONS \"noautopickup,fruit:kumquat\"",
+	"-- for example, $ DEFINE FNETHACKOPTIONS \"noautopickup,fruit:kumquat\"",
 #endif
 	"or press \"O\" while playing and use the menu.",
 	"",

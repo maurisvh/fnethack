@@ -88,7 +88,7 @@
 #define BEOS_GRAPHICS /* (optional) */
 #define DEFAULT_WINDOW_SYS "BeOS"  /* "tty" */
 #ifndef HACKDIR	/* override the default hackdir below */
-# define HACKDIR "/boot/apps/NetHack"
+# define HACKDIR "/boot/apps/fNetHack"
 #endif
 #endif
 
@@ -120,7 +120,7 @@
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "mswin"
 # endif
-# define HACKDIR "\\nethack"
+# define HACKDIR "\\fnethack"
 #endif
 
 #ifndef DEFAULT_WINDOW_SYS
@@ -153,10 +153,10 @@
 
 #ifndef WIZARD		/* allow for compile-time or Makefile changes */
 # ifndef KR1ED
-#  define WIZARD  "nethack" /* the person allowed to use the -D option */
+#  define WIZARD  "fnethack" /* the person allowed to use the -D option */
 # else
 #  define WIZARD
-#  define WIZARD_NAME "nethack"
+#  define WIZARD_NAME "fnethack"
 # endif
 #endif
 
@@ -388,7 +388,7 @@ typedef long glyph_t;
 #define AUTOPICKUP_EXCEPTIONS  /* exceptions to autopickup */
 
 #define DUMP_LOG        /* Dump game end information to a file */
-#define DUMP_FN "/dgldir/userdata/%n/nethack/dumplog/%t"      /* Fixed dumpfile name, if you want
+#define DUMP_FN "/dgldir/userdata/%n/fnethack/dumplog/%t"      /* Fixed dumpfile name, if you want
                                    * to prevent definition by users */
 #define DUMPMSGS 20     /* Number of latest messages in the dump file  */
 
@@ -400,11 +400,11 @@ typedef long glyph_t;
 
 /* Filename for the wizard-mode command for dumping the map data.
    Can be left undefined, in which case the wiz-mode command does nothing. */
-#define MAPDUMP_FN "/dgldir/userdata/%n/nethack/mapdump"
+#define MAPDUMP_FN "/dgldir/userdata/%n/fnethack/mapdump"
 
 /* Filename for where HUPping a game is saved.
    Can be left undefined, in which case HUPping doesn't write the data. */
-#define HUPLIST_FN "/dgldir/userdata/%n/nethack/hangup"
+#define HUPLIST_FN "/dgldir/userdata/%n/fnethack/hangup"
 
 /* Filename for dgamelaunch extra info field.
    Can be left undefined for not writing extrainfo. */

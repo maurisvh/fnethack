@@ -3,9 +3,9 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*
- *  Utility for reconstructing NetHack save file from a set of individual
+ *  Utility for reconstructing fNetHack save file from a set of individual
  *  level files.  Requires that the `checkpoint' option be enabled at the
- *  time NetHack creates those level files.
+ *  time fNetHack creates those level files.
  */
 #include "config.h"
 #if !defined(O_WRONLY) && !defined(LSC) && !defined(AZTEC_C)
@@ -44,7 +44,7 @@ static void nhce_message(FILE*, const char*, ...);
 #define SAVESIZE	(PL_NSIZ + 22)	/* [.save]<uid>player.e;1 */
 # else
 #  ifdef WIN32
-#define SAVESIZE	(PL_NSIZ + 40)  /* username-player.NetHack-saved-game */
+#define SAVESIZE	(PL_NSIZ + 40)  /* username-player.fNetHack-saved-game */
 #  else
 #define SAVESIZE	FILENAME	/* from macconf.h or pcconf.h */
 #  endif
@@ -339,7 +339,7 @@ const char *directory;
 	int in, out;
 
 	(void) sprintf(iconfile, "%s.info", savename);
-	in = open("NetHack:default.icon", O_RDONLY);
+	in = open("fNetHack:default.icon", O_RDONLY);
 	out = open(iconfile, O_WRONLY | O_TRUNC | O_CREAT);
 	if(in > -1 && out > -1){
 		copy_bytes(in,out);
