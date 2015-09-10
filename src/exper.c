@@ -8,7 +8,7 @@ STATIC_DCL long FDECL(newuexp, (int));
 STATIC_DCL int FDECL(enermod, (int));
 
 const long newuexp_table[] = {
-    -1, 50, 100, 250, 500, 1000, 2500, 5000, 10000,
+    -1, 30, 100, 250, 500, 1000, 2500, 5000, 10000,
     15000, 20000, 25000, 30000, 40000, 50000,
 };
 
