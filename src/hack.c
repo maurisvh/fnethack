@@ -859,6 +859,20 @@ found:
     return FALSE;
 }
 
+
+boolean
+paranoid_yn(query)
+const char *query;
+{
+    char buf[BUFSZ];
+    char query_yesno[2*BUFSZ];
+    /* put [yes/no] between question and question mark? */
+    Sprintf(query_yesno, "%s [yes/no]", query);
+    getlin (query_yesno, buf);
+    (void) lcase (buf);
+    return (!(strcmp (buf, "yes")));
+}
+
 void
 domove()
 {
@@ -871,6 +885,8 @@ domove()
 	xchar chainx, chainy, ballx, bally;	/* ball&chain new positions */
 	int bc_control;				/* control for ball&chain */
 	boolean cause_delay = FALSE;	/* dragging ball will skip a move */
+    boolean known_wwalking = FALSE;
+    boolean known_lwalking = FALSE;
 	const char *predicament;
 
 	u_wipe_engr(rnd(5));
@@ -1257,6 +1273,38 @@ domove()
 	    nomul(0, NULL);
 	    return;
 	}
+
+    /* If no 'm' prefix, paranoid ask dangerous moves */
+    /* (this snippet is from UnNetHack) */
+    if (!flags.nopick || flags.run) {
+        known_wwalking = (uarmf && objects[uarmf->otyp].oc_name_known &&
+#ifdef STEED
+                    !u.usteed &&
+#endif
+                    uarmf->otyp == WATER_WALKING_BOOTS);
+        known_lwalking = (known_wwalking && Fire_resistance &&
+                    uarmf->rknown && uarmf->oerodeproof);
+        if (!Levitation && !Flying && !is_clinger(youmonst.data) &&
+                !Stunned && !Confusion && levl[x][y].seenv &&
+                ((is_pool(x, y) && !is_pool(u.ux, u.uy)) ||
+                (is_lava(x, y) && !is_lava(u.ux, u.uy)))) {
+            /* paranoid_water */
+            if (is_pool(x, y) && !known_wwalking) {
+                if (paranoid_yn("Really enter the water?") != 'y') {
+                    flags.move = 0;
+                    nomul(0, 0);
+                    return;
+                }
+            /* paranoid_lava */
+            } else if (is_lava(x, y) && !known_lwalking) {
+                if (paranoid_yn("Really walk into lava?", 1) != 'y') {
+                    flags.move = 0;
+                    nomul(0, 0);
+                    return;
+                }
+            }
+        }
+    }
 
 	/* Move ball and chain.  */
 	if (Punished)

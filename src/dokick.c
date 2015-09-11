@@ -1043,7 +1043,7 @@ dumb:
 
 	exercise(A_DEX, TRUE);
 	/* door is known to be CLOSED or LOCKED */
-	if(rnl(35) < avrg_attrib + (!martial() ? 0 : ACURR(A_DEX))) {
+	if(1) {
 		boolean shopdoor = *in_rooms(x, y, SHOPBASE) ? TRUE : FALSE;
 		/* break the door */
 		if(maploc->doormask & D_TRAPPED) {

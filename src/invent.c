@@ -3174,7 +3174,7 @@ long numused;
 STATIC_VAR NEARDATA const char *names[] = { 0,
 	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets",
 	"Tools", "Comestibles", "Potions", "Scrolls", "Spellbooks",
-	"Wands", "Coins", "Gems", "Boulders/Statues", "Iron balls",
+	"Wands", "Coins", "Gems", "Boulders", "Statues", "Iron balls",
 	"Chains", "Venoms"
 };
 

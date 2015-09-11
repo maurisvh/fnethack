@@ -733,6 +733,7 @@ register struct obj *obj;
 		return(APPORT);
 	    /* fall into next case */
 	case ROCK_CLASS:
+	case STATUE_CLASS:
 	    return(UNDEF);
 	}
 }

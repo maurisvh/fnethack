@@ -45,7 +45,8 @@ const char def_oc_syms[MAXOCLASSES] = {
 	GOLD_SYM,
 	GEM_SYM,
 	ROCK_SYM,
-/*15*/	BALL_SYM,
+/*15*/	STATUE_SYM,
+	BALL_SYM,
 	CHAIN_SYM,
 	VENOM_SYM
 };
@@ -898,7 +899,8 @@ static const glyph_t r_oc_syms[MAXOCLASSES] = {
 	GEM_SYM,		/* gold -- yes it's the same as gems */
 	GEM_SYM,
 	ROCK_SYM,
-/*15*/	BALL_SYM,
+/*15*/	STATUE_SYM,
+	BALL_SYM,
 	CHAIN_SYM,
 	VENOM_SYM
 };
@@ -941,6 +943,7 @@ static const uchar IBM_r_oc_syms[MAXOCLASSES] = {	/* a la EPYX Rogue */
 	GEM_SYM,		/* gems    */
 #  endif
 	ROCK_SYM,
+    STATUE_SYM,
 /*15*/	BALL_SYM,
 	CHAIN_SYM,
 	VENOM_SYM

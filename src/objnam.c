@@ -365,6 +365,7 @@ boolean ignore_oquan;
 		Strcpy(buf, actualn);
 		break;
 	    case ROCK_CLASS:
+	    case STATUE_CLASS:
 		if (typ == STATUE)
 		    Sprintf(buf, "%s%s of %s%s",
 			(Role_if(PM_ARCHEOLOGIST) && (obj->spe & STATUE_HISTORIC)) ? "historic " : "" ,

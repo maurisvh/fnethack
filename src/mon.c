@@ -810,6 +810,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		if (ptr != &mons[PM_GELATINOUS_CUBE])
 		    return !ptr ? 2 : 1;
 	    } else if (otmp->oclass != ROCK_CLASS &&
+				    otmp->oclass != STATUE_CLASS &&
 				    otmp != uball && otmp != uchain) {
 		++ecount;
 		if (ecount == 1) {
@@ -986,7 +987,8 @@ struct obj *otmp;
 
 	/* nymphs deal in stolen merchandise, but not boulders or statues */
 	if (mdat->mlet == S_NYMPH)
-		return (boolean)(otmp->oclass != ROCK_CLASS);
+		return (boolean)(otmp->oclass != ROCK_CLASS &&
+                         otmp->oclass != STATUE_CLASS);
 
 	if (curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return FALSE;
 

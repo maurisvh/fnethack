@@ -164,9 +164,9 @@ CONTAINER:'`',"statue",(64,10)
 CONTAINER:'`',"statue",(65,10)
 CONTAINER:'`',"statue",(64,11)
 CONTAINER:'`',"statue",(65,11)
-OBJECT:'`',"boulder",(04,04)
+OBJECT:'0',"boulder",(04,04)
 OBJECT:'/',random,(52,09)
-OBJECT:'`',"boulder",(52,09)
+OBJECT:'0',"boulder",(52,09)
 OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random

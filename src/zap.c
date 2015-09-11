@@ -1529,6 +1529,7 @@ struct obj *obj, *otmp;
 		/* add more if stone objects are added.. */
 		switch (objects[obj->otyp].oc_class) {
 		    case ROCK_CLASS:	/* boulders and statues */
+		    case STATUE_CLASS:
 			if (obj->otyp == BOULDER) {
 			    obj = poly_obj(obj, HUGE_CHUNK_OF_MEAT);
 			    goto smell;

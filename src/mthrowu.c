@@ -776,7 +776,8 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 			obj_type != TIN_WHISTLE &&
 			obj_type != MAGIC_WHISTLE);
 		break;
-	case ROCK_CLASS:	/* includes boulder */
+	case ROCK_CLASS:
+	case STATUE_CLASS:
 		if (obj_type != STATUE ||
 			mons[otmp->corpsenm].msize > MZ_TINY) hits = TRUE;
 		break;
