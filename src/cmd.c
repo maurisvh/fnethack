@@ -79,7 +79,6 @@ extern int NDECL(dodrink); /**/
 extern int NDECL(dodip); /**/
 extern int NDECL(dosacrifice); /**/
 extern int NDECL(dopray); /**/
-extern int NDECL(doturn); /**/
 extern int NDECL(doredraw); /**/
 extern int NDECL(doread); /**/
 extern int NDECL(dosave); /**/
@@ -1995,7 +1994,6 @@ struct ext_func_tab extcmdlist[] = {
 #endif
 	{"rub", "rub a lamp", dorub, !IFBURIED, AUTOCOMPLETE},
 	{"sit", "sit down", dosit, !IFBURIED, AUTOCOMPLETE},
-	{"turn", "turn undead", doturn, IFBURIED, AUTOCOMPLETE},
 	{"twoweapon", "toggle two-weapon combat", dotwoweapon, !IFBURIED, AUTOCOMPLETE},
 	{"untrap", "untrap something", dountrap, !IFBURIED, AUTOCOMPLETE},
 	{"versionext", "list compile time options for this version of fNetHack",
@@ -2167,7 +2165,6 @@ init_bind_list(void)
 	bind_key(M('s'), "sit" );
 	bind_key('t',    "throw" );
 	bind_key('T',    "takeoff" );
-	bind_key(M('t'), "turn" );
 	/*        'u', 'U' : go ne */
 	bind_key('u',    "untrap" ); /* if number_pad is on */
 	bind_key(M('u'), "untrap" );

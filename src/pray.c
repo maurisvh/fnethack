@@ -1639,11 +1639,6 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
     return(1);
 }
 
-int
-doturn()
-{
-}
-
 const char *
 a_gname()
 {

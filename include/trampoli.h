@@ -202,7 +202,6 @@
 
 
 /* ### pray.c ### */
-#define doturn()      doturn_()
 #define dopray()      dopray_()
 #define prayer_done() prayer_done_()
 #define dosacrifice() dosacrifice_()

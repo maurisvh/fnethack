@@ -84,7 +84,7 @@ functions:57 _vga_xputg _vga_xputs _video_update_positionbar _view_from _view_in
 functions:58 _do_oname _do_osshock _do_play_instrument _do_reset_eat _do_room_or_subroom _do_storms _do_takeoff
 functions:60 _doclose _doconsult _docorner _docrt _doddoremarm _doddrop _dodip
 functions:61 _adjust_prefix _build_plselection_prompt _duplicate_opt_detection _enter_explore_mode _maybe_wail
-functions:62 _doextcmd _doextlist _doextversion _dofindgem _dofiretrap _doforce _dog_eat _dog_goal
+functions:62 _doextcmd _doextlist _doextversion _dofindgem _dofiretrap _dog_eat _dog_goal
 functions:63 _dog_hunger _dog_invent _dog_move _dog_nutrition _dogfood _dogushforth _dohelp _dohide
 functions:64 _dohistory _doidtrap _doinvbill _doinvoke _dojump _dokick _dolook _doloot
 functions:65 _domagicportal 
@@ -94,7 +94,7 @@ functions:68 _dopray _doprev_message _doprgold _doprring _doprtool _doprwep _dop
 functions:69 _doread _dorecover _doredraw _doremove _doremring _dorub _dosacrifice _dosave
 functions:70 _dosdoor _dosearch _dosearch0 _doseduce _doset _doset_add_menu _dosh
 functions:71 _dosinkfall _dosinkring _dosit _dosounds _dospinweb _dospit _dosummon _dotakeoff
-functions:72 _dotalk _dotele _dothrow _dotogglepickup _dotrap _doturn _dotypeinv _dounpaid
+functions:72 _dotalk _dotele _dothrow _dotogglepickup _dotrap _dotypeinv _dounpaid
 functions:73 _dountrap _doup _doversion _dovspell _dowaterdemon _dowaternymph _dowatersnakes _dowear
 functions:74 _dowhatdoes _dowhatis _dowield _dowipe _down_gate _dowrite _dozap _dprince
 functions:75 _drag_ball _drag_down _drain_en _DrawCursor _drinkfountain _drinksink _drop _drop_ball
