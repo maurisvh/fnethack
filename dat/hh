@@ -92,7 +92,6 @@ M-a     adjust  adjust inventory letters
 M-c     chat    talk to someone
 M-d     dip     dip an object into something
 M-e     enhance advance or check weapons skills
-M-f     force   force a lock
 M-i     invoke  invoke an object's special powers
 M-j     jump    jump to another location
 M-l     loot    loot a box on the floor
@@ -103,7 +102,6 @@ M-p     pray    pray to the gods for help
 M-q     quit    stop playing
 M-r     rub     rub a lamp or a stone
 M-s     sit     sit down
-M-t     turn    turn undead
 M-u     untrap  untrap something
 M-v     version print compile time options for this version
 M-w     wipe    wipe off your face

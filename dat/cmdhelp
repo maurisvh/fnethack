@@ -104,7 +104,6 @@ M-a     Adjust inventory letters
 M-c     Talk to someone
 M-d     Dip an object into something
 M-e     Advance or check weapons skills
-M-f     Force a lock
 M-i     Invoke an object's special powers
 M-j     Jump to another location
 M-l     Loot a box on the floor
@@ -115,7 +114,6 @@ M-p     Pray to the gods for help
 M-q     Quit
 M-r     Rub a lamp
 M-s     Sit down
-M-t     Turn undead
 M-u     Untrap something (trap, door, or chest)
 M-v     Print compile time options for this version of NetHack
 M-w     Wipe off your face
