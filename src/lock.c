@@ -559,7 +559,7 @@ doopen()		/* try to open a door */
 	}
 
 	/* door is known to be CLOSED */
-	if (rnl(20) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) {
+	if (1) {
 	    pline_The("door opens.");
 	    if(door->doormask & D_TRAPPED) {
 		b_trapped("door", FINGER);
@@ -675,11 +675,7 @@ doclose()		/* try to close a door */
 		 pline("You're too small to push the door closed.");
 		 return(0);
 	    }
-	    if (
-#ifdef STEED
-		 u.usteed ||
-#endif
-		rn2(25) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) {
+	    if (1) {
 		pline_The("door closes.");
 		door->doormask = D_CLOSED;
 		if (Blind)

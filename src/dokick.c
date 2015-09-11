@@ -511,7 +511,7 @@ xchar x, y;
 		container_impact_dmg(kickobj);
 
 		if (kickobj->olocked) {
-		    if (!rn2(5) || (martial() && !rn2(2))) {
+		    if (1) {
 			You("break open the lock!");
 			kickobj->olocked = 0;
 			kickobj->obroken = 1;
@@ -519,7 +519,7 @@ xchar x, y;
 			return(1);
 		    }
 		} else {
-		    if (!rn2(3) || (martial() && !rn2(2))) {
+		    if (1) {
 			pline_The("lid slams open, then falls shut.");
 			if (otrp) (void) chest_trap(kickobj, LEG, FALSE);
 			return(1);
