@@ -1,19 +1,27 @@
-        Welcome to NetHack!                ( description of version 3.4 )
+        Welcome to fNetHack!
 
-        NetHack is a Dungeons and Dragons like game where you (the adventurer)
-descend into the depths of the dungeon in search of the Amulet of Yendor,
-reputed to be hidden somewhere below the twentieth level.  You begin your
-adventure with a pet that can help you in many ways, and can be trained
-to do all sorts of things.  On the way you will find useful (or useless)
-items, quite possibly with magic properties, and assorted monsters.  You can
-attack a monster by trying to move onto the space a monster is on (but often
-it is much wiser to leave it alone).
+        fNetHack is a NetHack fork, based on nethack.alt.org's version of the
+        game (which is just NetHack 3.4.3 with a bunch of interface patches).
+        It aims to still feel and play like vanilla NetHack, but removes or
+        rebalances certain elements of the game to make it more interesting
+        and less tedious.
 
-        Unlike most adventure games, which give you a verbal description of
-your location, NetHack gives you a visual image of the dungeon level you are
-on.
+        If you're used to regular old NetHack, certain changes might be
+        surprising to you: most notably, Elbereth is gone, making tactical
+        combat and running away much more important than it once was; to make
+        up for it, player characters are a bit more robust, and regenerate
+        health more quickly. Many other items, enemies, or mechanics have been
+        changed or removed to accomodate this change. The endgame is much
+        shorter, and the XL cap is at 15 instead of 30.
 
-        NetHack uses the following symbols:
+        A more elaborate list of changes will follow; for now, you
+        should look at the commits page on GitHub.
+
+        If you have any comments, questions, or other feedback, you can
+        connect to on irc.freenode.org and talk about the game in ##fnethack
+        (I'm mauris there.) 
+
+        fNetHack uses the following symbols:
 
         - and |  The walls of a room, possibly also open doors or a grave.
         .        The floor of a room or a doorway.
@@ -36,12 +44,12 @@ on.
                  you can learn.
         ^        A trap (once you detect it).
         "        An amulet, or a spider web.
-        0        An iron ball.
+        0        An iron ball or boulder.
         _        An altar, or an iron chain.
         {        A fountain.
         }        A pool of water or moat or a pool of lava.
         \        An opulent throne.
-        `        A boulder or statue.
+        `        A statue.
         A to Z, a to z, and several others:  Monsters.
         I        Invisible or unseen monster's last known location
 
@@ -71,7 +79,7 @@ b j n   1 2 3           g<dir>:   run in direction <dir> until something
                 depending on the platform's capabilities.
 
 Commands:
-        NetHack knows the following commands:
+        fNetHack knows the following commands:
         ?       Help menu.
         /       Tell what a symbol represents.  You may choose to specify
                 a location or give a symbol argument.
@@ -132,7 +140,7 @@ Commands:
         r       Read a scroll or spellbook.
         R       Remove an accessory (ring, amulet, etc).
         ^R      Redraw the screen.
-        s       Search for secret doors and traps around you.
+        s       Search for traps around you.
         S       Save the game.
         t       Throw an object or shoot a projectile.
         T       Take off armor.
