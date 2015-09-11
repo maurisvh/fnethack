@@ -63,7 +63,6 @@ extern int NDECL(doprring); /**/
 extern int NDECL(dopramulet); /**/
 extern int NDECL(doprtool); /**/
 extern int NDECL(dosuspend); /**/
-extern int NDECL(doforce); /**/
 extern int NDECL(doopen); /**/
 extern int NDECL(doclose); /**/
 extern int NDECL(dosh); /**/
@@ -1981,7 +1980,6 @@ struct ext_func_tab extcmdlist[] = {
 	{"conduct", "list which challenges you have adhered to", doconduct, IFBURIED, AUTOCOMPLETE},
 	{"dip", "dip an object into something", dodip, !IFBURIED, AUTOCOMPLETE},
 	{"enhance", "advance or check weapons skills", enhance_weapon_skill, IFBURIED, AUTOCOMPLETE},
-	{"force", "force a lock", doforce, !IFBURIED, AUTOCOMPLETE},
 	{"invoke", "invoke an object's powers", doinvoke, IFBURIED, AUTOCOMPLETE},
 	{"jump", "jump to a location", dojump, !IFBURIED, AUTOCOMPLETE},
 	{"loot", "loot a box on the floor", doloot, !IFBURIED, AUTOCOMPLETE},
@@ -2135,7 +2133,6 @@ init_bind_list(void)
 	bind_key('E',    "enhance" );
 	bind_key('f',    "fire" );
 	/*       'F' : fight (one time) */
-	bind_key(M('f'), "force" );
 	/*       'g', 'G' : multiple go */
 	/*       'h', 'H' : go west */
 	bind_key('h',    "help" ); /* if number_pad is set */

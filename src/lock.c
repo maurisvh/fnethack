@@ -433,68 +433,6 @@ pick_lock(pick) /* pick a lock with a given object */
 	return(1);
 }
 
-int
-doforce()		/* try to force a chest with your weapon */
-{
-	register struct obj *otmp;
-	register int c, picktyp;
-	char qbuf[QBUFSZ];
-
-	if(!uwep ||	/* proper type test */
-	   (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) &&
-	    uwep->oclass != ROCK_CLASS && uwep->oclass != STATUE_CLASS) ||
-	   (objects[uwep->otyp].oc_skill < P_DAGGER) ||
-	   (objects[uwep->otyp].oc_skill > P_LANCE) ||
-	   uwep->otyp == FLAIL || uwep->otyp == AKLYS
-#ifdef KOPS
-	   || uwep->otyp == RUBBER_HOSE
-#endif
-	  ) {
-	    You_cant("force anything without a %sweapon.",
-		  (uwep) ? "proper " : "");
-	    return(0);
-	}
-
-	picktyp = is_blade(uwep);
-	if(xlock.usedtime && xlock.box && picktyp == xlock.picktyp) {
-	    You("resume your attempt to force the lock.");
-	    set_occupation(forcelock, "forcing the lock", 0);
-	    return(1);
-	}
-
-	/* A lock is made only for the honest man, the thief will break it. */
-	xlock.box = (struct obj *)0;
-	for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere)
-	    if(Is_box(otmp)) {
-		if (otmp->obroken || !otmp->olocked) {
-		    There("is %s here, but its lock is already %s.",
-			  doname(otmp), otmp->obroken ? "broken" : "unlocked");
-		    continue;
-		}
-		Sprintf(qbuf,"There is %s here, force its lock?",
-			safe_qbuf("", sizeof("There is  here, force its lock?"),
-				doname(otmp), an(simple_typename(otmp->otyp)),
-				"a box"));
-
-		c = ynq(qbuf);
-		if(c == 'q') return(0);
-		if(c == 'n') continue;
-
-		if(picktyp)
-		    You("force your %s into a crack and pry.", xname(uwep));
-		else
-		    You("start bashing it with your %s.", xname(uwep));
-		xlock.box = otmp;
-		xlock.chance = objects[uwep->otyp].oc_wldam * 2;
-		xlock.picktyp = picktyp;
-		xlock.usedtime = 0;
-		break;
-	    }
-
-	if(xlock.box)	set_occupation(forcelock, "forcing the lock", 0);
-	else		You("decide not to force the issue.");
-	return(1);
-}
 
 int
 doopen()		/* try to open a door */
