@@ -477,12 +477,7 @@ domonability()
 	else if (webmaker(youmonst.data)) return dospinweb();
 	else if (is_hider(youmonst.data)) return dohide();
 	else if (is_mind_flayer(youmonst.data)) return domindblast();
-	else if (u.umonnum == PM_GREMLIN) {
-	    if(IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
-		if (split_mon(&youmonst, (struct monst *)0))
-		    dryup(u.ux, u.uy, TRUE);
-	    } else There("is no fountain here.");
-	} else if (is_unicorn(youmonst.data)) {
+	if (is_unicorn(youmonst.data)) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;
 	} else if (youmonst.data->msound == MS_SHRIEK) {

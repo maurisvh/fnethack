@@ -3289,7 +3289,6 @@ boolean *shopdamage;
 		    if (cansee(x,y))
 			pline("Steam billows from the fountain.");
 		    rangemod -= 1;
-		    dryup(x, y, type > 0);
 	    }
 	}
 	else if(abstype == ZT_COLD && (is_pool(x,y) || is_lava(x,y))) {
