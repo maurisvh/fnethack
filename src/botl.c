@@ -3,6 +3,9 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "wintty.h"
+
+
 
 #ifdef OVL0
 extern const char *hu_stat[];	/* defined in eat.c */

@@ -5,6 +5,8 @@
 #ifndef HACK_H
 #define HACK_H
 
+#include <ctype.h>
+
 #ifndef CONFIG_H
 #include "config.h"
 #endif

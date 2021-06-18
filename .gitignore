@@ -1,4 +1,6 @@
-src/nethack
+fnethackdir
+src/fnethack
+record
 util/recover
 util/makedefs
 util/dlb

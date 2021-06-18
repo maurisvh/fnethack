@@ -4,6 +4,10 @@
 
 #include "hack.h"
 #include "dlb.h"
+#include <sys/stat.h>
+boolean parse_object_symbol(const char*);
+boolean parse_monster_symbol(const char*);
+boolean parse_symbol(const char*);
 
 #ifdef TTY_GRAPHICS
 #include "wintty.h" /* more() */

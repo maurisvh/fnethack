@@ -471,7 +471,7 @@ E  char *sprintf();
 #endif
 
 #ifndef __SASC_60
-#ifdef NEED_VARARGS
+#if 0
 # if defined(USE_STDARG) || defined(USE_VARARGS)
 #  if !defined(SVR4) && !defined(apollo)
 #   if !(defined(ULTRIX_PROTO) && defined(__GNUC__))
